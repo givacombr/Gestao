@@ -3,6 +3,6 @@
     public class GrupoUsuario
     {
         public string? NomeGrupo { get; set; }
-        public List<Permissao> Permissoes { get; set; }
+        public List<Permissao>? Permissoes { get; set; }
     }
 }
