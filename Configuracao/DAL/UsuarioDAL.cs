@@ -16,7 +16,7 @@ namespace DAL
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = cn;
                 cmd.CommandText =   @"INSERT INTO Usuario(Nome, NomeUsuario, CPF, Email, Senha, Ativo)
-                                      VALUES (@Nome, @NomeUsuario, @CPF, @Email, @Senha, @Ativo)";
+                                      VALUES (@Nome, @NomeUsuario, @CPF, @Email, @Senha, @Ativo)";//com o arroba ele aceita a quebra de linha
 
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.Parameters.AddWithValue("@Nome", _usuario.Nome);
