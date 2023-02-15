@@ -25,13 +25,13 @@ namespace ConsoleAppPrincipal
                     usuario.Nome = Console.ReadLine();
                     Console.WriteLine("Informe o nome de acesso do Usuário: ");
                     usuario.NomeUsuario = Console.ReadLine();
-                    usuario.Ativo = true;
                     Console.WriteLine("Informe seu Email: ");
                     usuario.Email = Console.ReadLine();
                     Console.WriteLine("Informe o seu CPF: ");
                     usuario.CPF = Console.ReadLine();
                     Console.WriteLine("Cadastre sua Senha: ");
                     usuario.Senha = Console.ReadLine();
+                    usuario.Ativo = true;
 
                     usuarioBLL.Inserir(usuario);
                     Console.WriteLine("Deseja cadastrar um novo usuário: [1] Sim [2] Não ");
