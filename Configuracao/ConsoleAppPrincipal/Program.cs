@@ -31,7 +31,10 @@ namespace ConsoleAppPrincipal
                     usuario.CPF = Console.ReadLine();
                     Console.WriteLine("Cadastre sua Senha: ");
                     usuario.Senha = Console.ReadLine();
-                    usuario.Ativo = true;
+                    Console.WriteLine("O usuário estará ativo (S) ou (N)");
+                    usuario.Ativo = Console.ReadLine().ToLower() == "s";
+
+                    Console.Clear();
 
                     usuarioBLL.Inserir(usuario);
                     Console.WriteLine("Deseja cadastrar um novo usuário: [1] Sim [2] Não ");
