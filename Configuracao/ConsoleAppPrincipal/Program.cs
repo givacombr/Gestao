@@ -9,17 +9,35 @@ namespace ConsoleAppPrincipal
         {
             try
             {
+                int sn;
+
                 Usuario usuario = new Usuario();
                 UsuarioBLL usuarioBLL = new UsuarioBLL();
 
-                usuario.Nome = "Erisvaldo Carvalho Silva";
-                usuario.NomeUsuario = "erisvaldo";
-                usuario.Ativo = true;
-                usuario.Email = "contato@erisvaldocarvalho.com.br";
-                usuario.CPF = "458.158.442-88";
-                usuario.Senha = "504587545";
+                Console.WriteLine("Deseja cadastrar um novo usuário: [1] Sim [2] Não ");
+                sn = Convert.ToInt32(Console.ReadLine());
+                Console.Clear();
 
-                usuarioBLL.Inserir(usuario);
+                while (sn != 2)
+                {
+                    Console.WriteLine("\nSistema de Cadastro\n\n");
+                    Console.WriteLine("Informe seu Nome Completo: ");
+                    usuario.Nome = Console.ReadLine();
+                    Console.WriteLine("Informe o nome de acesso do Usuário: ");
+                    usuario.NomeUsuario = Console.ReadLine();
+                    usuario.Ativo = true;
+                    Console.WriteLine("Informe seu Email: ");
+                    usuario.Email = Console.ReadLine();
+                    Console.WriteLine("Informe o seu CPF: ");
+                    usuario.CPF = Console.ReadLine();
+                    Console.WriteLine("Cadastre sua Senha: ");
+                    usuario.Senha = Console.ReadLine();
+
+                    usuarioBLL.Inserir(usuario);
+                    Console.WriteLine("Deseja cadastrar um novo usuário: [1] Sim [2] Não ");
+                    sn = Convert.ToInt32(Console.ReadLine());
+                }
+
 
             }
             catch (Exception ex)
