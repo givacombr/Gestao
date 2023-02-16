@@ -30,7 +30,7 @@ namespace BLL
             //throw new NotImplementedException();//quando o metodo nao for implementado, dará erro ao retornar um usuario
             return new Usuario();
         }
-        public void Alterar(Usuario _usuairo)
+        public void Alterar(Usuario _usuario)
         {
 
         }
