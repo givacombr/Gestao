@@ -22,12 +22,16 @@ namespace BLL
                 cn.Open();
                 cmd.ExecuteScalar();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Ocorreu um erro ao tentar inserir uma descrição no banco: " + ex.Message);
+            }
+            finally 
+            { 
+                cn.Close(); 
             }
         }
+        public Permissao Buscar(Permissao permissao)
         
     }
 }
