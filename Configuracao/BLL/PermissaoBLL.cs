@@ -32,6 +32,16 @@ namespace BLL
             }
         }
         public Permissao Buscar(Permissao permissao)
-        
+        {
+            return new Permissao();
+        }
+        public void Alterar(Permissao permissao)
+        {
+
+        }
+        public void Excluir(int _id)
+        {
+
+        }
     }
 }
