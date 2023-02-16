@@ -32,7 +32,7 @@ namespace ConsoleAppPrincipal
                     Console.WriteLine("Cadastre sua Senha: ");
                     usuario.Senha = Console.ReadLine();
                     Console.WriteLine("O usuário estará ativo (S) ou (N)");
-                    usuario.Ativo = Console.ReadLine().ToLower() == "s";
+                    usuario.Ativo = Console.ReadLine().ToLower() == "s";//armazendo expressao booleana
 
                     Console.Clear();
 
