@@ -1,9 +1,10 @@
-﻿using Models;
+﻿using DAL;
+using Models;
 using System.Data.SqlClient;
 
-namespace DAL
+namespace BLL
 {
-    public class GrupoUsuarioDAL
+    public class GrupoUsuarioBLL
     {
         public void Inserir(GrupoUsuario _grupousuario)
         {
@@ -23,7 +24,6 @@ namespace DAL
             }
             catch (Exception ex)
             {
-
                 throw new Exception("Ocorreu um erro ao tentar inserir o nome do grupo no banco: " + ex.Message);
             }
             finally 
@@ -31,30 +31,13 @@ namespace DAL
                 cn.Close(); 
             }
         }
-        public GrupoUsuario Buscar(GrupoUsuario grupousuario)
+        public GrupoUsuario Buscar(GrupoUsuario grupoUsuario)
         {
             return new GrupoUsuario();
         }
-        public void Alterar(GrupoUsuario _grupousuario)
+        public void Alterar(GrupoUsuario grupoUsuario)
         {
-            SqlConnection cn = new SqlConnection();
 
-            try
-            {
-                cn.ConnectionString = Conexao.StringDeConexao;
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = cn;
-                cmd.CommandText = @"UPDATE GrupoUsuario SET NomeGrupo = @NomeGrupo WHERE IdGrupoUsuario = @IdGrupoUsuario";
-                cmd.CommandType= System.Data.CommandType.Text;
-                cmd.Parameters.AddWithValue("@NomeGrupo", _grupousuario.NomeGrupo);
-                cn.Open();
-                cmd.ExecuteScalar();
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
         }
         public void Excluir(int _id)
         {
