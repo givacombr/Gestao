@@ -32,7 +32,6 @@ namespace DAL
             catch (Exception ex)
             {
                 throw new Exception("Ocorreu um erro ao tentar inserir um usuário no banco: " + ex.Message);
-
             }
             finally
             {
@@ -58,20 +57,24 @@ namespace DAL
                 cmd.Connection = cn;
                 cmd.CommandText = @"DELETE FROM Usuario WHERE IdUsuario = @IdUsuario";
                 cmd.CommandType = System.Data.CommandType.Text;
-                //cmd.Parameters.AddWithValue("@IdUsuario", _IdUsuario.);
+               // cmd.Parameters.AddWithValue("@IdDescricao", _IdUsuario.);
 
                 cn.Open();
                 cmd.ExecuteScalar();
             }
             catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Ocorreu um erro ao tentar excluir um usuário no banco: " + ex.Message);
             }
             finally
             {
                 cn.Close();
             }
+        }
+
+        public void Excluir(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
