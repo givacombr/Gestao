@@ -18,9 +18,9 @@ namespace ConsoleAppPrincipal
                     Console.WriteLine("\tMENU");
                     Console.WriteLine("Escolha uma opção: ");
                     Console.WriteLine("1 - Cadastrar usuário");//Console.WriteLine("Escolha uma opção:\n\1 - Cadastrar usuário\n\2 - ");
-                    Console.WriteLine("2 - ");
-                    Console.WriteLine("3 - ");
-                    Console.WriteLine("4 - ");
+                    Console.WriteLine("2 - Buscar");
+                    Console.WriteLine("3 - Alterar");
+                    Console.WriteLine("4 - Excluir");
                     Console.WriteLine("5 - Sair");
                     prog = Convert.ToInt32(Console.ReadLine());
 
