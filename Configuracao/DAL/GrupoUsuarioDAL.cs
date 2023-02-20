@@ -47,18 +47,44 @@ namespace DAL
                 cmd.CommandText = @"UPDATE GrupoUsuario SET NomeGrupo = @NomeGrupo WHERE IdGrupoUsuario = @IdGrupoUsuario";
                 cmd.CommandType= System.Data.CommandType.Text;
                 cmd.Parameters.AddWithValue("@NomeGrupo", _grupousuario.NomeGrupo);
+
                 cn.Open();
                 cmd.ExecuteScalar();
             }
-            catch (Exception)
+            catch (Exception ex)
+            {
+                throw new Exception("Ocorreu um erro ao tentar alterar o nome do grupo no banco: " + ex.Message);
+            }
+            finally 
+            { 
+                cn.Close();
+            }
+
+        }
+        public void Excluir(int _IdGrupoUsuario)
+        {
+            SqlConnection cn = new SqlConnection();
+            try
+            {
+                cn.ConnectionString = Conexao.StringDeConexao;
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = cn;
+                cmd.CommandText = @"DELETE FROM GrupoUsuario WHERE IdGrupoUsuario = @IdGrupoUsuario";
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.Parameters.AddWithValue("@IdGrupoUsuario", _IdGrupoUsuario);
+
+                cn.Open();
+                cmd.BeginExecuteNonQuery();
+            }
+            catch (Exception ex)
             {
 
-                throw;
+                throw new Exception("Ocorreu um erro ao tentar excluir o grupo no banco: " + ex.Message);
             }
-        }
-        public void Excluir(int _id)
-        {
-
+            finally 
+            { 
+                cn.Close();
+            }
         }
     }
 }

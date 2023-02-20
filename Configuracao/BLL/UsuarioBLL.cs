@@ -24,7 +24,7 @@ namespace BLL
             UsuarioDAL usuarioDAL = new UsuarioDAL();
             usuarioDAL.Inserir(_usuario);
         }
-        private static void ValidarDados(Usuario _usuario)
+        /*private static void ValidarDados(Usuario _usuario)
         {
             if (_usuario.NomeUsuario.Length <= 3 || _usuario.NomeUsuario.Length >= 50)
                 throw new Exception("O nome de usuário deve ter mais de três caracteres.");
@@ -37,15 +37,27 @@ namespace BLL
 
             if (_usuario.Senha.Length < 7 || _usuario.Senha.Length > 11)
                 throw new Exception("A senha deve ter entre 7 e 11 caracteres.");
-        }
+
+            UsuarioDAL usuarioDAL = new UsuarioDAL();
+            usuarioDAL.Inserir(_usuario);
+        }*/
         public Usuario Buscar(string _nomeUsuario)
         {
-            //throw new NotImplementedException();//quando o metodo nao for implementado, dará erro ao retornar um usuario
             return new Usuario();
         }
         public void Alterar(Usuario _usuario)
         {
+            if (_usuario.NomeUsuario.Length <= 3 || _usuario.NomeUsuario.Length >= 100)
+                throw new Exception("O nome do usuário deverá conter de 3 a 100 caracteres.");
+            if (_usuario.NomeUsuario.Contains(" "))
+                throw new Exception("O nome do usuário não pode conter espaço em branco.");
+            if (_usuario.Senha.Contains("1234567"))
+                throw new Exception("Não é permitido número sequencial.");
+            if (_usuario.Senha.Length < 7 || _usuario.Senha.Length > 11)
+                throw new Exception("A senha deve ter entre 7 e 11 caracteres.");
 
+            UsuarioDAL usuarioDAL = new UsuarioDAL();
+            usuarioDAL.Alterar(_usuario);
         }
         public void Excluir(int _id)
         {

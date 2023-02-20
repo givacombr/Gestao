@@ -8,40 +8,28 @@ namespace BLL
     {
         public void Inserir(GrupoUsuario _grupousuario)
         {
-            SqlConnection cn = new SqlConnection();
+            if (_grupousuario.NomeGrupo.Length <= 15 || _grupousuario.NomeGrupo.Length >= 150)
+                throw new Exception("O nome do grupo deverá conter de 15 a 150 caracteres.");
 
-            try
-            {
-                cn.ConnectionString = Conexao.StringDeConexao;
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = cn;
-                cmd.CommandText = @"INSERT INTO GrupoUsuario(NomeGrupo) VALUES (@NomeGrupo)";
-                cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Parameters.AddWithValue("@NomeGrupo", _grupousuario.NomeGrupo);
-
-                cn.Open();
-                cmd.ExecuteScalar();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Ocorreu um erro ao tentar inserir o nome do grupo no banco: " + ex.Message);
-            }
-            finally 
-            { 
-                cn.Close(); 
-            }
+            GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
+            grupoUsuarioDAL.Inserir(_grupousuario);
         }
         public GrupoUsuario Buscar(GrupoUsuario grupoUsuario)
         {
             return new GrupoUsuario();
         }
-        public void Alterar(GrupoUsuario grupoUsuario)
+        public void Alterar(GrupoUsuario _grupoUsuario)
         {
+            if (_grupoUsuario.NomeGrupo.Length <= 15 || _grupoUsuario.NomeGrupo.Length >= 150)
+                throw new Exception("O nome do grupo deverá conter de 15 a 150 caracteres.");
 
+            GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
+            grupoUsuarioDAL.Alterar(_grupoUsuario);
         }
-        public void Excluir(int _id)
+        public void Excluir(int _IdGrupoUsuario)
         {
-
+            GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
+            grupoUsuarioDAL.Excluir(_IdGrupoUsuario);
         }
     }
 }

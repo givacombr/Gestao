@@ -1,6 +1,5 @@
 ﻿using Models;
 using System.Data.SqlClient;
-using System.Data.SqlTypes;
 
 namespace DAL
 {
@@ -46,35 +45,9 @@ namespace DAL
         {
 
         }
-        public void Excluir(Usuario _IdUsuario)
+        public void Excluir(int _id)
         {
-            SqlConnection cn = new SqlConnection();
-
-            try
-            {
-                cn.ConnectionString = Conexao.StringDeConexao;
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = cn;
-                cmd.CommandText = @"DELETE FROM Usuario WHERE IdUsuario = @IdUsuario";
-                cmd.CommandType = System.Data.CommandType.Text;
-               // cmd.Parameters.AddWithValue("@IdDescricao", _IdUsuario.);
-
-                cn.Open();
-                cmd.ExecuteScalar();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Ocorreu um erro ao tentar excluir um usuário no banco: " + ex.Message);
-            }
-            finally
-            {
-                cn.Close();
-            }
-        }
-
-        public void Excluir(int id)
-        {
-            throw new NotImplementedException();
+            
         }
     }
 }
