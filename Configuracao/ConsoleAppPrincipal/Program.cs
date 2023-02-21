@@ -17,11 +17,12 @@ namespace ConsoleAppPrincipal
                     Console.Title = "MENU";
                     Console.WriteLine("\tMENU");
                     Console.WriteLine("Escolha uma opção: ");
-                    Console.WriteLine("1 - Cadastrar usuário");//Console.WriteLine("Escolha uma opção:\n\1 - Cadastrar usuário\n\2 - ");
-                    Console.WriteLine("2 - Buscar");
-                    Console.WriteLine("3 - Alterar");
-                    Console.WriteLine("4 - Excluir");
-                    Console.WriteLine("5 - Sair");
+                    Console.WriteLine("1 - Cadastrar Usuario");//Console.WriteLine("Escolha uma opção:\n\1 - Cadastrar usuário\n\2 - ");
+                    Console.WriteLine("2 - Cadastrar Grupo");
+                    Console.WriteLine("3 - Buscar");
+                    Console.WriteLine("4 - Alterar");
+                    Console.WriteLine("5 - Excluir");
+                    Console.WriteLine("0 - Sair");
                     prog = Convert.ToInt32(Console.ReadLine());
 
                     switch (prog)
@@ -30,16 +31,36 @@ namespace ConsoleAppPrincipal
                             CadastrarUsuario();
                             break;
                         case 2:
+                            CadastrarGrupo();
+                            break;
 
                         default:
                             break;
                     }
-                } while (prog != 5);
+                } while (prog != 0);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+        private static void CadastrarGrupo()
+        {
+            int sn;
+            GrupoUsuario grupoUsuario = new GrupoUsuario();
+            GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
+            Console.Clear();
+
+            do
+            {
+                Console.WriteLine("\nCria Grupo\n\n");
+                Console.WriteLine("Insira o nome do grupo: ");
+                grupoUsuario.NomeGrupo = Console.ReadLine();
+                //Console.Clear();
+                grupoUsuarioBLL.Inserir(grupoUsuario);
+                Console.WriteLine("Grupo criado com sucesso.\n\nDeseja criar um novo grupo: [1] Sim [2] Nao ");
+                sn = Convert.ToInt32(Console.ReadLine());
+            } while (sn != 2);
         }
 
         private static void CadastrarUsuario()
@@ -47,8 +68,6 @@ namespace ConsoleAppPrincipal
             int sn;
             Usuario usuario = new Usuario();
             UsuarioBLL usuarioBLL = new UsuarioBLL();
-            //Console.WriteLine("Deseja cadastrar um novo usuário: [1] Sim [2] Não ");
-            //sn = Convert.ToInt32(Console.ReadLine());
             Console.Clear();
 
             do
