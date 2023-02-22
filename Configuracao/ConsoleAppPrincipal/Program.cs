@@ -20,9 +20,13 @@ namespace ConsoleAppPrincipal
                     Console.WriteLine("1 - Cadastrar Usuario");//Console.WriteLine("Escolha uma opção:\n\1 - Cadastrar usuário\n\2 - ");
                     Console.WriteLine("2 - Cadastrar Grupo");
                     Console.WriteLine("3 - Cadastrar Permissão");
-                    Console.WriteLine("4 - Buscar");
-                    Console.WriteLine("5 - Alterar");
-                    Console.WriteLine("6 - Excluir");
+                    Console.WriteLine("4 - Alterar Usuario");
+                    Console.WriteLine("5 - Alterar Grupo");
+                    Console.WriteLine("6 - Alterar Permissão");
+                    Console.WriteLine("7 - Buscar");
+                    Console.WriteLine("8 - Excluir Usuario");
+                    Console.WriteLine("8 - Excluir Grupo");
+                    Console.WriteLine("8 - Excluir Permissao");
                     Console.WriteLine("0 - Sair");
                     prog = Convert.ToInt32(Console.ReadLine());
 
@@ -36,6 +40,15 @@ namespace ConsoleAppPrincipal
                             break;
                         case 3:
                             CadastrarPermissao();
+                            break;
+                        case 4:
+                            AlterarUsuario();
+                            break;
+                        case 5:
+                            //AlterarGrupo();
+                            break;
+                        case 6:
+                           // AlterarPermissao();
                             break;
 
                         default:
@@ -114,6 +127,36 @@ namespace ConsoleAppPrincipal
                 Console.WriteLine("Usuário cadastrado com sucesso.\n\nDeseja cadastrar um novo usuário: [1] Sim [2] Não ");
                 sn = Convert.ToInt32(Console.ReadLine());
             } while (sn != 2);
+        }
+        private static void AlterarUsuario()
+        {
+            int sn;
+            Usuario usuario = new Usuario();
+            UsuarioBLL usuarioBLL = new UsuarioBLL();
+            Console.Clear();
+
+            do
+            {
+                Console.WriteLine("\nAlteração de Cadastro\n\n");
+                Console.WriteLine("Informe seu Nome Completo: ");
+                usuario.Nome = Console.ReadLine();
+                Console.WriteLine("Informe o nome de acesso do Usuário: ");
+                usuario.NomeUsuario = Console.ReadLine();
+                Console.WriteLine("Informe seu Email: ");
+                usuario.Email = Console.ReadLine();
+                Console.WriteLine("Informe o seu CPF: ");
+                usuario.CPF = Console.ReadLine();
+                Console.WriteLine("Cadastre sua Senha: ");
+                usuario.Senha = Console.ReadLine();
+                Console.WriteLine("O usuário estará ativo (S) ou (N)");
+                usuario.Ativo = Console.ReadLine().ToLower() == "s";//armazendo expressao booleana
+
+                Console.Clear();
+
+                usuarioBLL.Inserir(usuario);
+                Console.WriteLine("Alteração de cadastrado com sucesso.\n\nDeseja alterar um novo usuário: [1] Sim [2] Não ");
+                sn = Convert.ToInt32(Console.ReadLine());
+            } while(sn != 2);
         }
     }
 }
