@@ -8,7 +8,7 @@ namespace BLL
     {
         public void Inserir(Permissao _permissao)
         {
-            if (_permissao.Descricao.Length <= 15 || _permissao.Descricao.Length >= 250)
+            if (_permissao.Descricao.Length <= 3 || _permissao.Descricao.Length >= 250)
                 throw new Exception("A descrição informada deverá conter de 15 a 250 caracteres. ");
 
             PermissaoDAL permissaoDAL= new PermissaoDAL();
@@ -20,7 +20,7 @@ namespace BLL
         }
         public void Alterar(Permissao _permissao)
         {
-            if (_permissao.Descricao.Length <= 15 || _permissao.Descricao.Length >= 250)
+            if (_permissao.Descricao.Length <= 3 || _permissao.Descricao.Length >= 250)
                 throw new Exception("A descirção informada deverá conter de 15 a 250 caracteres.");
 
             PermissaoDAL permissaoDAL = new PermissaoDAL();

@@ -19,9 +19,10 @@ namespace ConsoleAppPrincipal
                     Console.WriteLine("Escolha uma opção: ");
                     Console.WriteLine("1 - Cadastrar Usuario");//Console.WriteLine("Escolha uma opção:\n\1 - Cadastrar usuário\n\2 - ");
                     Console.WriteLine("2 - Cadastrar Grupo");
-                    Console.WriteLine("3 - Buscar");
-                    Console.WriteLine("4 - Alterar");
-                    Console.WriteLine("5 - Excluir");
+                    Console.WriteLine("3 - Cadastrar Permissão");
+                    Console.WriteLine("4 - Buscar");
+                    Console.WriteLine("5 - Alterar");
+                    Console.WriteLine("6 - Excluir");
                     Console.WriteLine("0 - Sair");
                     prog = Convert.ToInt32(Console.ReadLine());
 
@@ -33,6 +34,9 @@ namespace ConsoleAppPrincipal
                         case 2:
                             CadastrarGrupo();
                             break;
+                        case 3:
+                            CadastrarPermissao();
+                            break;
 
                         default:
                             break;
@@ -43,6 +47,24 @@ namespace ConsoleAppPrincipal
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+        private static void CadastrarPermissao()
+        {
+            int sn;
+            Permissao permissao = new Permissao();
+            PermissaoBLL permissaoBLL = new PermissaoBLL();
+            Console.Clear();
+
+            do
+            {
+                Console.WriteLine("\nCria Permissão\n\n");
+                Console.WriteLine("Insira o nome da Permissão: ");
+                permissao.Descricao = Console.ReadLine();
+                permissaoBLL.Inserir(permissao);
+                Console.WriteLine("Permissão criado com sucesso.\n\nDeseja criar uma nova Permissão: [1] Sim [2] Nao ");
+                sn = Convert.ToInt32(Console.ReadLine());
+                Console.Clear();
+            } while (sn != 2);
         }
         private static void CadastrarGrupo()
         {
