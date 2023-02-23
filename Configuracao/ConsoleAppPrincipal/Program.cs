@@ -17,16 +17,18 @@ namespace ConsoleAppPrincipal
                     Console.Title = "MENU";
                     Console.WriteLine("\tMENU");
                     Console.WriteLine("Escolha uma opção: ");
-                    Console.WriteLine("1 - Cadastrar Usuario");//Console.WriteLine("Escolha uma opção:\n\1 - Cadastrar usuário\n\2 - ");
+                    Console.WriteLine("1 - Cadastrar Usuario");
                     Console.WriteLine("2 - Cadastrar Grupo");
                     Console.WriteLine("3 - Cadastrar Permissão");
                     Console.WriteLine("4 - Alterar Usuario");
                     Console.WriteLine("5 - Alterar Grupo");
                     Console.WriteLine("6 - Alterar Permissão");
-                    Console.WriteLine("7 - Buscar");
-                    Console.WriteLine("8 - Excluir Usuario");
-                    Console.WriteLine("8 - Excluir Grupo");
-                    Console.WriteLine("8 - Excluir Permissao");
+                    Console.WriteLine("7 - Buscar Usuario");
+                    Console.WriteLine("8 - Buscar Grupo");
+                    Console.WriteLine("9 - Buscar Permissao");
+                    Console.WriteLine("10 - Excluir Usuario");
+                    Console.WriteLine("11 - Excluir Grupo");
+                    Console.WriteLine("12 - Excluir Permissao");
                     Console.WriteLine("0 - Sair");
                     prog = Convert.ToInt32(Console.ReadLine());
 
@@ -48,7 +50,10 @@ namespace ConsoleAppPrincipal
                             //AlterarGrupo();
                             break;
                         case 6:
-                           // AlterarPermissao();
+                            // AlterarPermissao();
+                            break;
+                        case 7:
+                            //BuscarUsuario();
                             break;
 
                         default:
@@ -61,6 +66,12 @@ namespace ConsoleAppPrincipal
                 Console.WriteLine(ex.Message);
             }
         }
+
+        private static void BuscarUsuario()
+        {
+            throw new NotImplementedException();
+        }
+
         private static void CadastrarPermissao()
         {
             int sn;
@@ -156,7 +167,7 @@ namespace ConsoleAppPrincipal
                 usuarioBLL.Inserir(usuario);
                 Console.WriteLine("Alteração de cadastrado com sucesso.\n\nDeseja alterar um novo usuário: [1] Sim [2] Não ");
                 sn = Convert.ToInt32(Console.ReadLine());
-            } while(sn != 2);
+            } while (sn != 2);
         }
     }
 }
