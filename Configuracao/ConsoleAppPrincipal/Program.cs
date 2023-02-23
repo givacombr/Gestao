@@ -55,6 +55,21 @@ namespace ConsoleAppPrincipal
                         case 7:
                             //BuscarUsuario();
                             break;
+                        case 8:
+                            //BuscarGrupo();
+                            break;
+                        case 9:
+                            //BuscarPermissao();
+                            break;
+                        case 10:
+                            ExcluirUsuario();
+                            break;
+                        case 11:
+                            //ExcluirGrupo();
+                            break;
+                        case 12:
+                            //ExcluirPermissao();
+                            break;
 
                         default:
                             break;
@@ -66,14 +81,28 @@ namespace ConsoleAppPrincipal
                 Console.WriteLine(ex.Message);
             }
         }
-
+        private static void ExcluirUsuario()
+        {
+            int sn;
+            Permissao permissao = new Permissao();
+            PermissaoBLL permissaoBLL = new PermissaoBLL();
+            Console.Clear();
+            do
+            {
+                Console.WriteLine("\nExcluir Usuario\n\n");
+                Console.WriteLine("Informe o Id que deseja excluir: ");
+                permissao.Descricao = Console.ReadLine();
+                permissaoBLL.Excluir(permissao);
+                Console.WriteLine("Exclusão realizada com sucesso. \n\nDeseja realizar uma nova Exclusao: [1] Sim [2] Não ");
+                sn = Convert.ToInt32(Console.ReadLine());
+            } while (sn != 2);
+        }
         private static void AlterarPermissao()
         {
             int sn;
             Permissao permissao = new Permissao();
             PermissaoBLL permissaoBLL = new PermissaoBLL();
             Console.Clear();
-
             do
             {
                 Console.WriteLine("\nAltera Permissão\n\n");
@@ -85,7 +114,6 @@ namespace ConsoleAppPrincipal
                 Console.Clear();
             } while (sn != 2);
         }
-
         private static void AlterarGrupo()
         {
             int sn;
@@ -176,7 +204,6 @@ namespace ConsoleAppPrincipal
             Usuario usuario = new Usuario();
             UsuarioBLL usuarioBLL = new UsuarioBLL();
             Console.Clear();
-
             do
             {
                 Console.WriteLine("\nSistema de Cadastro\n\n");
