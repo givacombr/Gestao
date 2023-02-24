@@ -38,8 +38,11 @@ namespace ConsoleAppPrincipal
                         case 4:
                             Excluir();
                             break;
-
+                        case 0:
+                            break;
                         default:
+                            Console.WriteLine("Opção Inválida");
+                            Console.ReadLine();
                             break;
                     }
                 } while (prog != 0);
@@ -49,7 +52,6 @@ namespace ConsoleAppPrincipal
                 Console.WriteLine(ex.Message);
             }
         }
-
         private static void Excluir()
         {
             int opc;
@@ -60,6 +62,7 @@ namespace ConsoleAppPrincipal
             Console.WriteLine("1 - Usuario");
             Console.WriteLine("2 - Grupo");
             Console.WriteLine("3 - Permissão");
+            Console.WriteLine("0 - Retornar ao Menu Principal");
             Console.Write("Escolha uma opção: ");
 
             opc = Convert.ToInt32(Console.ReadLine());
@@ -70,17 +73,68 @@ namespace ConsoleAppPrincipal
                     ExcluirUsuario();
                     break;
                 case 2:
-                    //ExcluirGrupo();
+                    ExcluirGrupo();
                     break;
                 case 3:
-                    //ExcluirPermissao();
+                    ExcluirPermissao();
+                    break;
+                case 0:
                     break;
 
                 default:
+                    Console.WriteLine("Opção Inválida");
+                    Console.ReadLine();
                     break;
             }
         }
-
+        private static void ExcluirUsuario()
+        {
+            int sn;
+            Usuario usuario = new Usuario();
+            UsuarioBLL usuarioBLL = new UsuarioBLL();
+            Console.Clear();
+            do
+            {
+                Console.WriteLine("\nExcluir Usuario\n\n");
+                Console.WriteLine("Informe o Id que deseja excluir: ");
+                usuario.IdUsuario = Convert.ToInt32(Console.ReadLine());
+                usuarioBLL.Excluir(usuario);
+                Console.WriteLine("Exclusão realizada com sucesso. \n\nDeseja realizar uma nova Exclusao: [1] Sim [2] Não ");
+                sn = Convert.ToInt32(Console.ReadLine());
+            } while (sn != 2);
+        }
+        private static void ExcluirPermissao()
+        {
+            int sn;
+            Permissao permissao = new Permissao();
+            PermissaoBLL permissaoBLL = new PermissaoBLL();
+            Console.Clear();
+            do
+            {
+                Console.WriteLine("\nExcluir Permissão");
+                Console.WriteLine("Informe o Id que deseja excluir: ");
+                permissao.IdDescricao = Convert.ToInt32(Console.ReadLine());
+                permissaoBLL.Excluir(permissao);
+                Console.WriteLine("Permissão excluúida com sucesso. \n\nDeseja realizar uma nova Exclusão: [1] Sim [2] Não ");
+                sn = Convert.ToInt32(Console.ReadLine());
+            }while (sn != 2);
+        }
+        private static void ExcluirGrupo()
+        {
+            int sn;
+            GrupoUsuario grupousuario = new GrupoUsuario();
+            GrupoUsuarioBLL grupousuarioBLL = new GrupoUsuarioBLL();
+            Console.Clear();
+            do
+            {
+                Console.WriteLine("\nExcluir Grupo\n\n");
+                Console.WriteLine("Informe o Id que deseja excluir: ");
+                grupousuario.IGrupoUsuario = Convert.ToInt32(Console.ReadLine());
+                grupousuarioBLL.Excluir(grupousuario);
+                Console.WriteLine("Exclusão realizada com sucesso. \n\nDeseja realizar uma nova Exclusao: [1] Sim [2] Não ");
+                sn = Convert.ToInt32(Console.ReadLine());
+            } while (sn != 2);
+        }
         private static void Buscar()
         {
             int opc;
@@ -92,6 +146,7 @@ namespace ConsoleAppPrincipal
             Console.WriteLine("2 - Todos os Usuários");
             Console.WriteLine("3 - Grupo");
             Console.WriteLine("4 - Permissão");
+            Console.WriteLine("0 - Retornar ao Menu Principal");
             Console.Write("Escolha uma opção: ");
 
             opc = Convert.ToInt32(Console.ReadLine());
@@ -107,69 +162,12 @@ namespace ConsoleAppPrincipal
                 case 3:
                     //BuscarPermissao();
                     break;
-
-                default:
-                    break;
-            }
-        }
-
-        private static void Alterar()
-        {
-            int opc;
-
-            Console.Clear();
-            Console.Title = "MENU";
-            Console.WriteLine("\tMENU ALTERAR");
-            Console.WriteLine("1 - Usuario");
-            Console.WriteLine("2 - Grupo");
-            Console.WriteLine("3 - Permissão");
-            Console.Write("Escolha uma opção: ");
-
-            opc = Convert.ToInt32(Console.ReadLine());
-
-            switch (opc)
-            {
-                case 1:
-                    AlterarUsuario();
-                    break;
-                case 2:
-                    AlterarGrupo();
-                    break;
-                case 3:
-                    AlterarPermissao();
+                case 0:
                     break;
 
                 default:
-                    break;
-            }
-        }
-        private static void Cadastrar()
-        {
-            int opc;
-
-            Console.Clear();
-            Console.Title = "MENU";
-            Console.WriteLine("\tMENU CADASTRO");
-            Console.WriteLine("1 - Usuario");
-            Console.WriteLine("2 - Grupo");
-            Console.WriteLine("3 - Permissão");
-            Console.Write("Escolha uma opção: ");
-
-            opc = Convert.ToInt32(Console.ReadLine());
-
-            switch (opc)
-            {
-                case 1:
-                    CadastrarUsuario();
-                    break;
-                case 2:
-                    CadastrarGrupo();
-                    break;
-                case 3:
-                    CadastrarPermissao();
-                    break;
-
-                default:
+                    Console.WriteLine("Opção Inválida");
+                    Console.ReadLine();
                     break;
             }
         }
@@ -189,21 +187,40 @@ namespace ConsoleAppPrincipal
                 Console.WriteLine(usuarios[i]);
             }*/
         }
-        private static void ExcluirUsuario()
+        private static void Alterar()
         {
-            int sn;
-            Permissao permissao = new Permissao();
-            PermissaoBLL permissaoBLL = new PermissaoBLL();
+            int opc;
+
             Console.Clear();
-            do
+            Console.Title = "MENU";
+            Console.WriteLine("\tMENU ALTERAR");
+            Console.WriteLine("1 - Usuario");
+            Console.WriteLine("2 - Grupo");
+            Console.WriteLine("3 - Permissão");
+            Console.WriteLine("0 - Retornar ao Menu Principal");
+            Console.Write("Escolha uma opção: ");
+
+            opc = Convert.ToInt32(Console.ReadLine());
+
+            switch (opc)
             {
-                Console.WriteLine("\nExcluir Usuario\n\n");
-                Console.WriteLine("Informe o Id que deseja excluir: ");
-                permissao.Descricao = Console.ReadLine();
-                permissaoBLL.Excluir(permissao);
-                Console.WriteLine("Exclusão realizada com sucesso. \n\nDeseja realizar uma nova Exclusao: [1] Sim [2] Não ");
-                sn = Convert.ToInt32(Console.ReadLine());
-            } while (sn != 2);
+                case 1:
+                    AlterarUsuario();
+                    break;
+                case 2:
+                    AlterarGrupo();
+                    break;
+                case 3:
+                    AlterarPermissao();
+                    break;
+                case 0:
+                    break;
+
+                default:
+                    Console.WriteLine("Opção Inválida");
+                    Console.ReadLine();
+                    break;
+            }
         }
         private static void AlterarPermissao()
         {
@@ -269,6 +286,41 @@ namespace ConsoleAppPrincipal
                 Console.WriteLine("Alteração de cadastrado com sucesso.\n\nDeseja alterar um novo usuário: [1] Sim [2] Não ");
                 sn = Convert.ToInt32(Console.ReadLine());
             } while (sn != 2);
+        }
+        private static void Cadastrar()
+        {
+            int opc;
+
+            Console.Clear();
+            Console.Title = "MENU";
+            Console.WriteLine("\tMENU CADASTRO");
+            Console.WriteLine("1 - Usuario");
+            Console.WriteLine("2 - Grupo");
+            Console.WriteLine("3 - Permissão");
+            Console.WriteLine("0 - Retornar ao Menu Principal");
+            Console.Write("Escolha uma opção: ");
+
+            opc = Convert.ToInt32(Console.ReadLine());
+
+            switch (opc)
+            {
+                case 1:
+                    CadastrarUsuario();
+                    break;
+                case 2:
+                    CadastrarGrupo();
+                    break;
+                case 3:
+                    CadastrarPermissao();
+                    break;
+                case 0:
+                    break;
+
+                default:
+                    Console.WriteLine("Opção Inválida");
+                    Console.ReadLine();
+                    break;
+            }
         }
         private static void CadastrarPermissao()
         {

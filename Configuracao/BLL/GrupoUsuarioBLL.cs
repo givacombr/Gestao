@@ -8,8 +8,8 @@ namespace BLL
     {
         public void Inserir(GrupoUsuario _grupousuario)
         {
-            if (_grupousuario.NomeGrupo.Length <= 15 || _grupousuario.NomeGrupo.Length >= 150)
-                throw new Exception("O nome do grupo deverá conter de 15 a 150 caracteres.");
+            if (_grupousuario.NomeGrupo.Length <= 3 || _grupousuario.NomeGrupo.Length >= 150)
+                throw new Exception("O nome do grupo deverá conter de 3 a 150 caracteres.");
 
             GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
             grupoUsuarioDAL.Inserir(_grupousuario);
@@ -20,16 +20,16 @@ namespace BLL
         }
         public void Alterar(GrupoUsuario _grupoUsuario)
         {
-            if (_grupoUsuario.NomeGrupo.Length <= 15 || _grupoUsuario.NomeGrupo.Length >= 150)
-                throw new Exception("O nome do grupo deverá conter de 15 a 150 caracteres.");
+            if (_grupoUsuario.NomeGrupo.Length <= 3 || _grupoUsuario.NomeGrupo.Length >= 150)
+                throw new Exception("O nome do grupo deverá conter de 3 a 150 caracteres.");
 
             GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
             grupoUsuarioDAL.Alterar(_grupoUsuario);
         }
-        public void Excluir(int _IdGrupoUsuario)
+        public void Excluir(GrupoUsuario _idGrupoUsuario)
         {
             GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
-            grupoUsuarioDAL.Excluir(_IdGrupoUsuario);
+            grupoUsuarioDAL.Excluir(_idGrupoUsuario);
         }
     }
 }

@@ -61,7 +61,7 @@ namespace DAL
             }
 
         }
-        public void Excluir(int _IdGrupoUsuario)
+        public void Excluir(GrupoUsuario _idGrupoUsuario)
         {
             SqlConnection cn = new SqlConnection();
             try
@@ -71,7 +71,7 @@ namespace DAL
                 cmd.Connection = cn;
                 cmd.CommandText = @"DELETE FROM GrupoUsuario WHERE IdGrupoUsuario = @IdGrupoUsuario";
                 cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Parameters.AddWithValue("@IdGrupoUsuario", _IdGrupoUsuario);
+                cmd.Parameters.AddWithValue("@IdGrupoUsuario", _idGrupoUsuario);
 
                 cn.Open();
                 cmd.BeginExecuteNonQuery();

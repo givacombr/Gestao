@@ -28,8 +28,8 @@ namespace BLL
         }
         public void Excluir(Permissao _permissao)
         {
-            if (_permissao.Descricao.Length <= 3 || _permissao.Descricao.Length >= 250)
-                throw new Exception("A exclusão informada deverá conter de 3 a 250 caracteres.");
+            if (_permissao.Descricao.Length <= 1 || _permissao.Descricao.Length >= 250)
+                throw new Exception("A exclusão informada deverá conter de 1 a 250 caracteres.");
             PermissaoDAL permissaoDAL = new PermissaoDAL();
             permissaoDAL.Excluir(_permissao);
         }
