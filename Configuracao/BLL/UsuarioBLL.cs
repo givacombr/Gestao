@@ -41,9 +41,19 @@ namespace BLL
             UsuarioDAL usuarioDAL = new UsuarioDAL();
             usuarioDAL.Inserir(_usuario);
         }*/
-        public Usuario Buscar(string _nomeUsuario)
+        public Usuario BuscarUsuarioPorNome(string _nomeUsuario)
         {
-            return new Usuario();
+            if (String.IsNullOrEmpty(_nomeUsuario))
+                throw new Exception("Informe o nome do usuário.");
+
+            UsuarioDAL usuarioDAL = new UsuarioDAL();
+            return usuarioDAL.BuscarUsuarioPorNome(_nomeUsuario);
+
+        }
+        public List<Usuario> BuscarTodos()
+        {
+            UsuarioDAL usuarioDAL = new UsuarioDAL();
+            return usuarioDAL.BuscarTodos();
         }
         public void Alterar(Usuario _usuario)
         {

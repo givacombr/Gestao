@@ -38,7 +38,7 @@ namespace DAL
                 cn.Close();
             }
         }
-        public DataTable BuscarUsuarioPorNome(string _nomeUsuario)
+       /* public DataTable BuscarUsuarioPorNome(string _nomeUsuario)
         {
             SqlDataAdapter da = new SqlDataAdapter();
             DataTable dt = new DataTable();
@@ -74,6 +74,52 @@ namespace DAL
             { 
                 cn.Close();
             }
+        }*/
+        public List<Usuario> BuscarTodos()
+        {
+            List<Usuario> usuarios= new List<Usuario>();
+            Usuario usuario;
+
+            SqlConnection cn = new SqlConnection();
+            SqlCommand cmd = new SqlCommand();
+
+            //SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);//dessa forma também funciona
+            try
+            {
+                cn.ConnectionString = Conexao.StringDeConexao;
+                cmd.Connection= cn;
+                cmd.CommandText = "SELECT TOP 100 Id, Nome, CPF, Email, Ativo FROM Usuario";
+                cmd.CommandType = System.Data.CommandType.Text;
+                cn.Open();
+
+                using (SqlDataReader rd = cmd.ExecuteReader())
+                {
+                    while (rd.Read())
+                    {
+                        usuario = new Usuario();
+                        usuario.Id = Convert.ToInt32(rd["Id"]);
+                        usuario.Nome = rd["Nome"].ToString();
+                        usuario.NomeUsuario = rd["NomeUsuario"].ToString();
+                        usuario.CPF = rd["CPF"].ToString();
+                        usuario.Email = rd["Email"].ToString();
+                        usuario.Ativo = Convert.ToBoolean(rd["Ativo"]);
+
+                        usuarios.Add(usuario);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //exemplo de concatenar:
+                //Console.WriteLine(String.Format("Ocorreu o seguinte erro: {0} ao tentar buscar no banco, no número do erro é {1}", ex.Message, 154));
+                //Console.WriteLine($"Ocorreu o seguinte erro: {ex.Message} ao tentar buscar no banco, no número do erro é {1}", ex.Message, 154));
+                throw new Exception("Ocorreu um erro ao tentar buscar todos os usuários: " + ex.Message);
+            }
+            finally 
+            { 
+                cn.Close(); 
+            }
+            return usuarios;
         }
         public void Alterar(Usuario _usuario)
         {
@@ -130,6 +176,11 @@ namespace DAL
             {
                 cn.Close();
             }
+        }
+
+        public Usuario BuscarUsuarioPorNome(string nomeUsuario)
+        {
+            throw new NotImplementedException();
         }
     }
 }
