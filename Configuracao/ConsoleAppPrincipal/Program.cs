@@ -222,41 +222,6 @@ namespace ConsoleAppPrincipal
                     break;
             }
         }
-        private static void AlterarPermissao()
-        {
-            int sn;
-            Permissao permissao = new Permissao();
-            PermissaoBLL permissaoBLL = new PermissaoBLL();
-            Console.Clear();
-            do
-            {
-                Console.WriteLine("\nAltera Permissão\n\n");
-                Console.WriteLine("Qual a Permissão que deseja alterar: ");
-                permissao.Descricao = Console.ReadLine();
-                permissaoBLL.Alterar(permissao);
-                Console.WriteLine("Permissão alterada com sucesso.\n\nDeseja alterar uma nova Permissão: [1] Sim [2] Nao ");
-                sn = Convert.ToInt32(Console.ReadLine());
-                Console.Clear();
-            } while (sn != 2);
-        }
-        private static void AlterarGrupo()
-        {
-            int sn;
-            GrupoUsuario grupoUsuario = new GrupoUsuario();
-            GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
-            Console.Clear();
-
-            do
-            {
-                Console.WriteLine("\nAlterar Grupo\n\n");
-                Console.WriteLine("Altere o nome do grupo: ");
-                grupoUsuario.NomeGrupo = Console.ReadLine();
-                //Console.Clear();
-                grupoUsuarioBLL.Alterar(grupoUsuario);
-                Console.WriteLine("Grupo alterado com sucesso.\n\nDeseja alterar um outro grupo: [1] Sim [2] Nao ");
-                sn = Convert.ToInt32(Console.ReadLine());
-            } while (sn != 2);
-        }
         private static void AlterarUsuario()
         {
             int sn;
@@ -285,6 +250,41 @@ namespace ConsoleAppPrincipal
                 usuarioBLL.Inserir(usuario);
                 Console.WriteLine("Alteração de cadastrado com sucesso.\n\nDeseja alterar um novo usuário: [1] Sim [2] Não ");
                 sn = Convert.ToInt32(Console.ReadLine());
+            } while (sn != 2);
+        }
+        private static void AlterarGrupo()
+        {
+            int sn;
+            GrupoUsuario grupoUsuario = new GrupoUsuario();
+            GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
+            Console.Clear();
+
+            do
+            {
+                Console.WriteLine("\nAlterar Grupo\n\n");
+                Console.WriteLine("Altere o nome do grupo: ");
+                grupoUsuario.NomeGrupo = Console.ReadLine();
+                //Console.Clear();
+                grupoUsuarioBLL.Alterar(grupoUsuario);
+                Console.WriteLine("Grupo alterado com sucesso.\n\nDeseja alterar um outro grupo: [1] Sim [2] Nao ");
+                sn = Convert.ToInt32(Console.ReadLine());
+            } while (sn != 2);
+        }
+        private static void AlterarPermissao()
+        {
+            int sn;
+            Permissao permissao = new Permissao();
+            PermissaoBLL permissaoBLL = new PermissaoBLL();
+            Console.Clear();
+            do
+            {
+                Console.WriteLine("\nAltera Permissão\n\n");
+                Console.WriteLine("Qual a Permissão que deseja alterar: ");
+                permissao.Descricao = Console.ReadLine();
+                permissaoBLL.Alterar(permissao);
+                Console.WriteLine("Permissão alterada com sucesso.\n\nDeseja alterar uma nova Permissão: [1] Sim [2] Nao ");
+                sn = Convert.ToInt32(Console.ReadLine());
+                Console.Clear();
             } while (sn != 2);
         }
         private static void Cadastrar()
