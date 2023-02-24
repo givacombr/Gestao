@@ -52,6 +52,112 @@ namespace ConsoleAppPrincipal
                 Console.WriteLine(ex.Message);
             }
         }
+        private static void Cadastrar()
+        {
+            int opc;
+
+            Console.Clear();
+            Console.Title = "MENU";
+            Console.WriteLine("\tMENU CADASTRO");
+            Console.WriteLine("1 - Usuario");
+            Console.WriteLine("2 - Grupo");
+            Console.WriteLine("3 - Permissão");
+            Console.WriteLine("0 - Retornar ao Menu Principal");
+            Console.Write("Escolha uma opção: ");
+
+            opc = Convert.ToInt32(Console.ReadLine());
+
+            switch (opc)
+            {
+                case 1:
+                    CadastrarUsuario();
+                    break;
+                case 2:
+                    CadastrarGrupo();
+                    break;
+                case 3:
+                    CadastrarPermissao();
+                    break;
+                case 0:
+                    break;
+
+                default:
+                    Console.WriteLine("Opção Inválida");
+                    Console.ReadLine();
+                    break;
+            }
+        }
+        private static void Alterar()
+        {
+            int opc;
+
+            Console.Clear();
+            Console.Title = "MENU";
+            Console.WriteLine("\tMENU ALTERAR");
+            Console.WriteLine("1 - Usuario");
+            Console.WriteLine("2 - Grupo");
+            Console.WriteLine("3 - Permissão");
+            Console.WriteLine("0 - Retornar ao Menu Principal");
+            Console.Write("Escolha uma opção: ");
+
+            opc = Convert.ToInt32(Console.ReadLine());
+
+            switch (opc)
+            {
+                case 1:
+                    AlterarUsuario();
+                    break;
+                case 2:
+                    AlterarGrupo();
+                    break;
+                case 3:
+                    AlterarPermissao();
+                    break;
+                case 0:
+                    break;
+
+                default:
+                    Console.WriteLine("Opção Inválida");
+                    Console.ReadLine();
+                    break;
+            }
+        }
+        private static void Buscar()
+        {
+            int opc;
+
+            Console.Clear();
+            Console.Title = "MENU";
+            Console.WriteLine("\tMENU BUSCAR");
+            Console.WriteLine("1 - Usuario Por Nome");
+            Console.WriteLine("2 - Todos os Usuários");
+            Console.WriteLine("3 - Grupo");
+            Console.WriteLine("4 - Permissão");
+            Console.WriteLine("0 - Retornar ao Menu Principal");
+            Console.Write("Escolha uma opção: ");
+
+            opc = Convert.ToInt32(Console.ReadLine());
+
+            switch (opc)
+            {
+                case 1:
+                    //BuscarUsuario();
+                    break;
+                case 2:
+                    BuscarTodosOsUsuarios();
+                    break;
+                case 3:
+                    //BuscarPermissao();
+                    break;
+                case 0:
+                    break;
+
+                default:
+                    Console.WriteLine("Opção Inválida");
+                    Console.ReadLine();
+                    break;
+            }
+        }
         private static void Excluir()
         {
             int opc;
@@ -135,93 +241,6 @@ namespace ConsoleAppPrincipal
                 sn = Convert.ToInt32(Console.ReadLine());
             } while (sn != 2);
         }
-        private static void Buscar()
-        {
-            int opc;
-
-            Console.Clear();
-            Console.Title = "MENU";
-            Console.WriteLine("\tMENU BUSCAR");
-            Console.WriteLine("1 - Usuario Por Nome");
-            Console.WriteLine("2 - Todos os Usuários");
-            Console.WriteLine("3 - Grupo");
-            Console.WriteLine("4 - Permissão");
-            Console.WriteLine("0 - Retornar ao Menu Principal");
-            Console.Write("Escolha uma opção: ");
-
-            opc = Convert.ToInt32(Console.ReadLine());
-
-            switch (opc)
-            {
-                case 1:
-                    //BuscarUsuario();
-                    break;
-                case 2:
-                    BuscarTodosOsUsuarios();
-                    break;
-                case 3:
-                    //BuscarPermissao();
-                    break;
-                case 0:
-                    break;
-
-                default:
-                    Console.WriteLine("Opção Inválida");
-                    Console.ReadLine();
-                    break;
-            }
-        }
-        private static void BuscarTodosOsUsuarios()
-        {
-            UsuarioBLL usuarioBLL = new UsuarioBLL();
-            List<Usuario> usuarios = usuarioBLL.BuscarTodos();
-
-            foreach (Usuario item in usuarios)
-            {
-                Console.WriteLine("Id: " + item.Id);
-                Console.WriteLine("Nome: " + item.Nome);
-                Console.WriteLine("Nome do Usuario: " + item.NomeUsuario);
-            }
-            /*for (int i = 0; i < usuarios.Count; i++)
-            {
-                Console.WriteLine(usuarios[i]);
-            }*/
-        }
-        private static void Alterar()
-        {
-            int opc;
-
-            Console.Clear();
-            Console.Title = "MENU";
-            Console.WriteLine("\tMENU ALTERAR");
-            Console.WriteLine("1 - Usuario");
-            Console.WriteLine("2 - Grupo");
-            Console.WriteLine("3 - Permissão");
-            Console.WriteLine("0 - Retornar ao Menu Principal");
-            Console.Write("Escolha uma opção: ");
-
-            opc = Convert.ToInt32(Console.ReadLine());
-
-            switch (opc)
-            {
-                case 1:
-                    AlterarUsuario();
-                    break;
-                case 2:
-                    AlterarGrupo();
-                    break;
-                case 3:
-                    AlterarPermissao();
-                    break;
-                case 0:
-                    break;
-
-                default:
-                    Console.WriteLine("Opção Inválida");
-                    Console.ReadLine();
-                    break;
-            }
-        }
         private static void AlterarUsuario()
         {
             int sn;
@@ -287,41 +306,6 @@ namespace ConsoleAppPrincipal
                 Console.Clear();
             } while (sn != 2);
         }
-        private static void Cadastrar()
-        {
-            int opc;
-
-            Console.Clear();
-            Console.Title = "MENU";
-            Console.WriteLine("\tMENU CADASTRO");
-            Console.WriteLine("1 - Usuario");
-            Console.WriteLine("2 - Grupo");
-            Console.WriteLine("3 - Permissão");
-            Console.WriteLine("0 - Retornar ao Menu Principal");
-            Console.Write("Escolha uma opção: ");
-
-            opc = Convert.ToInt32(Console.ReadLine());
-
-            switch (opc)
-            {
-                case 1:
-                    CadastrarUsuario();
-                    break;
-                case 2:
-                    CadastrarGrupo();
-                    break;
-                case 3:
-                    CadastrarPermissao();
-                    break;
-                case 0:
-                    break;
-
-                default:
-                    Console.WriteLine("Opção Inválida");
-                    Console.ReadLine();
-                    break;
-            }
-        }
         private static void CadastrarPermissao()
         {
             int sn;
@@ -386,6 +370,22 @@ namespace ConsoleAppPrincipal
                 Console.WriteLine("Usuário cadastrado com sucesso.\n\nDeseja cadastrar um novo usuário: [1] Sim [2] Não ");
                 sn = Convert.ToInt32(Console.ReadLine());
             } while (sn != 2);
+        }
+        private static void BuscarTodosOsUsuarios()
+        {
+            UsuarioBLL usuarioBLL = new UsuarioBLL();
+            List<Usuario> usuarios = usuarioBLL.BuscarTodos();
+
+            foreach (Usuario item in usuarios)
+            {
+                Console.WriteLine("IdUsuario: " + item.IdUsuario);
+                Console.WriteLine("Nome: " + item.Nome);
+                Console.WriteLine("Nome do Usuario: " + item.NomeUsuario);
+            }
+            /*for (int i = 0; i < usuarios.Count; i++)
+            {
+                Console.WriteLine(usuarios[i]);
+            }*/
         }
     }
 }
