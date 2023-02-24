@@ -203,7 +203,7 @@ namespace ConsoleAppPrincipal
             {
                 Console.WriteLine("\nExcluir Usuario\n\n");
                 Console.WriteLine("Informe o Id que deseja excluir: ");
-                usuario.IdUsuario = Convert.ToInt32(Console.ReadLine());
+                usuario.IDUsuario = Convert.ToInt32(Console.ReadLine());
                 usuarioBLL.Excluir(usuario);
                 Console.WriteLine("Exclusão realizada com sucesso. \n\nDeseja realizar uma nova Exclusao: [1] Sim [2] Não ");
                 sn = Convert.ToInt32(Console.ReadLine());
@@ -378,10 +378,13 @@ namespace ConsoleAppPrincipal
 
             foreach (Usuario item in usuarios)
             {
-                Console.WriteLine("IdUsuario: " + item.IdUsuario);
+                Console.WriteLine("IDUsuario: " + item.IDUsuario);
                 Console.WriteLine("Nome: " + item.Nome);
                 Console.WriteLine("Nome do Usuario: " + item.NomeUsuario);
             }
+
+            Console.WriteLine("\n\nPressione ENTER para continuar.");
+            Console.ReadLine();
             /*for (int i = 0; i < usuarios.Count; i++)
             {
                 Console.WriteLine(usuarios[i]);

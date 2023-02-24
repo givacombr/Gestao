@@ -88,7 +88,7 @@ namespace DAL
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
                 cmd.Connection= cn;
-                cmd.CommandText = "SELECT TOP 100 Id, Nome, CPF, Email, Ativo FROM Usuario";
+                cmd.CommandText = "SELECT TOP 100 IDUsuario, Nome, NomeUsuario, CPF, Email, Ativo FROM Usuario";
                 cmd.CommandType = System.Data.CommandType.Text;
                 cn.Open();
 
@@ -97,7 +97,7 @@ namespace DAL
                     while (rd.Read())
                     {
                         usuario = new Usuario();
-                        usuario.Id = Convert.ToInt32(rd["Id"]);
+                        usuario.IDUsuario = Convert.ToInt32(rd["IDUsuario"]);
                         usuario.Nome = rd["Nome"].ToString();
                         usuario.NomeUsuario = rd["NomeUsuario"].ToString();
                         usuario.CPF = rd["CPF"].ToString();
@@ -160,9 +160,9 @@ namespace DAL
                 cn.ConnectionString = Conexao.StringDeConexao;
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = cn;
-                cmd.CommandText = @"DELETE FROM Usuario WHERE IdUsuario = @IdUsuario";
+                cmd.CommandText = @"DELETE FROM Usuario WHERE IDUsuario = @IDUsuario";
                 cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Parameters.AddWithValue("@IdUsuario", _usuario.IdUsuario);
+                cmd.Parameters.AddWithValue("@IDUsuario", _usuario.IDUsuario);
 
                 cn.Open();
                 cmd.ExecuteScalar();
