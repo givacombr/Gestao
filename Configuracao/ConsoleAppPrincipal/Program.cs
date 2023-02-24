@@ -15,7 +15,7 @@ namespace ConsoleAppPrincipal
                 {
                     Console.Clear();
                     Console.Title = "MENU";
-                    Console.WriteLine("\tMENU");
+                    Console.WriteLine("\tMENU PRINCIPAL");
                     Console.WriteLine("1 - Cadastrar");
                     Console.WriteLine("2 - Alterar");
                     Console.WriteLine("3 - Buscar");
