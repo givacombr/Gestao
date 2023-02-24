@@ -75,7 +75,7 @@ namespace DAL
                 cmd.Parameters.AddWithValue("@IdDescricao", _permissao.IdDescricao);
 
                 cn.Open();
-                cmd.ExecuteScalar();
+                cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
             {

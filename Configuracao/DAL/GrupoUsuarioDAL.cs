@@ -74,7 +74,7 @@ namespace DAL
                 cmd.Parameters.AddWithValue("@IdGrupoUsuario", _idGrupoUsuario);
 
                 cn.Open();
-                cmd.BeginExecuteNonQuery();
+                cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
