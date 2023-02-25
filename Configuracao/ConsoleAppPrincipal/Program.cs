@@ -141,7 +141,7 @@ namespace ConsoleAppPrincipal
             switch (opc)
             {
                 case 1:
-                    //BuscarUsuario();
+                    BuscarUsuarioPorNome();
                     break;
                 case 2:
                     BuscarTodosOsUsuarios();
@@ -370,6 +370,15 @@ namespace ConsoleAppPrincipal
                 Console.WriteLine("Usuário cadastrado com sucesso.\n\nDeseja cadastrar um novo usuário: [1] Sim [2] Não ");
                 sn = Convert.ToInt32(Console.ReadLine());
             } while (sn != 2);
+        }
+        private static void BuscarUsuarioPorNome()
+        {
+            UsuarioBLL usuarioBLL = new UsuarioBLL();
+            foreach (Usuario item in usuarios)
+            {
+                Console.WriteLine("IDUsuario: " + item.IDUsuario);
+            }
+            //throw new NotImplementedException();
         }
         private static void BuscarTodosOsUsuarios()
         {

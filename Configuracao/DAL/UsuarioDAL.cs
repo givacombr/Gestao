@@ -15,7 +15,7 @@ namespace DAL
                 cn.ConnectionString = Conexao.StringDeConexao;
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = cn;
-                cmd.CommandText =   @"INSERT INTO Usuario(Nome, NomeUsuario, CPF, Email, Senha, Ativo)
+                cmd.CommandText = @"INSERT INTO Usuario(Nome, NomeUsuario, CPF, Email, Senha, Ativo)
                                       VALUES (@Nome, @NomeUsuario, @CPF, @Email, @Senha, @Ativo)";//com o arroba ele aceita a quebra de linha
 
                 cmd.CommandType = System.Data.CommandType.Text;
@@ -38,46 +38,46 @@ namespace DAL
                 cn.Close();
             }
         }
-       /* public DataTable BuscarUsuarioPorNome(string _nomeUsuario)
-        {
-            SqlDataAdapter da = new SqlDataAdapter();
-            DataTable dt = new DataTable();
-            SqlConnection cn = new SqlConnection();
+        /*public DataTable BuscarUsuarioPorNome(string _nomeUsuario)
+         {
+             SqlDataAdapter da = new SqlDataAdapter();
+             DataTable dt = new DataTable();
+             SqlConnection cn = new SqlConnection();
 
-            try
-            {
-                cn.ConnectionString = Conexao.StringDeConexao;
-                da.SelectCommand = new SqlCommand();
-                da.SelectCommand.Connection = cn;
-                da.SelectCommand.CommandText = "SP_BuscarUsuarioPorNome";
-                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+             try
+             {
+                 cn.ConnectionString = Conexao.StringDeConexao;
+                 da.SelectCommand = new SqlCommand();
+                 da.SelectCommand.Connection = cn;
+                 da.SelectCommand.CommandText = "SP_BuscarUsuarioPorNome";
+                 da.SelectCommand.CommandType = CommandType.StoredProcedure;
 
-                SqlParameter pnome = new SqlParameter("@Nome", SqlDbType.VarChar);
-                pnome.Value = _nomeUsuario;
+                 SqlParameter pnome = new SqlParameter("@Nome", SqlDbType.VarChar);
+                 pnome.Value = _nomeUsuario;
 
-                da.SelectCommand.Parameters.Add(pnome);
+                 da.SelectCommand.Parameters.Add(pnome);
 
-                cn.Open() ;
-                da.Fill(dt);
+                 cn.Open() ;
+                 da.Fill(dt);
 
-                return dt;
-            }
-            catch (SqlException ex)
-            {
-                throw new Exception("Erro no Servidor SQL: " + ex.Message);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-            finally 
-            { 
-                cn.Close();
-            }
-        }*/
+                 return dt;
+             }
+             catch (SqlException ex)
+             {
+                 throw new Exception("Erro no Servidor SQL: " + ex.Message);
+             }
+             catch (Exception ex)
+             {
+                 throw new Exception(ex.Message);
+             }
+             finally 
+             { 
+                 cn.Close();
+             }
+         }*/
         public List<Usuario> BuscarTodos()
         {
-            List<Usuario> usuarios= new List<Usuario>();
+            List<Usuario> usuarios = new List<Usuario>();
             Usuario usuario;
 
             SqlConnection cn = new SqlConnection();
@@ -87,7 +87,7 @@ namespace DAL
             try
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
-                cmd.Connection= cn;
+                cmd.Connection = cn;
                 cmd.CommandText = "SELECT TOP 100 IDUsuario, Nome, NomeUsuario, CPF, Email, Ativo FROM Usuario";
                 cmd.CommandType = System.Data.CommandType.Text;
                 cn.Open();
@@ -115,9 +115,9 @@ namespace DAL
                 //Console.WriteLine($"Ocorreu o seguinte erro: {ex.Message} ao tentar buscar no banco, no número do erro é {1}", ex.Message, 154));
                 throw new Exception("Ocorreu um erro ao tentar buscar todos os usuários: " + ex.Message);
             }
-            finally 
-            { 
-                cn.Close(); 
+            finally
+            {
+                cn.Close();
             }
             return usuarios;
         }
@@ -180,7 +180,42 @@ namespace DAL
 
         public Usuario BuscarUsuarioPorNome(string nomeUsuario)
         {
-            throw new NotImplementedException();
+            SqlConnection cn = new SqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            Usuario usuario = new Usuario();
+
+            try
+            {
+                cn.ConnectionString = Conexao.StringDeConexao;
+                cmd.Connection = cn;
+                cmd.CommandText = nomeUsuario;
+                cmd.CommandType = System.Data.CommandType.Text;
+
+                cn.Open();
+
+                using (SqlDataReader rd = cmd.ExecuteReader())
+                {
+                    while (rd.Read())
+                    {
+                        usuario = new Usuario();
+                        usuario.IDUsuario = Convert.ToInt32(rd["IDUsuario"]);
+                        usuario.Nome = rd["Nome"].ToString();
+                        usuario.NomeUsuario = rd["NomeUsuario"].ToString();
+                        usuario.CPF = rd["CPF"].ToString();
+                        usuario.Email = rd["Email"].ToString();
+                        usuario.Ativo = Convert.ToBoolean(rd["Ativo"]);
+                    }
+                    return usuario;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocorreu um erro ao tentar buscar um usuário: " + ex.Message); ;
+            }
+            finally
+            {
+                cn.Close();
+            }
         }
     }
 }
