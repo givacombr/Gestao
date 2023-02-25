@@ -235,7 +235,7 @@ namespace ConsoleAppPrincipal
             {
                 Console.WriteLine("\nExcluir Grupo\n\n");
                 Console.WriteLine("Informe o Id que deseja excluir: ");
-                grupousuario.IGrupoUsuario = Convert.ToInt32(Console.ReadLine());
+                grupousuario.IdGrupoUsuario = Convert.ToInt32(Console.ReadLine());
                 grupousuarioBLL.Excluir(grupousuario);
                 Console.WriteLine("Exclusão realizada com sucesso. \n\nDeseja realizar uma nova Exclusao: [1] Sim [2] Não ");
                 sn = Convert.ToInt32(Console.ReadLine());
@@ -374,10 +374,15 @@ namespace ConsoleAppPrincipal
         private static void BuscarUsuarioPorNome()
         {
             UsuarioBLL usuarioBLL = new UsuarioBLL();
+            List<Usuario> usuarios = usuarioBLL.BuscarTodos();
             foreach (Usuario item in usuarios)
             {
-                Console.WriteLine("IDUsuario: " + item.IDUsuario);
+                //Console.WriteLine("IDUsuario: " + item.IDUsuario);
+                Console.WriteLine("Nome: " + item.Nome);
+                //Console.WriteLine("Nome do Usuário: " + item.NomeUsuario);
             }
+            Console.WriteLine("\n\nPressione ENTER para continuar.");
+            Console.ReadLine();
             //throw new NotImplementedException();
         }
         private static void BuscarTodosOsUsuarios()
