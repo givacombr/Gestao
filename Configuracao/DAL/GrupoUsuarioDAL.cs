@@ -26,14 +26,43 @@ namespace DAL
 
                 throw new Exception("Ocorreu um erro ao tentar inserir o nome do grupo no banco: " + ex.Message);
             }
-            finally 
-            { 
-                cn.Close(); 
+            finally
+            {
+                cn.Close();
             }
         }
-        public GrupoUsuario Buscar(GrupoUsuario grupousuario)
+        public static GrupoUsuario Buscar(GrupoUsuario _grupousuario)
         {
-            return new GrupoUsuario();
+            GrupoUsuario grupo = new GrupoUsuario();
+            SqlConnection cn = new SqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            try
+            {
+                cn.ConnectionString = Conexao.StringDeConexao;
+                cmd.Connection = cn;
+                cmd.CommandText = "SELECT TOP 100 IdGrupoUsuario, NomeGrupo FROM GrupoUsuario";
+                cmd.CommandType = System.Data.CommandType.Text;
+                cn.Open();
+
+                using (SqlDataReader rd = cmd.ExecuteReader())
+                {
+                    while (rd.Read())
+                    {
+                        grupo = new GrupoUsuario();
+                        grupo.IdGrupoUsuario = Convert.ToInt32(rd["IdGrupoUsuario"]);
+                        grupo.NomeGrupo = rd["NomeGrupo"].ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao tentar listar grupo." + ex.Message);
+            }
+            finally
+            {
+                cn.Close();
+            }
+            return grupo;
         }
         public void Alterar(GrupoUsuario _grupousuario)
         {
@@ -56,8 +85,8 @@ namespace DAL
             {
                 throw new Exception("Ocorreu um erro ao tentar alterar o nome do grupo no banco: " + ex.Message);
             }
-            finally 
-            { 
+            finally
+            {
                 cn.Close();
             }
 
@@ -82,8 +111,8 @@ namespace DAL
 
                 throw new Exception("Ocorreu um erro ao tentar excluir o grupo no banco: " + ex.Message);
             }
-            finally 
-            { 
+            finally
+            {
                 cn.Close();
             }
         }

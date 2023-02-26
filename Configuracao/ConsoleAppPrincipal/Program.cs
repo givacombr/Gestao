@@ -147,6 +147,9 @@ namespace ConsoleAppPrincipal
                     BuscarTodosOsUsuarios();
                     break;
                 case 3:
+                    BuscarGrupo();
+                    break;
+                case 4:
                     //BuscarPermissao();
                     break;
                 case 0:
@@ -223,7 +226,7 @@ namespace ConsoleAppPrincipal
                 permissaoBLL.Excluir(permissao);
                 Console.WriteLine("Permissão excluúida com sucesso. \n\nDeseja realizar uma nova Exclusão: [1] Sim [2] Não ");
                 sn = Convert.ToInt32(Console.ReadLine());
-            }while (sn != 2);
+            } while (sn != 2);
         }
         private static void ExcluirGrupo()
         {
@@ -377,9 +380,10 @@ namespace ConsoleAppPrincipal
             List<Usuario> usuarios = usuarioBLL.BuscarTodos();
             foreach (Usuario item in usuarios)
             {
-                //Console.WriteLine("IDUsuario: " + item.IDUsuario);
                 Console.WriteLine("Nome: " + item.Nome);
                 //Console.WriteLine("Nome do Usuário: " + item.NomeUsuario);
+                //Console.WriteLine("Email: " + item.Email);
+                //Console.WriteLine("CPF: " + item.CPF);
             }
             Console.WriteLine("\n\nPressione ENTER para continuar.");
             Console.ReadLine();
@@ -403,6 +407,25 @@ namespace ConsoleAppPrincipal
             {
                 Console.WriteLine(usuarios[i]);
             }*/
+        }
+        private static void BuscarGrupo()
+        {
+            int sn;
+            GrupoUsuario _idgrupoUsuario = new GrupoUsuario();
+            GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
+            Console.Clear();
+
+            do
+            {
+                Console.WriteLine("\nListar Grupo\n\n");
+                Console.WriteLine("Insira o Id do grupo: ");
+                _idgrupoUsuario.NomeGrupo = Console.ReadLine();
+                //Console.Clear();
+                grupoUsuarioBLL.Buscar(_idgrupoUsuario);
+                Console.WriteLine("Grupo listado com sucesso.\n\nDeseja continuar listando: [1] Sim [2] Nao ");
+                sn = Convert.ToInt32(Console.ReadLine());
+            } while (sn != 2);
+            //throw new NotImplementedException();
         }
     }
 }

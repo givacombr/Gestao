@@ -31,8 +31,30 @@ namespace DAL
                 cn.Close(); 
             }
         }
-        public Permissao Buscar(Permissao permissao)
+        public Permissao Buscar(Permissao _permissao)
         {
+            SqlConnection cn = new SqlConnection();
+
+            try
+            {
+                cn.ConnectionString = Conexao.StringDeConexao;
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = cn;
+                cmd.CommandText = "SELECT TOP 100 IdDescricao, Descricao FROM Permissao";
+                cmd.CommandType= System.Data.CommandType.Text;
+                cmd.Parameters.AddWithValue("@IdDescricao", _permissao.IdDescricao);
+                cn.Open();
+                cmd.ExecuteScalar();
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Ocorreu um erro ao tentar buscar uma permissão no banco: " + ex.Message);
+            }
+            finally 
+            { 
+                cn.Close();
+            }
             return new Permissao();
         }
         public void Alterar(Permissao _permissao)
@@ -87,6 +109,5 @@ namespace DAL
                 cn.Close();
             }
         }
-
     }
 }

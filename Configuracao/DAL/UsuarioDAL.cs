@@ -177,7 +177,6 @@ namespace DAL
                 cn.Close();
             }
         }
-
         public Usuario BuscarUsuarioPorNome(string nomeUsuario)
         {
             SqlConnection cn = new SqlConnection();
