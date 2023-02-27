@@ -140,7 +140,8 @@ namespace DAL
                 cmd.Parameters.AddWithValue("@Ativo", _usuario.Ativo);
 
                 cn.Open();
-                cmd.ExecuteScalar();
+                cmd.BeginExecuteNonQuery();
+                //cmd.ExecuteScalar();
             }
             catch (Exception ex)
             {

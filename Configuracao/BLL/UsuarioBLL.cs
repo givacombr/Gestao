@@ -55,19 +55,19 @@ namespace BLL
             UsuarioDAL usuarioDAL = new UsuarioDAL();
             return usuarioDAL.BuscarTodos();
         }
-        public void Alterar(Usuario _usuario)
+        public void Alterar(Usuario _alterarUsuario)
         {
-            if (_usuario.NomeUsuario.Length <= 3 || _usuario.NomeUsuario.Length >= 100)
+            if (_alterarUsuario.NomeUsuario.Length <= 3 || _alterarUsuario.NomeUsuario.Length >= 100)
                 throw new Exception("O nome do usuário deverá conter de 3 a 100 caracteres.");
-            if (_usuario.NomeUsuario.Contains(" "))
+            if (_alterarUsuario.NomeUsuario.Contains(" "))
                 throw new Exception("O nome do usuário não pode conter espaço em branco.");
-            if (_usuario.Senha.Contains("1234567"))
+            if (_alterarUsuario.Senha.Contains("1234567"))
                 throw new Exception("Não é permitido número sequencial.");
-            if (_usuario.Senha.Length < 7 || _usuario.Senha.Length > 11)
+            if (_alterarUsuario.Senha.Length < 7 || _alterarUsuario.Senha.Length > 11)
                 throw new Exception("A senha deve ter entre 7 e 11 caracteres.");
 
             UsuarioDAL usuarioDAL = new UsuarioDAL();
-            usuarioDAL.Alterar(_usuario);
+            usuarioDAL.Alterar(_alterarUsuario);
         }
         public void Excluir(Usuario _usuario)
         {
