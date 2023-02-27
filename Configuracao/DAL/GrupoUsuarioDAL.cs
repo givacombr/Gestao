@@ -79,7 +79,8 @@ namespace DAL
                 cmd.Parameters.AddWithValue("@NomeGrupo", _grupousuario.NomeGrupo);
 
                 cn.Open();
-                cmd.ExecuteScalar();
+                cmd.BeginExecuteNonQuery();
+                //cmd.ExecuteScalar();
             }
             catch (Exception ex)
             {
@@ -91,7 +92,7 @@ namespace DAL
             }
 
         }
-        public void Excluir(GrupoUsuario _idGrupoUsuario)
+        public void Excluir(GrupoUsuario _grupoUsuario)
         {
             SqlConnection cn = new SqlConnection();
             try
@@ -101,7 +102,7 @@ namespace DAL
                 cmd.Connection = cn;
                 cmd.CommandText = @"DELETE FROM GrupoUsuario WHERE IdGrupoUsuario = @IdGrupoUsuario";
                 cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Parameters.AddWithValue("@IdGrupoUsuario", _idGrupoUsuario);
+                cmd.Parameters.AddWithValue("@IdGrupoUsuario", _grupoUsuario.IdGrupoUsuario);
 
                 cn.Open();
                 cmd.ExecuteNonQuery();

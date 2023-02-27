@@ -69,9 +69,11 @@ namespace DAL
                 cmd.CommandText = @"UPDATE Permissao SET Descricao = @Descricao WHERE IdDescricao = @IdDescricao";
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.Parameters.AddWithValue("@IdDescricao", _permissao.IdDescricao);
+                cmd.Parameters.AddWithValue("@Descricao", _permissao.Descricao);
 
                 cn.Open();
-                cmd.ExecuteScalar();
+                cmd.BeginExecuteNonQuery();
+                //cmd.ExecuteScalar();
             }
             catch (Exception ex)
             {

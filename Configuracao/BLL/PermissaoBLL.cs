@@ -28,7 +28,7 @@ namespace BLL
                 throw new Exception("A alteração informada deverá conter de 3 a 250 caracteres.");
 
             PermissaoDAL permissaoDAL = new PermissaoDAL();
-            permissaoDAL.Inserir(_permissao);
+            permissaoDAL.Alterar(_permissao);
         }
         public void Excluir(Permissao _permissao)
         {

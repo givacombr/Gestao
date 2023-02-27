@@ -138,6 +138,7 @@ namespace DAL
                 cmd.Parameters.AddWithValue("@Email", _usuario.Email);
                 cmd.Parameters.AddWithValue("@Senha", _usuario.Senha);
                 cmd.Parameters.AddWithValue("@Ativo", _usuario.Ativo);
+                cmd.Parameters.AddWithValue("@IdUsuario", _usuario.IDUsuario);
 
                 cn.Open();
                 cmd.BeginExecuteNonQuery();

@@ -207,6 +207,7 @@ namespace ConsoleAppPrincipal
                 Console.WriteLine("\nExcluir Usuario\n\n");
                 Console.WriteLine("Informe o Id que deseja excluir: ");
                 usuario.IDUsuario = Convert.ToInt32(Console.ReadLine());
+
                 usuarioBLL.Excluir(usuario);
                 Console.WriteLine("Exclusão realizada com sucesso. \n\nDeseja realizar uma nova Exclusao: [1] Sim [2] Não ");
                 sn = Convert.ToInt32(Console.ReadLine());
@@ -239,6 +240,7 @@ namespace ConsoleAppPrincipal
                 Console.WriteLine("\nExcluir Grupo\n\n");
                 Console.WriteLine("Informe o Id que deseja excluir: ");
                 grupousuario.IdGrupoUsuario = Convert.ToInt32(Console.ReadLine());
+
                 grupousuarioBLL.Excluir(grupousuario);
                 Console.WriteLine("Exclusão realizada com sucesso. \n\nDeseja realizar uma nova Exclusao: [1] Sim [2] Não ");
                 sn = Convert.ToInt32(Console.ReadLine());
@@ -286,7 +288,9 @@ namespace ConsoleAppPrincipal
             do
             {
                 Console.WriteLine("\nAlterar Grupo\n\n");
-                Console.WriteLine("Altere o nome do grupo: ");
+                Console.WriteLine("Infomre o Id do Grupo: ");
+                grupoUsuario.IdGrupoUsuario = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Informe o nome do grupo: ");
                 grupoUsuario.NomeGrupo = Console.ReadLine();
                 //Console.Clear();
                 grupoUsuarioBLL.Alterar(grupoUsuario);
@@ -303,8 +307,11 @@ namespace ConsoleAppPrincipal
             do
             {
                 Console.WriteLine("\nAltera Permissão\n\n");
-                Console.WriteLine("Qual a Permissão que deseja alterar: ");
+                Console.WriteLine("Informe o Id Permissão que deseja alterar: ");
+                permissao.IdDescricao = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Informe o novo Nome da Descricao");
                 permissao.Descricao = Console.ReadLine();
+
                 permissaoBLL.Alterar(permissao);
                 Console.WriteLine("Permissão alterada com sucesso.\n\nDeseja alterar uma nova Permissão: [1] Sim [2] Nao ");
                 sn = Convert.ToInt32(Console.ReadLine());
@@ -421,7 +428,9 @@ namespace ConsoleAppPrincipal
             {
                 Console.WriteLine("\nListar Grupo\n\n");
                 Console.WriteLine("Insira o Id do grupo: ");
-                _idgrupoUsuario.NomeGrupo = Console.ReadLine();
+                _idgrupoUsuario.IdGrupoUsuario = Convert.ToInt32(Console.ReadLine());
+                //Console.WriteLine("");
+               // _idgrupoUsuario.NomeGrupo = Console.ReadLine();
                 //Console.Clear();
                 grupoUsuarioBLL.Buscar(_idgrupoUsuario);
                 Console.WriteLine("Grupo listado com sucesso.\n\nDeseja continuar listando: [1] Sim [2] Nao ");

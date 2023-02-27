@@ -21,7 +21,7 @@ namespace BLL
 
             GrupoUsuarioDAL.Buscar(_grupoUsuario);
             GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
-            
+
             return new GrupoUsuario();
         }
         public void Alterar(GrupoUsuario _grupoUsuario)
@@ -32,10 +32,10 @@ namespace BLL
             GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
             grupoUsuarioDAL.Alterar(_grupoUsuario);
         }
-        public void Excluir(GrupoUsuario _idgrupoUsuario)
+        public void Excluir(GrupoUsuario _grupoUsuario)
         {
             GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
-            grupoUsuarioDAL.Excluir(_idgrupoUsuario);
+            grupoUsuarioDAL.Excluir(_grupoUsuario);
         }
     }
 }
