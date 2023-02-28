@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    internal class UsuarioBLL
+    public class UsuarioBLL
     {
+        public void Inserir()
+        {
+
+        }
     }
 }
