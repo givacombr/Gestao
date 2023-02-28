@@ -430,9 +430,9 @@ namespace ConsoleAppPrincipal
                 Console.WriteLine("Insira o Id do grupo: ");
                 _idgrupoUsuario.IdGrupoUsuario = Convert.ToInt32(Console.ReadLine());
                 //Console.WriteLine("");
-               // _idgrupoUsuario.NomeGrupo = Console.ReadLine();
+                // _idgrupoUsuario.NomeGrupo = Console.ReadLine();
                 //Console.Clear();
-                
+
                 GrupoUsuario grupoUsuario = grupoUsuarioBLL.Buscar(_idgrupoUsuario);
                 Console.WriteLine("IdGrupoUsuario: " + grupoUsuario.IdGrupoUsuario);
                 Console.WriteLine("NomeGrupo: " + grupoUsuario.NomeGrupo);
@@ -442,49 +442,70 @@ namespace ConsoleAppPrincipal
             } while (sn != 2);
             //throw new NotImplementedException();
         }
-        /*private static void AlterarUsuario()
+        private static void BuscarPermissao()
         {
-            try
+            int sn;
+            Permissao _idpermissao = new Permissao();
+            PermissaoBLL permissaoBLL = new PermissaoBLL();
+            Console.Clear();
+
+            do
             {
-                int sn;
-                Usuario usuario = new Usuario();
-                UsuarioBLL usuarioBLL = new UsuarioBLL();
-                Console.Clear();
+                Console.WriteLine("\nListar Permissão\n\n");
+                Console.WriteLine("Insira o Id da Permissão: ");
+                _idpermissao.IdDescricao = Convert.ToInt32(Console.ReadLine());
 
-                Console.WriteLine("\nAlteração de Cadastro de Usuário\n\n");
-                Console.Write("Alterar Usuário: [1] Sim [2] Não :");
+                Permissao permissao = permissaoBLL.Buscar(_idpermissao);
+                Console.WriteLine("IdDescricao: " + permissao.IdDescricao);
+                Console.WriteLine("Descricao: " + permissao.Descricao);
+
+                Console.WriteLine("Permissão listado com sucesso.\n\nDeseja continuar listando: [1] Sim [2] Nao ");
                 sn = Convert.ToInt32(Console.ReadLine());
-
-
-                while (sn == 1)
-                {
-                    Console.WriteLine("Informe seu Nome Completo: ");
-                    usuario.Nome = Console.ReadLine();
-                    Console.WriteLine("Informe o nome de acesso do Usuário: ");
-                    usuario.NomeUsuario = Console.ReadLine();
-                    Console.WriteLine("Informe seu Email: ");
-                    usuario.Email = Console.ReadLine();
-                    Console.WriteLine("Informe o seu CPF: ");
-                    usuario.CPF = Console.ReadLine();
-                    Console.WriteLine("Cadastre sua Senha: ");
-                    usuario.Senha = Console.ReadLine();
-                    Console.WriteLine("O usuário estará ativo (S) ou (N)");
-                    usuario.Ativo = Console.ReadLine().ToLower() == "s";//armazendo expressao booleana
-
-                    //Console.Clear();
-                }
-                Console.WriteLine("Informe o Id do Usuário: ");
-                usuario.IDUsuario = Convert.ToInt32(Console.ReadLine());
-
-                usuarioBLL.Alterar(usuario);
-
-                Console.WriteLine("Alteração de cadastrado com sucesso.\n\nDeseja alterar um novo usuário: [1] Sim [2] Não ");
-                sn = Convert.ToInt32(Console.ReadLine());
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }*/
+            } while (sn != 2);
+        }
     }
+    /*private static void AlterarUsuario()
+    {
+        try
+        {
+            int sn;
+            Usuario usuario = new Usuario();
+            UsuarioBLL usuarioBLL = new UsuarioBLL();
+            Console.Clear();
+
+            Console.WriteLine("\nAlteração de Cadastro de Usuário\n\n");
+            Console.Write("Alterar Usuário: [1] Sim [2] Não :");
+            sn = Convert.ToInt32(Console.ReadLine());
+
+
+            while (sn == 1)
+            {
+                Console.WriteLine("Informe seu Nome Completo: ");
+                usuario.Nome = Console.ReadLine();
+                Console.WriteLine("Informe o nome de acesso do Usuário: ");
+                usuario.NomeUsuario = Console.ReadLine();
+                Console.WriteLine("Informe seu Email: ");
+                usuario.Email = Console.ReadLine();
+                Console.WriteLine("Informe o seu CPF: ");
+                usuario.CPF = Console.ReadLine();
+                Console.WriteLine("Cadastre sua Senha: ");
+                usuario.Senha = Console.ReadLine();
+                Console.WriteLine("O usuário estará ativo (S) ou (N)");
+                usuario.Ativo = Console.ReadLine().ToLower() == "s";//armazendo expressao booleana
+
+                //Console.Clear();
+            }
+            Console.WriteLine("Informe o Id do Usuário: ");
+            usuario.IDUsuario = Convert.ToInt32(Console.ReadLine());
+
+            usuarioBLL.Alterar(usuario);
+
+            Console.WriteLine("Alteração de cadastrado com sucesso.\n\nDeseja alterar um novo usuário: [1] Sim [2] Não ");
+            sn = Convert.ToInt32(Console.ReadLine());
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }*/
 }
