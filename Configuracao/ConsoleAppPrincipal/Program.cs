@@ -447,7 +447,7 @@ namespace ConsoleAppPrincipal
             int sn;
             Permissao _idpermissao = new Permissao();
             PermissaoBLL permissaoBLL = new PermissaoBLL();
-            Console.Clear();
+            //Console.Clear();
 
             do
             {

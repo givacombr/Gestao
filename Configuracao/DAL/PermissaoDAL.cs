@@ -65,7 +65,7 @@ namespace DAL
             {
                 cn.Close();
             }
-            return permissao();
+            return permissao;
         }
         public void Alterar(Permissao _permissao)
         {

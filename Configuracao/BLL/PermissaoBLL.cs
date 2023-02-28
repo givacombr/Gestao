@@ -14,7 +14,7 @@ namespace BLL
             PermissaoDAL permissaoDAL = new PermissaoDAL();
             permissaoDAL.Inserir(_permissao);
         }
-        public void Buscar(Permissao _permissao)
+        public Permissao Buscar(Permissao _permissao)
         {
             //if (_permissao.Descricao.Length <= 3 || _permissao.Descricao.Length >= 250)
               //  throw new Exception("A Busca informada deverá conter de 3 a 250 caracteres. ");
