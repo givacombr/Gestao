@@ -16,13 +16,10 @@ namespace BLL
         }
         public GrupoUsuario Buscar(GrupoUsuario _grupoUsuario)
         {
-            if (_grupoUsuario.NomeGrupo.Length <= 3 || _grupoUsuario.NomeGrupo.Length >= 150)
-                throw new Exception("O nome do grupo deverá conter de 3 a 150 caracteres.");
-
-            GrupoUsuarioDAL.Buscar(_grupoUsuario);
             GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
+            grupoUsuarioDAL.Buscar(_grupoUsuario);
 
-            return new GrupoUsuario();
+            return grupoUsuarioDAL.Buscar(_grupoUsuario);
         }
         public void Alterar(GrupoUsuario _grupoUsuario)
         {

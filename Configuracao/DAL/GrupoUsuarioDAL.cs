@@ -31,7 +31,7 @@ namespace DAL
                 cn.Close();
             }
         }
-        public static GrupoUsuario Buscar(GrupoUsuario _grupousuario)
+        public GrupoUsuario Buscar(GrupoUsuario _grupousuario)
         {
             GrupoUsuario grupo = new GrupoUsuario();
             SqlConnection cn = new SqlConnection();
@@ -40,8 +40,10 @@ namespace DAL
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
                 cmd.Connection = cn;
-                cmd.CommandText = "SELECT TOP 100 IdGrupoUsuario, NomeGrupo FROM GrupoUsuario";
+                cmd.CommandText = "SELECT TOP 100 IdGrupoUsuario, NomeGrupo FROM GrupoUsuario WHERE IdGrupoUsuario = @IdGrupoUsuario";
                 cmd.CommandType = System.Data.CommandType.Text;
+                cmd.Parameters.AddWithValue("@IdGrupoUsuario", _grupousuario.IdGrupoUsuario);
+               
                 cn.Open();
 
                 using (SqlDataReader rd = cmd.ExecuteReader())

@@ -432,7 +432,11 @@ namespace ConsoleAppPrincipal
                 //Console.WriteLine("");
                // _idgrupoUsuario.NomeGrupo = Console.ReadLine();
                 //Console.Clear();
-                grupoUsuarioBLL.Buscar(_idgrupoUsuario);
+                
+                GrupoUsuario grupoUsuario = grupoUsuarioBLL.Buscar(_idgrupoUsuario);
+                Console.WriteLine("IdGrupoUsuario: " + grupoUsuario.IdGrupoUsuario);
+                Console.WriteLine("NomeGrupo: " + grupoUsuario.NomeGrupo);
+
                 Console.WriteLine("Grupo listado com sucesso.\n\nDeseja continuar listando: [1] Sim [2] Nao ");
                 sn = Convert.ToInt32(Console.ReadLine());
             } while (sn != 2);
