@@ -9,13 +9,12 @@ namespace BLL
         {
             ValidarDados(_usuario);
 
-            Usuario usuario= new Usuario();
+            Usuario usuario = new Usuario();
 
             usuario = BuscarUsuarioPorNome(_usuario.NomeUsuario);
             if (usuario.NomeUsuario == _usuario.NomeUsuario)
-            {
                 throw new Exception("Usuário já existente");
-            }
+
             UsuarioDAL usuarioDAL = new UsuarioDAL();
             usuarioDAL.Inserir(_usuario);
         }
@@ -56,7 +55,7 @@ namespace BLL
         }
         public void Excluir(Usuario _usuario)
         {
-           UsuarioDAL usuarioDAL = new UsuarioDAL();
+            UsuarioDAL usuarioDAL = new UsuarioDAL();
             usuarioDAL.Excluir(_usuario);
         }
     }
