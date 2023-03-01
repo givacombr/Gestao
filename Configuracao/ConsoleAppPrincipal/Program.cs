@@ -16,11 +16,11 @@ namespace ConsoleAppPrincipal
                     Console.Clear();
                     Console.Title = "MENU";
                     Console.WriteLine("\tMENU PRINCIPAL");
-                    Console.WriteLine("1 - Cadastrar");
-                    Console.WriteLine("2 - Alterar");
-                    Console.WriteLine("3 - Buscar");
-                    Console.WriteLine("4 - Excluir");
-                    Console.WriteLine("0 - Sair");
+                    Console.WriteLine("[1] - Cadastrar");
+                    Console.WriteLine("[2] - Alterar");
+                    Console.WriteLine("[3] - Buscar");
+                    Console.WriteLine("[4] - Excluir");
+                    Console.WriteLine("[0] - Sair");
                     Console.Write("Escolha uma opção: ");
                     prog = Convert.ToInt32(Console.ReadLine());
 
