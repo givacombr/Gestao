@@ -14,15 +14,14 @@ namespace BLL
             PermissaoDAL permissaoDAL = new PermissaoDAL();
             permissaoDAL.Inserir(_permissao);
         }
-        public Permissao Buscar(Permissao _permissao)
+        public Permissao BuscarPorId(int _id)
         {
             //if (_permissao.Descricao.Length <= 3 || _permissao.Descricao.Length >= 250)
-              //  throw new Exception("A Busca informada deverá conter de 3 a 250 caracteres. ");
+            //  throw new Exception("A Busca informada deverá conter de 3 a 250 caracteres. ");
 
             PermissaoDAL permissaoDAL = new PermissaoDAL();
-            permissaoDAL.Buscar(_permissao);
+            return permissaoDAL.BuscarPorId(_id);
 
-            return permissaoDAL.Buscar(_permissao);
         }
         public void Alterar(Permissao _permissao)
         {

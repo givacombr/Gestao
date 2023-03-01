@@ -150,7 +150,7 @@ namespace ConsoleAppPrincipal
                     BuscarGrupo();
                     break;
                 case 4:
-                    //BuscarPermissao();
+                    BuscarPorId();
                     break;
                 case 0:
                     break;
@@ -386,14 +386,14 @@ namespace ConsoleAppPrincipal
         private static void BuscarUsuarioPorNome()
         {
             UsuarioBLL usuarioBLL = new UsuarioBLL();
-            List<Usuario> usuarios = usuarioBLL.BuscarTodos();
-            foreach (Usuario item in usuarios)
-            {
-                Console.WriteLine("Nome: " + item.Nome);
-                //Console.WriteLine("Nome do Usuário: " + item.NomeUsuario);
-                //Console.WriteLine("Email: " + item.Email);
-                //Console.WriteLine("CPF: " + item.CPF);
-            }
+            Console.WriteLine("Informe o nome do usuário: ");
+            string nomeUsuario = Console.ReadLine();
+            Usuario usuario = usuarioBLL.BuscarUsuarioPorNome(nomeUsuario);
+            Console.WriteLine("IDUsuario: " + usuario.IDUsuario);
+            Console.WriteLine("Nome: " + usuario.Nome);
+            Console.WriteLine("NomeUsuario: " + usuario.NomeUsuario);
+            Console.WriteLine("CPF: " + usuario.CPF);
+            Console.WriteLine("Email: " + usuario.Email);
             Console.WriteLine("\n\nPressione ENTER para continuar.");
             Console.ReadLine();
             //throw new NotImplementedException();
@@ -442,7 +442,18 @@ namespace ConsoleAppPrincipal
             } while (sn != 2);
             //throw new NotImplementedException();
         }
-        private static void BuscarPermissao()
+        private static void BuscarPorId()
+        {
+            PermissaoBLL permissaoBLL = new PermissaoBLL();
+            Console.WriteLine("Informe o Id da Permissão: ");
+            int id = Convert.ToInt32(Console.ReadLine());
+            Permissao permissao = permissaoBLL.BuscarPorId(id);
+            Console.WriteLine("IdDescricao: " + permissao.IdDescricao);
+            Console.WriteLine("Descricao: " + permissao.Descricao);
+            Console.WriteLine("\n\nPressione ENTER para continuar.");
+            Console.ReadLine();
+        }
+        /*private static void BuscarPermissao()
         {
             int sn;
             Permissao _idpermissao = new Permissao();
@@ -462,7 +473,7 @@ namespace ConsoleAppPrincipal
                 Console.WriteLine("Permissão listado com sucesso.\n\nDeseja continuar listando: [1] Sim [2] Nao ");
                 sn = Convert.ToInt32(Console.ReadLine());
             } while (sn != 2);
-        }
+        }*/
     }
     /*private static void AlterarUsuario()
     {

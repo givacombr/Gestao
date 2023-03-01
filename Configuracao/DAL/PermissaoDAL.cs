@@ -31,7 +31,7 @@ namespace DAL
                 cn.Close();
             }
         }
-        public Permissao Buscar(Permissao _permissao)
+        public Permissao BuscarPorId(int _id)
         {
             Permissao permissao = new Permissao();
             SqlConnection cn = new SqlConnection();
@@ -43,7 +43,7 @@ namespace DAL
                 cmd.Connection = cn;
                 cmd.CommandText = "SELECT TOP 100 IdDescricao, Descricao FROM Permissao WHERE IdDescricao = @IdDescricao";
                 cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Parameters.AddWithValue("@IdDescricao", _permissao.IdDescricao);
+                cmd.Parameters.AddWithValue("@IdDescricao", _id);
                 cn.Open();
                 using (SqlDataReader rd = cmd.ExecuteReader())
                 {
