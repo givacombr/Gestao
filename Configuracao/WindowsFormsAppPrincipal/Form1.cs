@@ -16,5 +16,15 @@ namespace WindowsFormsAppPrincipal
         {
             InitializeComponent();
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonTeste_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Aluno");
+        }
     }
 }
