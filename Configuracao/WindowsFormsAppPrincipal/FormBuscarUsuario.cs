@@ -10,21 +10,11 @@ using System.Windows.Forms;
 
 namespace WindowsFormsAppPrincipal
 {
-    public partial class Form1 : Form
+    public partial class FormBuscarUsuario : Form
     {
-        public Form1()
+        public FormBuscarUsuario()
         {
             InitializeComponent();
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void buttonTeste_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Aluno");
         }
     }
 }

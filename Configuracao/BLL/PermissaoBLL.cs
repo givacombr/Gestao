@@ -17,12 +17,8 @@ namespace BLL
         }
         public Permissao BuscarPorId(int _id)
         {
-            //if (_permissao.Descricao.Length <= 3 || _permissao.Descricao.Length >= 250)
-            //  throw new Exception("A Busca informada deverá conter de 3 a 250 caracteres. ");
-
             PermissaoDAL permissaoDAL = new PermissaoDAL();
             return permissaoDAL.BuscarPorId(_id);
-
         }
         public void Alterar(Permissao _permissao)
         {
