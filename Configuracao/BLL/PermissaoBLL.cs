@@ -20,6 +20,11 @@ namespace BLL
             PermissaoDAL permissaoDAL = new PermissaoDAL();
             return permissaoDAL.BuscarPorId(_id);
         }
+		public List<Permissao> BuscarTodasPermissoes()
+        {
+            PermissaoDAL permissaoDAL = new PermissaoDAL();
+            return permissaoDAL.BuscarTodasPermissoes();
+        }
         public void Alterar(Permissao _permissao)
         {
             if (_permissao.Descricao.Length <= 3 || _permissao.Descricao.Length >= 250)

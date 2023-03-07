@@ -20,6 +20,11 @@ namespace BLL
             GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
             return grupoUsuarioDAL.BuscarPorId(_idGrupoUsuario);
         }
+		public List<GrupoUsuario> BuscarTodosGrupos()
+		{
+			GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
+			return grupoUsuarioDAL.BuscarTodosGrupos();
+		}
         public void Alterar(GrupoUsuario _grupoUsuario)
         {
             if (_grupoUsuario.NomeGrupo.Length <= 3 || _grupoUsuario.NomeGrupo.Length >= 150)
