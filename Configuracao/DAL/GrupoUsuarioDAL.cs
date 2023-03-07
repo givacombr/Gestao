@@ -32,7 +32,7 @@ namespace DAL
                 cn.Close();
             }
         }
-        public GrupoUsuario Buscar(GrupoUsuario _grupousuario)
+        public GrupoUsuario BuscarPorId(int _idGrupousuario)
         {
             GrupoUsuario grupo = new GrupoUsuario();
             SqlConnection cn = new SqlConnection();
@@ -43,7 +43,7 @@ namespace DAL
                 cmd.Connection = cn;
                 cmd.CommandText = "SELECT TOP 100 IdGrupoUsuario, NomeGrupo FROM GrupoUsuario WHERE IdGrupoUsuario = @IdGrupoUsuario";
                 cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Parameters.AddWithValue("@IdGrupoUsuario", _grupousuario.IdGrupoUsuario);
+                cmd.Parameters.AddWithValue("@IdGrupoUsuario", _idGrupousuario);
                
                 cn.Open();
 
