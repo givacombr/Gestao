@@ -20,8 +20,17 @@ namespace WindowsFormsAppPrincipal
 
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
-            GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
-            grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarPorId(2);
+            if (textBox1.Text == "")
+            {
+                GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
+                grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarPorId(1);
+
+            }
+            else
+            {
+                GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
+                //grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarTodosGrupos(textBox1.Text);
+            }
         }
     }
 }
