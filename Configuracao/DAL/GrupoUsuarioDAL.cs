@@ -1,5 +1,6 @@
 ﻿using Models;
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace DAL
@@ -66,6 +67,44 @@ namespace DAL
                 cn.Close();
             }
             return grupo;
+        }
+        public List<GrupoUsuario> BuscarTodosGrupos()
+        {
+            List<GrupoUsuario> grupo_usuarios = new List<GrupoUsuario>();
+            GrupoUsuario grupousuario;
+            SqlConnection cn = new SqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            try
+            {
+                cn.ConnectionString = Conexao.StringDeConexao;
+                cmd.Connection = cn;
+                cmd.CommandText = "SELECT id_GrupoUsuario, NomeGrupo FROM GrupoUsuario";
+                cmd.CommandType = System.Data.CommandType.Text;
+                cn.Open();
+                using (SqlDataReader rd = cmd.ExecuteReader())
+                {
+                    while (rd.Read())
+                    {
+                        grupousuario = new GrupoUsuario();
+                        grupousuario.IdGrupoUsuario = Convert.ToInt32(rd["id_GrupoUsuario"]);
+                        grupousuario.NomeGrupo = rd["NomeGrupo"].ToString();
+
+
+                        grupo_usuarios.Add(grupousuario);
+                    }
+                }
+                return grupo_usuarios;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Ocorreu um erro ao tentar buscar Grupo de Usuarios: " + ex.Message);
+            }
+            finally
+            {
+                cn.Close();
+            }
+
         }
         public void Alterar(GrupoUsuario _grupousuario)
         {

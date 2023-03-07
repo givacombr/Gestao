@@ -1,5 +1,6 @@
 ﻿using Models;
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace DAL
@@ -67,6 +68,44 @@ namespace DAL
                 cn.Close();
             }
             return permissao;
+        }
+        public List<Permissao> BuscarTodasPermissoes()
+        {
+            List<Permissao> permissoes = new List<Permissao>();
+            Permissao permissao;
+            SqlConnection cn = new SqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            try
+            {
+                cn.ConnectionString = Conexao.StringDeConexao;
+                cmd.Connection = cn;
+                cmd.CommandText = "SELECT IdDescricao, Descricao FROM Permissao";
+                cmd.CommandType = System.Data.CommandType.Text;
+                cn.Open();
+                using (SqlDataReader rd = cmd.ExecuteReader())
+                {
+                    while (rd.Read())
+                    {
+                        permissao = new Permissao();
+                        permissao.IdDescricao = Convert.ToInt32(rd["IdDescricao"]);
+                        permissao.Descricao = rd["Descricao"].ToString();
+
+
+                        permissoes.Add(permissao);
+                    }
+                }
+                return permissoes;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Ocorreu um erro ao tentar buscar Permissões: " + ex.Message);
+            }
+            finally
+            {
+                cn.Close();
+            }
+
         }
         public void Alterar(Permissao _permissao)
         {
