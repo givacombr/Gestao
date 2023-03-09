@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WindowsFormsAppPrincipal
 {
@@ -17,20 +18,13 @@ namespace WindowsFormsAppPrincipal
         {
             InitializeComponent();
         }
-
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
+            GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
             if (textBox1.Text == "")
-            {
-                GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
-                grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarPorId(1);
-
-            }
+                grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarTodosGrupos();
             else
-            {
-                GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
-                //grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarTodosGrupos(textBox1.Text);
-            }
+                grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarPorId(Convert.ToInt32(textBox1.Text));
         }
     }
 }

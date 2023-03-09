@@ -78,7 +78,7 @@ namespace DAL
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
                 cmd.Connection = cn;
-                cmd.CommandText = "SELECT id_GrupoUsuario, NomeGrupo FROM GrupoUsuario";
+                cmd.CommandText = "SELECT idGrupoUsuario, NomeGrupo FROM GrupoUsuario";
                 cmd.CommandType = System.Data.CommandType.Text;
                 cn.Open();
                 using (SqlDataReader rd = cmd.ExecuteReader())
@@ -86,7 +86,7 @@ namespace DAL
                     while (rd.Read())
                     {
                         grupousuario = new GrupoUsuario();
-                        grupousuario.IdGrupoUsuario = Convert.ToInt32(rd["id_GrupoUsuario"]);
+                        grupousuario.IdGrupoUsuario = Convert.ToInt32(rd["idGrupoUsuario"]);
                         grupousuario.NomeGrupo = rd["NomeGrupo"].ToString();
 
 

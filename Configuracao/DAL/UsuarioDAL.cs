@@ -105,6 +105,8 @@ namespace DAL
                         usuario.CPF = rd["CPF"].ToString();
                         usuario.Email = rd["Email"].ToString();
                         usuario.Ativo = Convert.ToBoolean(rd["Ativo"]);
+                        GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
+                        usuario.GrupoUsuarios = grupoUsuarioDAL.BuscarPorId(usuario.IDUsuario);
 
                         usuarios.Add(usuario);
                     }
@@ -208,6 +210,8 @@ namespace DAL
                         usuario.CPF = rd["CPF"].ToString();
                         usuario.Email = rd["Email"].ToString();
                         usuario.Ativo = Convert.ToBoolean(rd["Ativo"]);
+                        GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
+                        usuario.GrupoUsuarios = grupoUsuarioDAL.BuscarPorId(usuario.IDUsuario);
                     }
                 }
                 return usuario;
