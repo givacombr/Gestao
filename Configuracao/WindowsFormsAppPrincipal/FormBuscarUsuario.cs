@@ -1,5 +1,6 @@
 ﻿using BLL;
 using System;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace WindowsFormsAppPrincipal
@@ -18,6 +19,11 @@ namespace WindowsFormsAppPrincipal
                 usuarioBindingSource.DataSource = usuarioBLL.BuscarTodos();
             else
                 usuarioBindingSource.DataSource = usuarioBLL.BuscarUsuarioPorNome(textBox1.Text);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 }
