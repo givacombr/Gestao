@@ -20,10 +20,5 @@ namespace WindowsFormsAppPrincipal
             else
                 usuarioBindingSource.DataSource = usuarioBLL.BuscarUsuarioPorNome(textBox1.Text);
         }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-           
-        }
     }
 }
