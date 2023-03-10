@@ -30,5 +30,13 @@ namespace WindowsFormsAppPrincipal
                 frm.ShowDialog();
             }
         }
+
+        private void buttonAdicionarGrupo_Click(object sender, EventArgs e)
+        {
+            using (FormAdicionarGrupoUsuario frm = new FormAdicionarGrupoUsuario())
+            {
+                frm.ShowDialog();
+            }
+        }
     }
 }
