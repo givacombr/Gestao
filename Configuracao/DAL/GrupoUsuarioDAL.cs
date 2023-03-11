@@ -80,7 +80,9 @@ namespace DAL
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
                 cmd.Connection = cn;
-                cmd.CommandText = @"SELECT GrupoUsuario.IDGrupoUsuario, GrupoUsuario.NomeGrupo FROM GrupoUsuario INNER JOIN UsuarioGrupoUsuario ON GrupoUsuario.IDGrupoUsuario = UsuarioGrupoUsuario.Id_Usuario WHERE Id_Usuario = @Id_Usuario";
+                cmd.CommandText = @"SELECT GrupoUsuario.IdGrupoUsuario, GrupoUsuario.NomeGrupo FROM GrupoUsuario 
+                                    INNER JOIN UsuarioGrupoUsuario ON GrupoUsuario.IdGrupoUsuario = UsuarioGrupoUsuario.Id_GrupoUsuario 
+                                    WHERE Id_Usuario = @Id_Usuario";
                 cmd.CommandType = System.Data.CommandType.Text;
                 cn.Open();
                 using (SqlDataReader rd = cmd.ExecuteReader())
@@ -89,7 +91,7 @@ namespace DAL
                         //while (rd.Read())
                     {
                         grupousuario = new GrupoUsuario();
-                        grupousuario.IdGrupoUsuario = Convert.ToInt32(rd["idGrupoUsuario"]);
+                        grupousuario.IdGrupoUsuario = Convert.ToInt32(rd["IdGrupoUsuario"]);
                         grupousuario.NomeGrupo = rd["NomeGrupo"].ToString();
                         grupo_usuarios.Add(grupousuario);
                     }
