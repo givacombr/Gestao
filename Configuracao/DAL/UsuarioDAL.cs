@@ -106,7 +106,7 @@ namespace DAL
                         usuario.Email = rd["Email"].ToString();
                         usuario.Ativo = Convert.ToBoolean(rd["Ativo"]);
                         GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
-                        //usuario.GrupoUsuarios = grupoUsuarioDAL.BuscarPorId(usuario.IDUsuario);
+                        usuario.GrupoUsuarios = grupoUsuarioDAL.BuscarPorId(usuario.IDUsuario);
 
                         usuarios.Add(usuario);
                     }
@@ -114,9 +114,6 @@ namespace DAL
             }
             catch (Exception ex)
             {
-                //exemplo de concatenar:
-                //Console.WriteLine(String.Format("Ocorreu o seguinte erro: {0} ao tentar buscar no banco, no número do erro é {1}", ex.Message, 154));
-                //Console.WriteLine($"Ocorreu o seguinte erro: {ex.Message} ao tentar buscar no banco, no número do erro é {1}", ex.Message, 154));
                 throw new Exception("Ocorreu um erro ao tentar buscar todos os usuários: " + ex.Message);
             }
             finally
@@ -211,7 +208,7 @@ namespace DAL
                         usuario.Email = rd["Email"].ToString();
                         usuario.Ativo = Convert.ToBoolean(rd["Ativo"]);
                         GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
-                        //usuario.GrupoUsuarios = grupoUsuarioDAL.BuscarPorId(usuario.IDUsuario);
+                        usuario.GrupoUsuarios = grupoUsuarioDAL.BuscarPorId(usuario.IDUsuario);
                     }
                 }
                 return usuario;

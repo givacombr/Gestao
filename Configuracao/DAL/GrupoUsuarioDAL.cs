@@ -33,8 +33,9 @@ namespace DAL
                 cn.Close();
             }
         }
-        public GrupoUsuario BuscarPorId(int _idGrupousuario)
+        public List<GrupoUsuario> BuscarPorId(int _idGrupousuario)
         {
+            List<GrupoUsuario> grupos = new List<GrupoUsuario>();
             GrupoUsuario grupo = new GrupoUsuario();
             SqlConnection cn = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
@@ -42,7 +43,7 @@ namespace DAL
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
                 cmd.Connection = cn;
-                cmd.CommandText = "SELECT TOP 100 IdGrupoUsuario, NomeGrupo FROM GrupoUsuario WHERE IdGrupoUsuario = @IdGrupoUsuario";
+                cmd.CommandText = @"SELECT TOP 100 IdGrupoUsuario, NomeGrupo FROM GrupoUsuario WHERE IdGrupoUsuario = @IdGrupoUsuario";
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.Parameters.AddWithValue("@IdGrupoUsuario", _idGrupousuario);
                
@@ -55,6 +56,7 @@ namespace DAL
                         grupo = new GrupoUsuario();
                         grupo.IdGrupoUsuario = Convert.ToInt32(rd["IdGrupoUsuario"]);
                         grupo.NomeGrupo = rd["NomeGrupo"].ToString();
+                        grupos.Add(grupo);
                     }
                 }
             }
@@ -66,7 +68,7 @@ namespace DAL
             {
                 cn.Close();
             }
-            return grupo;
+            return grupos;
         }
         public List<GrupoUsuario> BuscarTodosGrupos()
         {
@@ -78,18 +80,17 @@ namespace DAL
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
                 cmd.Connection = cn;
-                cmd.CommandText = "SELECT idGrupoUsuario, NomeGrupo FROM GrupoUsuario";
+                cmd.CommandText = @"SELECT GrupoUsuario.IDGrupoUsuario, GrupoUsuario.NomeGrupo FROM GrupoUsuario INNER JOIN UsuarioGrupoUsuario ON GrupoUsuario.IDGrupoUsuario = UsuarioGrupoUsuario.Id_Usuario WHERE Id_Usuario = @Id_Usuario";
                 cmd.CommandType = System.Data.CommandType.Text;
                 cn.Open();
                 using (SqlDataReader rd = cmd.ExecuteReader())
                 {
-                    while (rd.Read())
+                    if (rd.Read())
+                        //while (rd.Read())
                     {
                         grupousuario = new GrupoUsuario();
                         grupousuario.IdGrupoUsuario = Convert.ToInt32(rd["idGrupoUsuario"]);
                         grupousuario.NomeGrupo = rd["NomeGrupo"].ToString();
-
-
                         grupo_usuarios.Add(grupousuario);
                     }
                 }

@@ -16,7 +16,7 @@ namespace BLL
             GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
             grupoUsuarioDAL.Inserir(_grupousuario);
         }
-        public GrupoUsuario BuscarPorId(int _idGrupoUsuario)
+        public List<GrupoUsuario> BuscarPorId(int _idGrupoUsuario)
         {
             GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
             return grupoUsuarioDAL.BuscarPorId(_idGrupoUsuario);

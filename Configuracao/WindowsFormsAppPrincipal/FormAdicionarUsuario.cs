@@ -23,8 +23,20 @@ namespace WindowsFormsAppPrincipal
             usuario.Senha = senhaTextBox.Text;
             usuario.Ativo = ativoCheckBox.Checked;
 
+            LimparCampos();
+
             usuarioBLL.Inserir(usuario);
-            Close();
+            MessageBox.Show("Cadastrado com sucesso!");
+        }
+
+        private void LimparCampos()
+        {
+            nomeTextBox.Text = "";
+            nomeUsuarioTextBox.Text = "";
+            cPFTextBox.Text = string.Empty;
+            emailTextBox.Text = string.Empty;
+            senhaTextBox.Text = string.Empty;
+            ativoCheckBox.Checked = true;
         }
     }
 }

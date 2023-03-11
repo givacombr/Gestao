@@ -25,8 +25,16 @@ namespace WindowsFormsAppPrincipal
             GrupoUsuario _grupoUsuario = new GrupoUsuario();
             _grupoUsuario.NomeGrupo = nomeGrupoTextBox.Text;
 
+            LimparCampos();
+
             grupoUsuarioBLL.Inserir(_grupoUsuario);
-            Close();
+            MessageBox.Show("Cadastrado com sucesso.");
+            //Close();
+        }
+
+        private void LimparCampos()
+        {
+            nomeGrupoTextBox.Text = string.Empty;
         }
     }
 }
