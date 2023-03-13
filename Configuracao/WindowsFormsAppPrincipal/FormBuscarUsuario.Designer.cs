@@ -47,6 +47,9 @@
             this.buttonExcluirUsuario = new System.Windows.Forms.Button();
             this.buttonExcluirGrupo = new System.Windows.Forms.Button();
             this.buttonAdicionarGrupo = new System.Windows.Forms.Button();
+            this.radioButton1PorNome = new System.Windows.Forms.RadioButton();
+            this.radioButton2PorID = new System.Windows.Forms.RadioButton();
+            this.radioButton3Todos = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.usuarioBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.usuarioDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grupoUsuariosBindingSource)).BeginInit();
@@ -254,11 +257,47 @@
             this.buttonAdicionarGrupo.UseVisualStyleBackColor = true;
             this.buttonAdicionarGrupo.Click += new System.EventHandler(this.buttonAdicionarGrupo_Click);
             // 
+            // radioButton1PorNome
+            // 
+            this.radioButton1PorNome.AutoSize = true;
+            this.radioButton1PorNome.Location = new System.Drawing.Point(9, 7);
+            this.radioButton1PorNome.Name = "radioButton1PorNome";
+            this.radioButton1PorNome.Size = new System.Drawing.Size(107, 17);
+            this.radioButton1PorNome.TabIndex = 10;
+            this.radioButton1PorNome.TabStop = true;
+            this.radioButton1PorNome.Text = "Buscar por Nome";
+            this.radioButton1PorNome.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2PorID
+            // 
+            this.radioButton2PorID.AutoSize = true;
+            this.radioButton2PorID.Location = new System.Drawing.Point(213, 7);
+            this.radioButton2PorID.Name = "radioButton2PorID";
+            this.radioButton2PorID.Size = new System.Drawing.Size(90, 17);
+            this.radioButton2PorID.TabIndex = 11;
+            this.radioButton2PorID.TabStop = true;
+            this.radioButton2PorID.Text = "Buscar por ID";
+            this.radioButton2PorID.UseVisualStyleBackColor = true;
+            // 
+            // radioButton3Todos
+            // 
+            this.radioButton3Todos.AutoSize = true;
+            this.radioButton3Todos.Location = new System.Drawing.Point(422, 7);
+            this.radioButton3Todos.Name = "radioButton3Todos";
+            this.radioButton3Todos.Size = new System.Drawing.Size(91, 17);
+            this.radioButton3Todos.TabIndex = 12;
+            this.radioButton3Todos.TabStop = true;
+            this.radioButton3Todos.Text = "Buscar Todos";
+            this.radioButton3Todos.UseVisualStyleBackColor = true;
+            // 
             // FormBuscarUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(992, 346);
+            this.Controls.Add(this.radioButton3Todos);
+            this.Controls.Add(this.radioButton2PorID);
+            this.Controls.Add(this.radioButton1PorNome);
             this.Controls.Add(this.buttonExcluirGrupo);
             this.Controls.Add(this.buttonAdicionarGrupo);
             this.Controls.Add(this.buttonExcluirUsuario);
@@ -301,5 +340,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
+        private System.Windows.Forms.RadioButton radioButton1PorNome;
+        private System.Windows.Forms.RadioButton radioButton2PorID;
+        private System.Windows.Forms.RadioButton radioButton3Todos;
     }
 }

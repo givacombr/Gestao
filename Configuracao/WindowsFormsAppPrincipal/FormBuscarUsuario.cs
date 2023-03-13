@@ -17,18 +17,44 @@ namespace WindowsFormsAppPrincipal
         private void buttonbuscar_Click(object sender, EventArgs e)
         {
             UsuarioBLL usuarioBLL = new UsuarioBLL();
-            if (textBox1.Text == "")
+            if (radioButton3Todos.Checked)
             {
-                usuarioBindingSource.DataSource = usuarioBLL.BuscarTodos(); 
+                usuarioBindingSource.DataSource = usuarioBLL.BuscarTodos();
             }
-            //else if (textBox1.Text == "")
-            //{
-            //    usuarioBindingSource.DataSource = usuarioBLL.BuscarPorId(textBox1.Text);
-            //}
-            else
+            else if (radioButton1PorNome.Checked)
             {
-                usuarioBindingSource.DataSource = usuarioBLL.BuscarUsuarioPorNome(textBox1.Text);
+                if (textBox1.Text != "")
+                {
+                    usuarioBindingSource.DataSource = usuarioBLL.BuscarUsuarioPorNome(textBox1.Text);
+                }
+                else
+                {
+                    MessageBox.Show("Favor inserir um nome");
+                }
             }
+            else if (radioButton2PorID.Checked)
+            {
+                if (textBox1.Text != "")
+                {
+                    usuarioBindingSource.DataSource = usuarioBLL.BuscarPorId(textBox1.Text);
+                }
+                else
+                {
+                    MessageBox.Show("Favor inserir um ID");
+                }
+            }
+            /* if (textBox1.Text == "")
+             {
+                 usuarioBindingSource.DataSource = usuarioBLL.BuscarTodos(); 
+             }
+             //else if (textBox1.Text == "")
+             //{
+             //    usuarioBindingSource.DataSource = usuarioBLL.BuscarPorId(textBox1.Text);
+             //}
+             else
+             {
+                 usuarioBindingSource.DataSource = usuarioBLL.BuscarUsuarioPorNome(textBox1.Text);
+             }*/
         }
 
         private void buttonAdicionarUsuario_Click(object sender, EventArgs e)
@@ -49,7 +75,7 @@ namespace WindowsFormsAppPrincipal
 
         private void buttonAlterarUsuario_Click(object sender, EventArgs e)
         {
-            using(FormAlterarUsuario frm = new FormAlterarUsuario())
+            using (FormAlterarUsuario frm = new FormAlterarUsuario())
             {
                 frm.ShowDialog();
             }

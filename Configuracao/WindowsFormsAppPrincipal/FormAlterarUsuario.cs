@@ -55,7 +55,7 @@ namespace WindowsFormsAppPrincipal
                 alterasenhaTextBox.Focus();
                 FormValido = false;
             }
-l            else if (alteraativoCheckBox.Text == "")
+            else if (alteraativoCheckBox.Text == "")
             {
                 MessageBox.Show("Marque a ChecBox");
                 alteraativoCheckBox.Focus();

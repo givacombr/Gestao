@@ -76,6 +76,44 @@ namespace DAL
             }
             return grupos;
         }
+        /*public GrupoUsuario BuscarGrupoPorNome(string _grupoPorNome)
+        {
+            SqlConnection cn = new SqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            GrupoUsuario grupousuarionome = new GrupoUsuario();
+            try
+            {
+                cn.ConnectionString = Conexao.StringDeConexao;
+                cmd.Connection = cn;
+                cmd.CommandText = @"SELECT IdGrupoUsuario, NomeGrupo FROM GrupoUsuario WHERE NomeGrupo = @NomeGrupo";
+                cmd.Parameters.AddWithValue("@NomeGrupo", _grupoPorNome);
+                cmd.CommandType = System.Data.CommandType.Text;
+
+                cn.Open();
+
+                using (SqlDataReader rd = cmd.ExecuteReader())
+                {
+                    while (rd.Read())
+                    {
+                        grupousuarionome = new GrupoUsuario();
+                        grupousuarionome.IdGrupoUsuario = Convert.ToInt32(rd["IdGrupoUsuario"]);
+                        grupousuarionome.NomeGrupo = rd["NomeGrupo"].ToString();
+
+                        GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
+                        //grupousuarionome.Permissoes = grupoUsuarioDAL.BuscarGrupoPorNome(grupousuarionome.NomeGrupo);
+                    }
+                }
+                return grupousuarionome;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Ocorreu um erro ao tentar buscar o nome do grupo: " + ex.Message);
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }*/
         public List<GrupoUsuario> BuscarGrupoPorNome()
         {
             List<GrupoUsuario> grupo_nomes = new List<GrupoUsuario>();
@@ -86,7 +124,8 @@ namespace DAL
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
                 cmd.Connection = cn;
-                cmd.CommandText = "SELECT idGrupoUsuario, NomeGrupo FROM GrupoUsuario";
+                cmd.CommandText = "SELECT IdGrupoUsuario, NomeGrupo FROM GrupoUsuario WHERE NomeGrupo = @NomeGrupo";
+                //cmd.Parameters.AddWithValue("@NomeUsuario");
                 cmd.CommandType = System.Data.CommandType.Text;
                 cn.Open();
                 using (SqlDataReader rd = cmd.ExecuteReader())

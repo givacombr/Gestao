@@ -21,10 +21,37 @@ namespace WindowsFormsAppPrincipal
         private void buttonBuscarGrupoUsuario_Click(object sender, EventArgs e)
         {
             GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
+            if(radioButton3ListarTodosGrupo.Checked )//Listar todos
+            {
+                grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarTodosGrupos();
+            }
+            else if(radioButton1NomeGrupo.Checked )
+            {
+                if(textBox2.Text != "")
+                {
+                    grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarGrupoPorNome();
+                }
+                else
+                {
+                    MessageBox.Show("Inserir um nome");
+                }
+            }
+            else if(radioButton2IDGrupo.Checked )
+            {
+                if (textBox2.Text != "")
+                {
+                    grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarPorId(Convert.ToInt32(textBox2.Text));
+                }
+                else
+                {
+                    MessageBox.Show("Inserir o ID");
+                }
+            }
+            /*GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
             if (textBox2.Text == "")
                 grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarTodosGrupos();
             else
-                grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarPorId(Convert.ToInt32(textBox2.Text));
+                grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarPorId(Convert.ToInt32(textBox2.Text));*/
         }
     }
 }
