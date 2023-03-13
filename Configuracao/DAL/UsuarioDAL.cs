@@ -122,6 +122,88 @@ namespace DAL
             }
             return usuarios;
         }
+        public Usuario BuscarUsuarioPorNome(string _nomeUsuario)
+        {
+            SqlConnection cn = new SqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            Usuario usuario = new Usuario();
+
+            try
+            {
+                cn.ConnectionString = Conexao.StringDeConexao;
+                cmd.Connection = cn;
+                cmd.CommandText = @"SELECT IDUsuario, Nome, NomeUsuario, CPF, Email, Ativo FROM Usuario WHERE NomeUsuario = @NomeUsuario";/*, IdUsuario = @IdUsuario";*/
+                cmd.Parameters.AddWithValue("@NomeUsuario", _nomeUsuario);
+                //cmd.Parameters.AddWithValue("@IdUsuario", _nomeUsuario);
+                cmd.CommandType = System.Data.CommandType.Text;
+
+                cn.Open();
+
+                using (SqlDataReader rd = cmd.ExecuteReader())
+                {
+                    while (rd.Read())
+                    {
+                        usuario = new Usuario();
+                        usuario.IDUsuario = Convert.ToInt32(rd["IDUsuario"]);
+                        usuario.Nome = rd["Nome"].ToString();
+                        usuario.NomeUsuario = rd["NomeUsuario"].ToString();
+                        usuario.CPF = rd["CPF"].ToString();
+                        usuario.Email = rd["Email"].ToString();
+                        usuario.Ativo = Convert.ToBoolean(rd["Ativo"]);
+                        GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
+                        usuario.GrupoUsuarios = grupoUsuarioDAL.BuscarPorId(usuario.IDUsuario);
+                    }
+                }
+                return usuario;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocorreu um erro ao tentar buscar um usuário: " + ex.Message);
+            }
+            finally
+            {
+                cn.Close();
+            }
+
+            /*public Usuario BuscarUsuarioPorNome(string nomeUsuario)
+            {
+                SqlConnection cn = new SqlConnection();
+                SqlCommand cmd = new SqlCommand();
+                Usuario usuario = new Usuario();
+
+                try
+                {
+                    cn.ConnectionString = Conexao.StringDeConexao;
+                    cmd.Connection = cn;
+                    cmd.CommandText = nomeUsuario;
+                    cmd.CommandType = System.Data.CommandType.Text;
+
+                    cn.Open();
+
+                    using (SqlDataReader rd = cmd.ExecuteReader())
+                    {
+                        while (rd.Read())
+                        {
+                            usuario = new Usuario();
+                            usuario.IDUsuario = Convert.ToInt32(rd["IDUsuario"]);
+                            usuario.Nome = rd["Nome"].ToString();
+                            usuario.NomeUsuario = rd["NomeUsuario"].ToString();
+                            usuario.CPF = rd["CPF"].ToString();
+                            usuario.Email = rd["Email"].ToString();
+                            usuario.Ativo = Convert.ToBoolean(rd["Ativo"]);
+                        }
+                    }
+                    return usuario;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Ocorreu um erro ao tentar buscar um usuário: " + ex.Message); ;
+                }
+                finally
+                {
+                    cn.Close();
+                }*/
+        }
         public void Alterar(Usuario _usuario)
         {
             SqlConnection cn = new SqlConnection();
@@ -180,7 +262,8 @@ namespace DAL
                 cn.Close();
             }
         }
-        public Usuario BuscarUsuarioPorNome(string _nomeUsuario)
+
+        public Usuario BuscarPorId(string idUsuario)
         {
             SqlConnection cn = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
@@ -190,8 +273,9 @@ namespace DAL
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
                 cmd.Connection = cn;
-                cmd.CommandText = @"SELECT IDUsuario, Nome, NomeUsuario, CPF, Email, Ativo FROM Usuario WHERE NomeUsuario = @NomeUsuario";
-                cmd.Parameters.AddWithValue("@NomeUsuario", _nomeUsuario);
+                cmd.CommandText = @"SELECT IDUsuario, Nome, NomeUsuario, CPF, Email, Ativo FROM Usuario WHERE IdUsuario = @IdUsuario";
+                cmd.Parameters.AddWithValue("@IdUsuario", idUsuario);
+                //cmd.Parameters.AddWithValue("@NomeUsuario", _nomeUsuario);
                 cmd.CommandType = System.Data.CommandType.Text;
 
                 cn.Open();
@@ -215,51 +299,12 @@ namespace DAL
             }
             catch (Exception ex)
             {
-                throw new Exception("Ocorreu um erro ao tentar buscar um usuário: " + ex.Message); ;
+                throw new Exception("Ocorreu um erro ao tentar buscar um usuário: " + ex.Message);
             }
             finally
             {
                 cn.Close();
             }
-
-            /*public Usuario BuscarUsuarioPorNome(string nomeUsuario)
-            {
-                SqlConnection cn = new SqlConnection();
-                SqlCommand cmd = new SqlCommand();
-                Usuario usuario = new Usuario();
-
-                try
-                {
-                    cn.ConnectionString = Conexao.StringDeConexao;
-                    cmd.Connection = cn;
-                    cmd.CommandText = nomeUsuario;
-                    cmd.CommandType = System.Data.CommandType.Text;
-
-                    cn.Open();
-
-                    using (SqlDataReader rd = cmd.ExecuteReader())
-                    {
-                        while (rd.Read())
-                        {
-                            usuario = new Usuario();
-                            usuario.IDUsuario = Convert.ToInt32(rd["IDUsuario"]);
-                            usuario.Nome = rd["Nome"].ToString();
-                            usuario.NomeUsuario = rd["NomeUsuario"].ToString();
-                            usuario.CPF = rd["CPF"].ToString();
-                            usuario.Email = rd["Email"].ToString();
-                            usuario.Ativo = Convert.ToBoolean(rd["Ativo"]);
-                        }
-                    }
-                    return usuario;
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception("Ocorreu um erro ao tentar buscar um usuário: " + ex.Message); ;
-                }
-                finally
-                {
-                    cn.Close();
-                }*/
         }
     }
 }

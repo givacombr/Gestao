@@ -18,13 +18,13 @@ namespace WindowsFormsAppPrincipal
         {
             InitializeComponent();
         }
-        private void buttonBuscar_Click(object sender, EventArgs e)
+        private void buttonBuscarGrupoUsuario_Click(object sender, EventArgs e)
         {
             GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
-            if (textBox1.Text == "")
+            if (textBox2.Text == "")
                 grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarTodosGrupos();
             else
-                grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarPorId(Convert.ToInt32(textBox1.Text));
+                grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarPorId(Convert.ToInt32(textBox2.Text));
         }
     }
 }

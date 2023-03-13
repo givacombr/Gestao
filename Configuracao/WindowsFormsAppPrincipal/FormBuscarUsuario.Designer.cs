@@ -99,6 +99,7 @@
             this.usuarioDataGridView.DataSource = this.usuarioBindingSource;
             this.usuarioDataGridView.Location = new System.Drawing.Point(9, 52);
             this.usuarioDataGridView.Margin = new System.Windows.Forms.Padding(2);
+            this.usuarioDataGridView.MultiSelect = false;
             this.usuarioDataGridView.Name = "usuarioDataGridView";
             this.usuarioDataGridView.ReadOnly = true;
             this.usuarioDataGridView.RowHeadersWidth = 51;
@@ -205,6 +206,7 @@
             this.buttonAlterarUsuario.TabIndex = 5;
             this.buttonAlterarUsuario.Text = "Alterar";
             this.buttonAlterarUsuario.UseVisualStyleBackColor = true;
+            this.buttonAlterarUsuario.Click += new System.EventHandler(this.buttonAlterarUsuario_Click);
             // 
             // buttonAdicionarUsuario
             // 

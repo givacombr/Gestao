@@ -18,9 +18,17 @@ namespace WindowsFormsAppPrincipal
         {
             UsuarioBLL usuarioBLL = new UsuarioBLL();
             if (textBox1.Text == "")
-                usuarioBindingSource.DataSource = usuarioBLL.BuscarTodos();
+            {
+                usuarioBindingSource.DataSource = usuarioBLL.BuscarTodos(); 
+            }
+            //else if (textBox1.Text == "")
+            //{
+            //    usuarioBindingSource.DataSource = usuarioBLL.BuscarPorId(textBox1.Text);
+            //}
             else
+            {
                 usuarioBindingSource.DataSource = usuarioBLL.BuscarUsuarioPorNome(textBox1.Text);
+            }
         }
 
         private void buttonAdicionarUsuario_Click(object sender, EventArgs e)
@@ -34,6 +42,14 @@ namespace WindowsFormsAppPrincipal
         private void buttonAdicionarGrupo_Click(object sender, EventArgs e)
         {
             using (FormAdicionarGrupoUsuario frm = new FormAdicionarGrupoUsuario())
+            {
+                frm.ShowDialog();
+            }
+        }
+
+        private void buttonAlterarUsuario_Click(object sender, EventArgs e)
+        {
+            using(FormAlterarUsuario frm = new FormAlterarUsuario())
             {
                 frm.ShowDialog();
             }

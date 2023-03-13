@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 
 namespace DAL
 {
@@ -43,7 +44,10 @@ namespace DAL
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
                 cmd.Connection = cn;
-                cmd.CommandText = @"SELECT TOP 100 IdDescricao, Descricao FROM Permissao WHERE IdDescricao = @IdDescricao";
+                cmd.CommandText = @"SELECT Permissao.IdDescricao, Permissao.Descricao FROM Permissao
+                                    INNER JOIN PermissaoGrupoUsuario ON Permissao.IdDescricao = PermissaoGrupoUsuario.IdGrupoUsuario
+                                    WHERE IdGrupoUsuario = @IDGrupoUsuario";
+                //cmd.CommandText = @"SELECT TOP 100 IdDescricao, Descricao FROM Permissao WHERE IdDescricao = @IdDescricao";
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.Parameters.AddWithValue("@IdDescricao", _id);
                 cn.Open();
@@ -69,6 +73,43 @@ namespace DAL
             }
             return permissao;
         }
+        public List<Permissao> BuscarPorIdGrupo()
+        {
+            List<Permissao> permissaos = new List<Permissao>();
+            Permissao permissao = new Permissao();
+            SqlConnection cn = new SqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            try
+            {
+                cn.ConnectionString = Conexao.StringDeConexao;
+                cmd.Connection = cn;
+                cmd.CommandText = @"SELECT Permissao.IdDescricao, Permissao.Descricao FROM Permissao
+                                    INNER JOIN PermissaoGrupoUsuario ON Permissao.IdDescricao = PermissaoGrupoUsuario.IdGrupoUsuario
+                                    WHERE IdGrupoUsuario = @IDGrupoUsuario";
+                cmd.CommandType = System.Data.CommandType.Text;
+                cn.Open();
+                using (SqlDataReader rd = cmd.ExecuteReader())
+                {
+                    if (rd.Read())
+                    {
+                        permissao= new Permissao();
+                        permissao.IdDescricao = Convert.ToInt32(rd["IdDescricao"]);
+                        permissao.Descricao = rd["Descricao"].ToString();
+                        permissaos.Add(permissao);
+                    }
+                }
+                return permissaos;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Ocorreu um erro ao tentar buscar Grupo de Usuarios: " + ex.Message); ;
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
         public List<Permissao> BuscarTodasPermissoes()
         {
             List<Permissao> permissoes = new List<Permissao>();
@@ -89,7 +130,8 @@ namespace DAL
                         permissao = new Permissao();
                         permissao.IdDescricao = Convert.ToInt32(rd["IdDescricao"]);
                         permissao.Descricao = rd["Descricao"].ToString();
-
+                        GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
+                        permissao.GrupoUsuarios = grupoUsuarioDAL.BuscarPorId(permissao.IdDescricao);
 
                         permissoes.Add(permissao);
                     }

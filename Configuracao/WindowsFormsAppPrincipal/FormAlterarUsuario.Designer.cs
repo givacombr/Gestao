@@ -38,12 +38,12 @@
             this.buttonSalvarUsuario = new System.Windows.Forms.Button();
             this.buttonAlteraUsuario = new System.Windows.Forms.Button();
             this.alteraativoCheckBox = new System.Windows.Forms.CheckBox();
+            this.usuarioBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.alterasenhaTextBox = new System.Windows.Forms.TextBox();
             this.alteraemailTextBox = new System.Windows.Forms.TextBox();
             this.alteracPFTextBox = new System.Windows.Forms.TextBox();
             this.alteranomeUsuarioTextBox = new System.Windows.Forms.TextBox();
             this.alterarNomeTextBox = new System.Windows.Forms.TextBox();
-            this.usuarioBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ativoLabel = new System.Windows.Forms.Label();
             senhaLabel = new System.Windows.Forms.Label();
             emailLabel = new System.Windows.Forms.Label();
@@ -115,6 +115,7 @@
             this.buttonSalvarUsuario.TabIndex = 27;
             this.buttonSalvarUsuario.Text = "Salvar";
             this.buttonSalvarUsuario.UseVisualStyleBackColor = true;
+            this.buttonSalvarUsuario.Click += new System.EventHandler(this.buttonSalvarUsuario_Click);
             // 
             // buttonAlteraUsuario
             // 
@@ -130,9 +131,13 @@
             this.alteraativoCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.usuarioBindingSource, "Ativo", true));
             this.alteraativoCheckBox.Location = new System.Drawing.Point(441, 119);
             this.alteraativoCheckBox.Name = "alteraativoCheckBox";
-            this.alteraativoCheckBox.Size = new System.Drawing.Size(20, 24);
+            this.alteraativoCheckBox.Size = new System.Drawing.Size(13, 24);
             this.alteraativoCheckBox.TabIndex = 25;
             this.alteraativoCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // usuarioBindingSource
+            // 
+            this.usuarioBindingSource.DataSource = typeof(Models.Usuario);
             // 
             // alterasenhaTextBox
             // 
@@ -174,10 +179,6 @@
             this.alterarNomeTextBox.Name = "alterarNomeTextBox";
             this.alterarNomeTextBox.Size = new System.Drawing.Size(352, 20);
             this.alterarNomeTextBox.TabIndex = 15;
-            // 
-            // usuarioBindingSource
-            // 
-            this.usuarioBindingSource.DataSource = typeof(Models.Usuario);
             // 
             // FormAlterarUsuario
             // 

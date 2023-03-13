@@ -1,0 +1,96 @@
+public List<GrupoUsuario> BuscarTodosGrupos()
+        {
+            List<GrupoUsuario> grupo_usuarios = new List<GrupoUsuario>();
+            GrupoUsuario grupousuario;
+            SqlConnection cn = new SqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            try
+            {
+                cn.ConnectionString = Conexao.StringDeConexao;
+                cmd.Connection = cn;
+                cmd.CommandText = @"SELECT GrupoUsuario.IdGrupoUsuario, GrupoUsuario.NomeGrupo FROM GrupoUsuario 
+                                    INNER JOIN UsuarioGrupoUsuario ON GrupoUsuario.IdGrupoUsuario = UsuarioGrupoUsuario.Id_GrupoUsuario 
+                                    WHERE Id_Usuario = @Id_Usuario";
+                cmd.CommandType = System.Data.CommandType.Text;
+                cn.Open();
+                using (SqlDataReader rd = cmd.ExecuteReader())
+                {
+                    if (rd.Read())
+                        //while (rd.Read())
+                    {
+                        grupousuario = new GrupoUsuario();
+                        grupousuario.IdGrupoUsuario = Convert.ToInt32(rd["IdGrupoUsuario"]);
+                        grupousuario.NomeGrupo = rd["NomeGrupo"].ToString();
+                        grupo_usuarios.Add(grupousuario);
+                    }
+                }
+                return grupo_usuarios;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Ocorreu um erro ao tentar buscar Grupo de Usuarios: " + ex.Message);
+            }
+            finally
+            {
+                cn.Close();
+            }
+
+        }
+
+=====================================================================================
+Em PermissaoDAL
+
+
+public Permissao BuscarPorId(int _id)
+        {
+            Permissao permissao = new Permissao();
+            SqlConnection cn = new SqlConnection();
+            SqlCommand cmd = new SqlCommand();
+
+            try
+            {
+                cn.ConnectionString = Conexao.StringDeConexao;
+                cmd.Connection = cn;
+                cmd.CommandText = @"SELECT TOP 100 IdDescricao, Descricao FROM Permissao WHERE IdDescricao = @IdDescricao";
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.Parameters.AddWithValue("@IdDescricao", _id);
+                cn.Open();
+                using (SqlDataReader rd = cmd.ExecuteReader())
+                {
+                    while (rd.Read())
+                    {
+                        permissao = new Permissao();
+                        permissao.IdDescricao = Convert.ToInt32(rd["IdDescricao"]);
+                        permissao.Descricao = rd["Descricao"].ToString();
+                    }
+                }
+                //cmd.ExecuteScalar();
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Ocorreu um erro ao tentar buscar uma permissão no banco: " + ex.Message);
+            }
+            finally
+            {
+                cn.Close();
+            }
+            return permissao;
+        }
+
+===========================
+
+select Permissao.IdDescricao, Permissao.Descricao from Permissao
+  inner join PermissaoGrupoUsuario on Permissao.IdDescricao = PermissaoGrupoUsuario.IdGrupoUsuario
+  where IdGrupoUsuario = @IDGrupoUsuario
+
+=================================
+
+cmd.CommandText = "SELECT idGrupoUsuario, NomeGrupo FROM GrupoUsuario";
+while (rd.Read())
+=================================
+grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarPorId(Convert.ToInt32(textBox2.Text));
+
+usuarioBindingSource.DataSource = usuarioBLL.BuscarUsuarioPorId(textBox1.Text);
+
