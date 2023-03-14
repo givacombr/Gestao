@@ -45,7 +45,8 @@ namespace WindowsFormsAppPrincipal
         {
             nomeTextBox.Text = "";
             nomeUsuarioTextBox.Text = "";
-            cPFTextBox.Text = string.Empty;
+            maskedcPFTextBox.Text = string.Empty;
+           // cPFTextBox.Text = string.Empty;
             emailTextBox.Text = string.Empty;
             senhaTextBox.Text = string.Empty;
             ativoCheckBox.Checked = true;

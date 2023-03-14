@@ -22,19 +22,36 @@ namespace WindowsFormsAppPrincipal
         private void buttonAddGrupo_Click(object sender, EventArgs e)
         {
             GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
-            GrupoUsuario _grupoUsuario = new GrupoUsuario();
-            _grupoUsuario.NomeGrupo = nomeGrupoTextBox.Text;
+            try
+            {
+                grupoUsuarioBindingSource.EndEdit();
+                grupoUsuarioBLL.Inserir((GrupoUsuario)grupoUsuarioBindingSource.Current);
+                MessageBox.Show("Cadastrado com sucesso!");
+                LimparCampos();
+                Close();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Ocorreu um erro ao tenrtar inserir um grupo no banco de dados." + ex.Message);
+            }
+            //GrupoUsuario _grupoUsuario = new GrupoUsuario();
+            //_grupoUsuario.NomeGrupo = nomeGrupoTextBox.Text;
 
             LimparCampos();
 
-            grupoUsuarioBLL.Inserir(_grupoUsuario);
-            MessageBox.Show("Cadastrado com sucesso.");
+            //grupoUsuarioBLL.Inserir(_grupoUsuario);
+            //MessageBox.Show("Cadastrado com sucesso.");
             //Close();
         }
 
         private void LimparCampos()
         {
             nomeGrupoTextBox.Text = string.Empty;
+        }
+        private void FormAdicionarGrupo_Load(object sender, EventArgs e)
+        {
+            grupoUsuarioBindingSource.AddNew();
         }
     }
 }

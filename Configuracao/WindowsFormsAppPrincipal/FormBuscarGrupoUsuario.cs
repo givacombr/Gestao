@@ -1,4 +1,5 @@
 ﻿using BLL;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,7 +24,7 @@ namespace WindowsFormsAppPrincipal
             GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
             if(radioButton3ListarTodosGrupo.Checked )//Listar todos
             {
-                grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarTodosGrupos();
+                grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarTodosGrupos(textBox2.Text);
             }
             else if(radioButton1NomeGrupo.Checked )
             {
@@ -52,6 +53,14 @@ namespace WindowsFormsAppPrincipal
                 grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarTodosGrupos();
             else
                 grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarPorId(Convert.ToInt32(textBox2.Text));*/
+        }
+
+        private void buttonAdicionar_Click(object sender, EventArgs e)
+        {
+            using (FormAdicionarGrupoUsuario frm = new FormAdicionarGrupoUsuario())
+            {
+                frm.ShowDialog();
+            }
         }
     }
 }
