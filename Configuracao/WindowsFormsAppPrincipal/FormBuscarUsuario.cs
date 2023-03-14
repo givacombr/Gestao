@@ -63,6 +63,7 @@ namespace WindowsFormsAppPrincipal
             {
                 frm.ShowDialog();
             }
+            
         }
 
         private void buttonAdicionarGrupo_Click(object sender, EventArgs e)
@@ -79,6 +80,13 @@ namespace WindowsFormsAppPrincipal
             {
                 frm.ShowDialog();
             }
+            buttonbuscar_Click(sender, e);
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            UsuarioBLL usuarioBLL = new UsuarioBLL();
+            usuarioBindingSource.DataSource = usuarioBLL.BuscarUsuarioPorNome(textBox1.Text);
         }
     }
 }

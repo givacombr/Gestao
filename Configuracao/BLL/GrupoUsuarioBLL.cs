@@ -26,19 +26,10 @@ namespace BLL
 			GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
 			return grupoUsuarioDAL.BuscarTodosGrupos();
 		}
-        /*public GrupoUsuario BuscarGrupoPorNome(string _grupoPorNome)
-        {
-            if (String.IsNullOrEmpty(_grupoPorNome))
-                throw new Exception("Informe o nome do usuário.");
-
-            GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
-            return grupoUsuarioDAL.BuscarGrupoPorNome(_grupoPorNome);
-
-        }*/
-       public List<GrupoUsuario> BuscarGrupoPorNome()
+       public List<GrupoUsuario> BuscarGrupoPorNome(string _nomeGrupo)
         {
             GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
-            return grupoUsuarioDAL.BuscarGrupoPorNome();
+            return grupoUsuarioDAL.BuscarGrupoPorNome(_nomeGrupo);
         }
         public void Alterar(GrupoUsuario _grupoUsuario)
         {

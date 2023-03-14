@@ -73,7 +73,7 @@ namespace DAL
             }
             return permissao;
         }
-        public List<Permissao> BuscarPorIdGrupo()
+        public List<Permissao> BuscarPorIdGrupo(int _idGrupoUsuario)
         {
             List<Permissao> permissaos = new List<Permissao>();
             Permissao permissao = new Permissao();
@@ -87,6 +87,7 @@ namespace DAL
                                     INNER JOIN PermissaoGrupoUsuario ON Permissao.IdDescricao = PermissaoGrupoUsuario.IdGrupoUsuario
                                     WHERE IdGrupoUsuario = @IDGrupoUsuario";
                 cmd.CommandType = System.Data.CommandType.Text;
+                cmd.Parameters.AddWithValue("@IDGrupoUsuario", _idGrupoUsuario);
                 cn.Open();
                 using (SqlDataReader rd = cmd.ExecuteReader())
                 {

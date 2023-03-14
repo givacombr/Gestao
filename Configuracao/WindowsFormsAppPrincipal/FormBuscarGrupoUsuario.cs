@@ -29,7 +29,7 @@ namespace WindowsFormsAppPrincipal
             {
                 if(textBox2.Text != "")
                 {
-                    grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarGrupoPorNome();
+                    grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarGrupoPorNome(textBox2.Text);
                 }
                 else
                 {

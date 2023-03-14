@@ -15,18 +15,30 @@ namespace WindowsFormsAppPrincipal
         private void buttonAddUsuario_Click(object sender, EventArgs e)
         {
             UsuarioBLL usuarioBLL = new UsuarioBLL();
-            Usuario usuario = new Usuario();
-            usuario.Nome = nomeTextBox.Text;
-            usuario.NomeUsuario = nomeUsuarioTextBox.Text;
-            usuario.CPF = cPFTextBox.Text;
-            usuario.Email = emailTextBox.Text;
-            usuario.Senha = senhaTextBox.Text;
-            usuario.Ativo = ativoCheckBox.Checked;
+            try
+            {
+                usuarioBindingSource.EndEdit();
+                usuarioBLL.Inserir((Usuario)usuarioBindingSource.Current, confirmacaoTextBox.Text);
+                MessageBox.Show("Cadastrado com sucesso!");
+                LimparCampos();
+                Close();
 
-            LimparCampos();
+            }
+            catch (Exception ex)
+            {
 
-            usuarioBLL.Inserir(usuario);
-            MessageBox.Show("Cadastrado com sucesso!");
+                MessageBox.Show(ex.Message);
+            }
+            /*Usuario usuario = new Usuario();*/
+            //usuario.Nome = nomeTextBox.Text;
+            //usuario.NomeUsuario = nomeUsuarioTextBox.Text;
+            //usuario.CPF = cPFTextBox.Text;
+            //usuario.Email = emailTextBox.Text;
+            //usuario.Senha = senhaTextBox.Text;
+            //usuario.Ativo = ativoCheckBox.Checked;
+
+
+            //usuarioBLL.Inserir(usuario);
         }
 
         private void LimparCampos()
@@ -37,6 +49,16 @@ namespace WindowsFormsAppPrincipal
             emailTextBox.Text = string.Empty;
             senhaTextBox.Text = string.Empty;
             ativoCheckBox.Checked = true;
+        }
+
+        private void buttonCancelar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void FormAdicionarUsuario_Load(object sender, EventArgs e)
+        {
+            usuarioBindingSource.AddNew();//estado de inserção de um registro
         }
     }
 }
