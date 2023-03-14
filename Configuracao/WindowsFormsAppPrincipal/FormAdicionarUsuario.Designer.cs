@@ -62,7 +62,7 @@
             nomeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             nomeLabel.Name = "nomeLabel";
             nomeLabel.Size = new System.Drawing.Size(44, 16);
-            nomeLabel.TabIndex = 0;
+            nomeLabel.TabIndex = 1;
             nomeLabel.Text = "Nome";
             // 
             // nomeUsuarioLabel
@@ -72,7 +72,7 @@
             nomeUsuarioLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             nomeUsuarioLabel.Name = "nomeUsuarioLabel";
             nomeUsuarioLabel.Size = new System.Drawing.Size(91, 16);
-            nomeUsuarioLabel.TabIndex = 2;
+            nomeUsuarioLabel.TabIndex = 3;
             nomeUsuarioLabel.Text = "Nome usuario";
             // 
             // cPFLabel
@@ -82,7 +82,7 @@
             cPFLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             cPFLabel.Name = "cPFLabel";
             cPFLabel.Size = new System.Drawing.Size(33, 16);
-            cPFLabel.TabIndex = 4;
+            cPFLabel.TabIndex = 5;
             cPFLabel.Text = "CPF";
             // 
             // emailLabel
@@ -92,7 +92,7 @@
             emailLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             emailLabel.Name = "emailLabel";
             emailLabel.Size = new System.Drawing.Size(41, 16);
-            emailLabel.TabIndex = 6;
+            emailLabel.TabIndex = 7;
             emailLabel.Text = "Email";
             // 
             // senhaLabel
@@ -102,7 +102,7 @@
             senhaLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             senhaLabel.Name = "senhaLabel";
             senhaLabel.Size = new System.Drawing.Size(46, 16);
-            senhaLabel.TabIndex = 8;
+            senhaLabel.TabIndex = 9;
             senhaLabel.Text = "Senha";
             // 
             // usuarioBindingSource
@@ -118,7 +118,7 @@
             this.nomeTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.nomeTextBox.Name = "nomeTextBox";
             this.nomeTextBox.Size = new System.Drawing.Size(240, 22);
-            this.nomeTextBox.TabIndex = 1;
+            this.nomeTextBox.TabIndex = 2;
             // 
             // nomeUsuarioTextBox
             // 
@@ -129,7 +129,7 @@
             this.nomeUsuarioTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.nomeUsuarioTextBox.Name = "nomeUsuarioTextBox";
             this.nomeUsuarioTextBox.Size = new System.Drawing.Size(275, 22);
-            this.nomeUsuarioTextBox.TabIndex = 3;
+            this.nomeUsuarioTextBox.TabIndex = 4;
             // 
             // cPFTextBox
             // 
@@ -140,7 +140,7 @@
             this.cPFTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.cPFTextBox.Name = "cPFTextBox";
             this.cPFTextBox.Size = new System.Drawing.Size(190, 22);
-            this.cPFTextBox.TabIndex = 5;
+            this.cPFTextBox.TabIndex = 6;
             // 
             // emailTextBox
             // 
@@ -151,7 +151,7 @@
             this.emailTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.emailTextBox.Name = "emailTextBox";
             this.emailTextBox.Size = new System.Drawing.Size(240, 22);
-            this.emailTextBox.TabIndex = 7;
+            this.emailTextBox.TabIndex = 8;
             // 
             // senhaTextBox
             // 
@@ -161,7 +161,7 @@
             this.senhaTextBox.Name = "senhaTextBox";
             this.senhaTextBox.PasswordChar = '*';
             this.senhaTextBox.Size = new System.Drawing.Size(163, 22);
-            this.senhaTextBox.TabIndex = 9;
+            this.senhaTextBox.TabIndex = 10;
             // 
             // ativoCheckBox
             // 
@@ -174,7 +174,7 @@
             this.ativoCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.ativoCheckBox.Name = "ativoCheckBox";
             this.ativoCheckBox.Size = new System.Drawing.Size(59, 20);
-            this.ativoCheckBox.TabIndex = 11;
+            this.ativoCheckBox.TabIndex = 13;
             this.ativoCheckBox.Text = "Ativo";
             this.ativoCheckBox.UseVisualStyleBackColor = true;
             // 
@@ -185,7 +185,7 @@
             this.buttonAddUsuario.Margin = new System.Windows.Forms.Padding(4);
             this.buttonAddUsuario.Name = "buttonAddUsuario";
             this.buttonAddUsuario.Size = new System.Drawing.Size(100, 28);
-            this.buttonAddUsuario.TabIndex = 12;
+            this.buttonAddUsuario.TabIndex = 14;
             this.buttonAddUsuario.Text = "Salvar";
             this.buttonAddUsuario.UseVisualStyleBackColor = true;
             this.buttonAddUsuario.Click += new System.EventHandler(this.buttonAddUsuario_Click);
@@ -197,7 +197,7 @@
             this.buttonCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(100, 28);
-            this.buttonCancelar.TabIndex = 13;
+            this.buttonCancelar.TabIndex = 15;
             this.buttonCancelar.Text = "Cancelar";
             this.buttonCancelar.UseVisualStyleBackColor = true;
             this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
@@ -209,7 +209,7 @@
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(763, 54);
-            this.label1.TabIndex = 14;
+            this.label1.TabIndex = 0;
             this.label1.Text = "Cadastro de Usuário";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -219,7 +219,7 @@
             this.confirmacaoTextBox.Name = "confirmacaoTextBox";
             this.confirmacaoTextBox.PasswordChar = '*';
             this.confirmacaoTextBox.Size = new System.Drawing.Size(163, 22);
-            this.confirmacaoTextBox.TabIndex = 15;
+            this.confirmacaoTextBox.TabIndex = 12;
             // 
             // label2
             // 
@@ -227,7 +227,7 @@
             this.label2.Location = new System.Drawing.Point(429, 124);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(142, 16);
-            this.label2.TabIndex = 16;
+            this.label2.TabIndex = 11;
             this.label2.Text = "Confirmação de senha";
             // 
             // maskedcPFTextBox
@@ -236,7 +236,7 @@
             this.maskedcPFTextBox.Mask = "999.999.999.-99";
             this.maskedcPFTextBox.Name = "maskedcPFTextBox";
             this.maskedcPFTextBox.Size = new System.Drawing.Size(100, 22);
-            this.maskedcPFTextBox.TabIndex = 17;
+            this.maskedcPFTextBox.TabIndex = 6;
             // 
             // FormAdicionarUsuario
             // 
