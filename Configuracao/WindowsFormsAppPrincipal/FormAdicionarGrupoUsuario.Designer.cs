@@ -37,6 +37,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.grupoUsuarioBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
+            // nomeGrupoLabel
+            // 
+            nomeGrupoLabel.AutoSize = true;
+            nomeGrupoLabel.Location = new System.Drawing.Point(3, 20);
+            nomeGrupoLabel.Name = "nomeGrupoLabel";
+            nomeGrupoLabel.Size = new System.Drawing.Size(70, 13);
+            nomeGrupoLabel.TabIndex = 2;
+            nomeGrupoLabel.Text = "Nome Grupo:";
+            // 
             // grupoUsuarioBindingSource
             // 
             this.grupoUsuarioBindingSource.DataSource = typeof(Models.GrupoUsuario);
@@ -50,15 +59,6 @@
             this.buttonAddGrupo.Text = "Adicionar";
             this.buttonAddGrupo.UseVisualStyleBackColor = true;
             this.buttonAddGrupo.Click += new System.EventHandler(this.buttonAddGrupo_Click);
-            // 
-            // nomeGrupoLabel
-            // 
-            nomeGrupoLabel.AutoSize = true;
-            nomeGrupoLabel.Location = new System.Drawing.Point(3, 20);
-            nomeGrupoLabel.Name = "nomeGrupoLabel";
-            nomeGrupoLabel.Size = new System.Drawing.Size(70, 13);
-            nomeGrupoLabel.TabIndex = 2;
-            nomeGrupoLabel.Text = "Nome Grupo:";
             // 
             // nomeGrupoTextBox
             // 
@@ -77,9 +77,13 @@
             this.Controls.Add(nomeGrupoLabel);
             this.Controls.Add(this.nomeGrupoTextBox);
             this.Controls.Add(this.buttonAddGrupo);
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(454, 100);
+            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(454, 100);
             this.Name = "FormAdicionarGrupoUsuario";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Adicionar Grupo de Usuários";
             ((System.ComponentModel.ISupportInitialize)(this.grupoUsuarioBindingSource)).EndInit();
             this.ResumeLayout(false);

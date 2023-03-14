@@ -95,8 +95,8 @@ namespace DAL
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
                 cmd.Connection = cn;
-                cmd.CommandText = @"SELECT IDUsuario, Nome, NomeUsuario, CPF, Email, Ativo FROM Usuario WHERE NomeUsuario = @NomeUsuario";/*, IdUsuario = @IdUsuario";*/
-                cmd.Parameters.AddWithValue("@NomeUsuario", _nomeUsuario);
+                cmd.CommandText = @"SELECT IDUsuario, Nome, NomeUsuario, CPF, Email, Ativo FROM Usuario WHERE NomeUsuario like @NomeUsuario";/*, IdUsuario = @IdUsuario";*/
+                cmd.Parameters.AddWithValue("@NomeUsuario", "%" + _nomeUsuario + "%");
                 //cmd.Parameters.AddWithValue("@IdUsuario", _nomeUsuario);
                 cmd.CommandType = System.Data.CommandType.Text;
 

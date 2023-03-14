@@ -199,9 +199,13 @@
             this.Controls.Add(this.alteracPFTextBox);
             this.Controls.Add(this.alteranomeUsuarioTextBox);
             this.Controls.Add(this.alterarNomeTextBox);
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(481, 227);
+            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(481, 227);
             this.Name = "FormAlterarUsuario";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Alterar usuário";
             ((System.ComponentModel.ISupportInitialize)(this.usuarioBindingSource)).EndInit();
             this.ResumeLayout(false);
