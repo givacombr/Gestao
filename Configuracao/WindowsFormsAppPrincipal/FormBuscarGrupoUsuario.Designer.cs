@@ -77,6 +77,7 @@
             this.grupoUsuarioDataGridView.ReadOnly = true;
             this.grupoUsuarioDataGridView.RowHeadersWidth = 51;
             this.grupoUsuarioDataGridView.RowTemplate.Height = 24;
+            this.grupoUsuarioDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grupoUsuarioDataGridView.Size = new System.Drawing.Size(692, 324);
             this.grupoUsuarioDataGridView.TabIndex = 1;
             // 

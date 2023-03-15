@@ -63,8 +63,10 @@ namespace BLL
             UsuarioDAL usuarioDAL = new UsuarioDAL();
             usuarioDAL.Alterar(_alterarUsuario);
         }
-        public void Excluir(Usuario _usuario)
+        public void Excluir(Usuario _usuario, string _confirmacaoDeSenha)
         {
+            ValidarDados(_usuario, _confirmacaoDeSenha);
+
             UsuarioDAL usuarioDAL = new UsuarioDAL();
             usuarioDAL.Excluir(_usuario);
         }

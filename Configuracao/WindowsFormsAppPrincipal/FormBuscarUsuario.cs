@@ -102,5 +102,14 @@ namespace WindowsFormsAppPrincipal
                 }
             }
         }
+        private void buttonExcluirUsuario_Click(object sender, EventArgs e)
+        {
+            int id = ((Usuario)usuarioBindingSource.Current).IDUsuario;
+            using (FormAdicionarUsuario frm = new FormAdicionarUsuario(true, id))
+            {
+                frm.ShowDialog();
+            }
+            buttonbuscar_Click(sender, e);
+        }
     }
 }

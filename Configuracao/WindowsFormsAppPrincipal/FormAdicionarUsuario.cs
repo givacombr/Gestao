@@ -13,7 +13,7 @@ namespace WindowsFormsAppPrincipal
             InitializeComponent();
             alterar = _alterar;
 
-            if(alterar )
+            if (alterar)
             {
                 //UsuarioBLL usuarioBLL = new UsuarioBLL(); //é útil para usar em vários lugares.
                 usuarioBindingSource.DataSource = new UsuarioBLL().BuscarPorId(_idUsuario);
@@ -27,10 +27,12 @@ namespace WindowsFormsAppPrincipal
             {
                 usuarioBindingSource.EndEdit();
 
-                if(!alterar)
+                if (!alterar)
                     usuarioBLL.Inserir((Usuario)usuarioBindingSource.Current, confirmacaoTextBox.Text);
-                else
+                else if (!alterar)
                     usuarioBLL.Alterar((Usuario)usuarioBindingSource.Current, confirmacaoTextBox.Text);
+                else
+                    usuarioBLL.Excluir((Usuario)usuarioBindingSource.Current, confirmacaoTextBox.Text);
 
                 MessageBox.Show("Cadastrado com sucesso!");
                 LimparCampos();
