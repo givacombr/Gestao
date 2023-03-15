@@ -51,7 +51,7 @@ namespace BLL
             UsuarioDAL usuarioDAL = new UsuarioDAL();
             return usuarioDAL.BuscarTodos();
         }
-        public Usuario BuscarPorId(string _idUsuario)
+        public Usuario BuscarPorId(int _idUsuario)
         {
             UsuarioDAL usuarioDAL = new UsuarioDAL();
             return usuarioDAL.BuscarPorId(_idUsuario);

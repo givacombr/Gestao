@@ -7,9 +7,17 @@ namespace WindowsFormsAppPrincipal
 {
     public partial class FormAdicionarUsuario : Form
     {
-        public FormAdicionarUsuario()
+        private bool alterar;
+        public FormAdicionarUsuario(bool _alterar = false, int _idUsuario = 0)
         {
             InitializeComponent();
+            alterar = _alterar;
+
+            if(alterar )
+            {
+                //UsuarioBLL usuarioBLL = new UsuarioBLL(); //é útil para usar em vários lugares.
+                usuarioBindingSource.DataSource = new UsuarioBLL().BuscarPorId(_idUsuario);
+            }
         }
 
         private void buttonAddUsuario_Click(object sender, EventArgs e)
@@ -18,7 +26,12 @@ namespace WindowsFormsAppPrincipal
             try
             {
                 usuarioBindingSource.EndEdit();
-                usuarioBLL.Inserir((Usuario)usuarioBindingSource.Current, confirmacaoTextBox.Text);
+
+                if(!alterar)
+                    usuarioBLL.Inserir((Usuario)usuarioBindingSource.Current, confirmacaoTextBox.Text);
+                else
+                    usuarioBLL.Alterar((Usuario)usuarioBindingSource.Current, confirmacaoTextBox.Text);
+
                 MessageBox.Show("Cadastrado com sucesso!");
                 LimparCampos();
                 Close();
@@ -45,8 +58,7 @@ namespace WindowsFormsAppPrincipal
         {
             nomeTextBox.Text = "";
             nomeUsuarioTextBox.Text = "";
-            maskedcPFTextBox.Text = string.Empty;
-           // cPFTextBox.Text = string.Empty;
+            cPFTextBox.Text = string.Empty;
             emailTextBox.Text = string.Empty;
             senhaTextBox.Text = string.Empty;
             ativoCheckBox.Checked = true;
@@ -59,7 +71,8 @@ namespace WindowsFormsAppPrincipal
 
         private void FormAdicionarUsuario_Load(object sender, EventArgs e)
         {
-            usuarioBindingSource.AddNew();//estado de inserção de um registro
+            if (!alterar)
+                usuarioBindingSource.AddNew();//estado de inserção de um registro
         }
     }
 }

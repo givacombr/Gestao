@@ -36,7 +36,8 @@ namespace WindowsFormsAppPrincipal
             {
                 if (textBox1.Text != "")
                 {
-                    usuarioBindingSource.DataSource = usuarioBLL.BuscarPorId(textBox1.Text);
+                    usuarioBindingSource.DataSource = usuarioBLL.BuscarPorId(Convert.ToInt32(textBox1.Text));
+                    //usuarioBindingSource.DataSource = usuarioBLL.BuscarPorId(textBox1.Text);
                 }
                 else
                 {
@@ -63,7 +64,7 @@ namespace WindowsFormsAppPrincipal
             {
                 frm.ShowDialog();
             }
-            
+
         }
 
         private void buttonAdicionarGrupo_Click(object sender, EventArgs e)
@@ -76,7 +77,9 @@ namespace WindowsFormsAppPrincipal
 
         private void buttonAlterarUsuario_Click(object sender, EventArgs e)
         {
-            using (FormAlterarUsuario frm = new FormAlterarUsuario())
+            int id = ((Usuario)usuarioBindingSource.Current).IDUsuario;//pegar o id do registro atual
+
+            using (FormAdicionarUsuario frm = new FormAdicionarUsuario(true, id))
             {
                 frm.ShowDialog();
             }
@@ -85,8 +88,19 @@ namespace WindowsFormsAppPrincipal
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            UsuarioBLL usuarioBLL = new UsuarioBLL();
-            usuarioBindingSource.DataSource = usuarioBLL.BuscarUsuarioPorNome(textBox1.Text);
+            try
+            {
+                UsuarioBLL usuarioBLL = new UsuarioBLL();
+                usuarioBindingSource.DataSource = usuarioBLL.BuscarUsuarioPorNome(textBox1.Text);
+
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message != "Informe o nome do usuário.")
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
     }
 }

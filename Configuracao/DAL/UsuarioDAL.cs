@@ -85,6 +85,48 @@ namespace DAL
             }
             return usuarios;
         }
+        public Usuario BuscarPorId(int idUsuario)
+        {
+            SqlConnection cn = new SqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            Usuario usuario = new Usuario();
+
+            try
+            {
+                cn.ConnectionString = Conexao.StringDeConexao;
+                cmd.Connection = cn;
+                cmd.CommandText = @"SELECT IDUsuario, Nome, NomeUsuario, CPF, Email, Ativo FROM Usuario WHERE IdUsuario = @IdUsuario";
+                cmd.Parameters.AddWithValue("@IdUsuario", idUsuario);
+                cmd.CommandType = System.Data.CommandType.Text;
+
+                cn.Open();
+
+                using (SqlDataReader rd = cmd.ExecuteReader())
+                {
+                    while (rd.Read())
+                    {
+                        usuario = new Usuario();
+                        usuario.IDUsuario = Convert.ToInt32(rd["IDUsuario"]);
+                        usuario.Nome = rd["Nome"].ToString();
+                        usuario.NomeUsuario = rd["NomeUsuario"].ToString();
+                        usuario.CPF = rd["CPF"].ToString();
+                        usuario.Email = rd["Email"].ToString();
+                        usuario.Ativo = Convert.ToBoolean(rd["Ativo"]);
+                        GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
+                        usuario.GrupoUsuarios = grupoUsuarioDAL.BuscarPorId(usuario.IDUsuario);
+                    }
+                }
+                return usuario;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocorreu um erro ao tentar buscar um usuário: " + ex.Message);
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
         public Usuario BuscarUsuarioPorNome(string _nomeUsuario)
         {
             SqlConnection cn = new SqlConnection();
@@ -148,7 +190,7 @@ namespace DAL
                 cmd.Parameters.AddWithValue("@IdUsuario", _usuario.IDUsuario);
 
                 cn.Open();
-                cmd.BeginExecuteNonQuery();
+                cmd.ExecuteNonQuery();
                 //cmd.ExecuteScalar();
             }
             catch (Exception ex)
@@ -180,49 +222,6 @@ namespace DAL
             {
 
                 throw new Exception("Ocorreu um erro ao tentar excluir o usuário no banco de dados: " + ex.Message);
-            }
-            finally
-            {
-                cn.Close();
-            }
-        }
-        public Usuario BuscarPorId(string idUsuario)
-        {
-            SqlConnection cn = new SqlConnection();
-            SqlCommand cmd = new SqlCommand();
-            Usuario usuario = new Usuario();
-
-            try
-            {
-                cn.ConnectionString = Conexao.StringDeConexao;
-                cmd.Connection = cn;
-                cmd.CommandText = @"SELECT IDUsuario, Nome, NomeUsuario, CPF, Email, Ativo FROM Usuario WHERE IdUsuario = @IdUsuario";
-                cmd.Parameters.AddWithValue("@IdUsuario", idUsuario);
-                //cmd.Parameters.AddWithValue("@NomeUsuario", _nomeUsuario);
-                cmd.CommandType = System.Data.CommandType.Text;
-
-                cn.Open();
-
-                using (SqlDataReader rd = cmd.ExecuteReader())
-                {
-                    while (rd.Read())
-                    {
-                        usuario = new Usuario();
-                        usuario.IDUsuario = Convert.ToInt32(rd["IDUsuario"]);
-                        usuario.Nome = rd["Nome"].ToString();
-                        usuario.NomeUsuario = rd["NomeUsuario"].ToString();
-                        usuario.CPF = rd["CPF"].ToString();
-                        usuario.Email = rd["Email"].ToString();
-                        usuario.Ativo = Convert.ToBoolean(rd["Ativo"]);
-                        GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
-                        usuario.GrupoUsuarios = grupoUsuarioDAL.BuscarPorId(usuario.IDUsuario);
-                    }
-                }
-                return usuario;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Ocorreu um erro ao tentar buscar um usuário: " + ex.Message);
             }
             finally
             {
