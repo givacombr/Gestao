@@ -12,11 +12,20 @@ using System.Windows.Forms;
 
 namespace WindowsFormsAppPrincipal
 {
-    public partial class FormAdicionarGrupoUsuario : Form
+    public partial class FormConsultarGrupoUsuario : Form
     {
-        public FormAdicionarGrupoUsuario()
+        public int Id;
+
+        private bool alterar;
+        public FormConsultarGrupoUsuario(bool _alterar = false, int _idgrupoUsuario = 0)
         {
             InitializeComponent();
+            alterar = _alterar;
+
+            if (alterar)
+            {
+                grupoUsuarioBindingSource.DataSource = new GrupoUsuarioBLL().BuscarPorId(_idgrupoUsuario);
+            }
         }
 
         private void buttonAddGrupo_Click(object sender, EventArgs e)
@@ -47,11 +56,18 @@ namespace WindowsFormsAppPrincipal
 
         private void LimparCampos()
         {
-            nomeGrupoTextBox.Text = string.Empty;
+            //nomeGrupoTextBox.Text = string.Empty;
         }
         private void FormAdicionarGrupo_Load(object sender, EventArgs e)
         {
             grupoUsuarioBindingSource.AddNew();
+        }
+
+        private void buttonBuscar_Click(object sender, EventArgs e)
+        {
+            GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
+
+            grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarGrupoPorNome(textBoxBuscar.Text);
         }
     }
 }

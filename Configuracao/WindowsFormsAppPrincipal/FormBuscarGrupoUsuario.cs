@@ -57,10 +57,22 @@ namespace WindowsFormsAppPrincipal
 
         private void buttonAdicionar_Click(object sender, EventArgs e)
         {
-            using (FormAdicionarGrupoUsuario frm = new FormAdicionarGrupoUsuario())
+            using (FormConsultarGrupoUsuario frm = new FormConsultarGrupoUsuario())
             {
                 frm.ShowDialog();
             }
         }
+
+        private void buttonAlterarGrupo_Click(object sender, EventArgs e)
+        {
+            int id = ((GrupoUsuario)grupoUsuarioBindingSource.Current).IdGrupoUsuario;//pegar o id do registro atual
+
+            using (FormConsultarGrupoUsuario frm = new FormConsultarGrupoUsuario(true, id))
+            {
+                frm.ShowDialog();
+            }
+            buttonBuscarGrupoUsuario_Click(sender, e);
+        }
+
     }
 }

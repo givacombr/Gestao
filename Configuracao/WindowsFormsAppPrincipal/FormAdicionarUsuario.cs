@@ -29,10 +29,8 @@ namespace WindowsFormsAppPrincipal
 
                 if (!alterar)
                     usuarioBLL.Inserir((Usuario)usuarioBindingSource.Current, confirmacaoTextBox.Text);
-                else if (!alterar)
-                    usuarioBLL.Alterar((Usuario)usuarioBindingSource.Current, confirmacaoTextBox.Text);
                 else
-                    usuarioBLL.Excluir((Usuario)usuarioBindingSource.Current, confirmacaoTextBox.Text);
+                    usuarioBLL.Alterar((Usuario)usuarioBindingSource.Current, confirmacaoTextBox.Text);
 
                 MessageBox.Show("Cadastrado com sucesso!");
                 LimparCampos();
@@ -70,7 +68,6 @@ namespace WindowsFormsAppPrincipal
         {
             Close();
         }
-
         private void FormAdicionarUsuario_Load(object sender, EventArgs e)
         {
             if (!alterar)

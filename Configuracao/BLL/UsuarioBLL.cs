@@ -63,12 +63,25 @@ namespace BLL
             UsuarioDAL usuarioDAL = new UsuarioDAL();
             usuarioDAL.Alterar(_alterarUsuario);
         }
-        public void Excluir(Usuario _usuario, string _confirmacaoDeSenha)
+        public void Excluir(int _id)
         {
-            ValidarDados(_usuario, _confirmacaoDeSenha);
+            //ValidarDados(_usuario);
 
             UsuarioDAL usuarioDAL = new UsuarioDAL();
-            usuarioDAL.Excluir(_usuario);
+            usuarioDAL.Excluir(_id);
         }
+
+        public void AdicionarGrupo(int _idUsuario, int _idGrupoUsuario)
+        {
+            UsuarioDAL usuarioDAL = new UsuarioDAL();
+            usuarioDAL.AdicionarGrupo(_idUsuario, _idGrupoUsuario);
+        }
+        //public void Excluir(Usuario _usuario, string _confirmacaoDeSenha)
+        //{
+        //    ValidarDados(_usuario, _confirmacaoDeSenha);
+
+        //    UsuarioDAL usuarioDAL = new UsuarioDAL();
+        //    usuarioDAL.Excluir(_usuario);
+        //}
     }
 }

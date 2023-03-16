@@ -69,9 +69,12 @@ namespace WindowsFormsAppPrincipal
 
         private void buttonAdicionarGrupo_Click(object sender, EventArgs e)
         {
-            using (FormAdicionarGrupoUsuario frm = new FormAdicionarGrupoUsuario())
+            using (FormConsultarGrupoUsuario frm = new FormConsultarGrupoUsuario())
             {
                 frm.ShowDialog();
+                UsuarioBLL usuarioBLL = new UsuarioBLL();
+                int idUsuario = ((Usuario)usuarioBindingSource.Current).IDUsuario;
+                usuarioBLL.AdicionarGrupo(idUsuario, frm.Id);
             }
         }
 
@@ -104,12 +107,19 @@ namespace WindowsFormsAppPrincipal
         }
         private void buttonExcluirUsuario_Click(object sender, EventArgs e)
         {
-            int id = ((Usuario)usuarioBindingSource.Current).IDUsuario;
-            using (FormAdicionarUsuario frm = new FormAdicionarUsuario(true, id))
+            if(usuarioBindingSource.Count <= 0)
             {
-                frm.ShowDialog();
+                MessageBox.Show("Não existe registro para ser excluído.");
+                return;
             }
-            buttonbuscar_Click(sender, e);
+            if (MessageBox.Show("Deseja realmente excluir este registro?", "Atenção", MessageBoxButtons.YesNo) == DialogResult.No)
+                return;
+
+            int id = ((Usuario)usuarioBindingSource.Current).IDUsuario;
+            new UsuarioBLL().Excluir(id);
+
+            MessageBox.Show("Registro excluído com sucesso!");
+            buttonbuscar_Click(null, null);
         }
     }
 }
