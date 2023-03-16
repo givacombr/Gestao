@@ -231,7 +231,28 @@ namespace DAL
 
         public void AdicionarGrupo(int idUsuario, int idGrupoUsuario)
         {
-            throw new NotImplementedException();
+            SqlConnection cn = new SqlConnection();
+            try
+            {
+                cn.ConnectionString = Conexao.StringDeConexao;
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = cn;
+                cmd.CommandText = @"INSERT INTO UsuarioGrupoUsuario(Id_Usuario, Id_GrupoUsuario) VALUES (@Id_Usuario, @Id_GrupoUsuario)";
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.Parameters.AddWithValue("@Id_Usuario", idUsuario);
+                cmd.Parameters.AddWithValue("@Id_GrupoUsuario", idGrupoUsuario);
+
+                cn.Open();
+                cmd.ExecuteScalar();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocorreu um erro ao tentar inserir um grupo no banco: " + ex.Message);
+            }
+            finally
+            {
+                cn.Close();
+            }
         }
     }
 }

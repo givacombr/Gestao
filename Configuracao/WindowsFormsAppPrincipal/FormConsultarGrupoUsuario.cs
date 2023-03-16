@@ -41,7 +41,6 @@ namespace WindowsFormsAppPrincipal
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show("Ocorreu um erro ao tenrtar inserir um grupo no banco de dados." + ex.Message);
             }
             //GrupoUsuario _grupoUsuario = new GrupoUsuario();
@@ -60,14 +59,50 @@ namespace WindowsFormsAppPrincipal
         }
         private void FormAdicionarGrupo_Load(object sender, EventArgs e)
         {
-            grupoUsuarioBindingSource.AddNew();
+            GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
+            try
+            {
+                grupoUsuarioBindingSource.AddNew();
+                grupoUsuarioBLL.Inserir((GrupoUsuario)grupoUsuarioBindingSource.Current);
+                MessageBox.Show("Cadastrado com sucesso!");
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro ao tenrtar inserir um grupo no banco de dados." + ex.Message);
+            }
         }
 
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
             GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
+            try
+            {
+                grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarGrupoPorNome(textBoxBuscar.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
-            grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarGrupoPorNome(textBoxBuscar.Text);
+        }
+
+        private void buttonSelecionar_Click(object sender, EventArgs e)
+        {
+            GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
+            try
+            {
+                grupoUsuarioBindingSource.EndEdit();
+                grupoUsuarioBLL.Inserir((GrupoUsuario)grupoUsuarioBindingSource.Current);
+                MessageBox.Show("Cadastrado com sucesso!");
+               
+                Close();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

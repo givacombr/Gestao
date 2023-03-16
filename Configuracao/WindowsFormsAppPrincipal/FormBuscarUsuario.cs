@@ -37,7 +37,6 @@ namespace WindowsFormsAppPrincipal
                 if (textBox1.Text != "")
                 {
                     usuarioBindingSource.DataSource = usuarioBLL.BuscarPorId(Convert.ToInt32(textBox1.Text));
-                    //usuarioBindingSource.DataSource = usuarioBLL.BuscarPorId(textBox1.Text);
                 }
                 else
                 {
