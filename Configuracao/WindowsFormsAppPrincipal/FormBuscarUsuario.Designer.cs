@@ -60,20 +60,20 @@
             // 
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(12, 36);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox1.Location = new System.Drawing.Point(9, 29);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(671, 22);
+            this.textBox1.Size = new System.Drawing.Size(504, 20);
             this.textBox1.TabIndex = 0;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // buttonbuscar
             // 
             this.buttonbuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonbuscar.Location = new System.Drawing.Point(689, 36);
-            this.buttonbuscar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonbuscar.Location = new System.Drawing.Point(517, 29);
+            this.buttonbuscar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonbuscar.Name = "buttonbuscar";
-            this.buttonbuscar.Size = new System.Drawing.Size(75, 23);
+            this.buttonbuscar.Size = new System.Drawing.Size(56, 19);
             this.buttonbuscar.TabIndex = 1;
             this.buttonbuscar.Text = "Buscar";
             this.buttonbuscar.UseVisualStyleBackColor = true;
@@ -101,15 +101,16 @@
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewCheckBoxColumn1});
             this.usuarioDataGridView.DataSource = this.usuarioBindingSource;
-            this.usuarioDataGridView.Location = new System.Drawing.Point(12, 64);
-            this.usuarioDataGridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.usuarioDataGridView.Location = new System.Drawing.Point(9, 52);
+            this.usuarioDataGridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.usuarioDataGridView.MultiSelect = false;
             this.usuarioDataGridView.Name = "usuarioDataGridView";
             this.usuarioDataGridView.ReadOnly = true;
+            this.usuarioDataGridView.RowHeadersVisible = false;
             this.usuarioDataGridView.RowHeadersWidth = 51;
             this.usuarioDataGridView.RowTemplate.Height = 24;
             this.usuarioDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.usuarioDataGridView.Size = new System.Drawing.Size(995, 351);
+            this.usuarioDataGridView.Size = new System.Drawing.Size(746, 285);
             this.usuarioDataGridView.TabIndex = 3;
             // 
             // dataGridViewTextBoxColumn1
@@ -183,13 +184,14 @@
             this.grupoUsuariosDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn7});
             this.grupoUsuariosDataGridView.DataSource = this.grupoUsuariosBindingSource;
-            this.grupoUsuariosDataGridView.Location = new System.Drawing.Point(1012, 64);
-            this.grupoUsuariosDataGridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.grupoUsuariosDataGridView.Location = new System.Drawing.Point(759, 52);
+            this.grupoUsuariosDataGridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.grupoUsuariosDataGridView.Name = "grupoUsuariosDataGridView";
             this.grupoUsuariosDataGridView.ReadOnly = true;
+            this.grupoUsuariosDataGridView.RowHeadersVisible = false;
             this.grupoUsuariosDataGridView.RowHeadersWidth = 51;
             this.grupoUsuariosDataGridView.RowTemplate.Height = 24;
-            this.grupoUsuariosDataGridView.Size = new System.Drawing.Size(300, 351);
+            this.grupoUsuariosDataGridView.Size = new System.Drawing.Size(225, 285);
             this.grupoUsuariosDataGridView.TabIndex = 4;
             // 
             // dataGridViewTextBoxColumn7
@@ -204,10 +206,10 @@
             // buttonAlterarUsuario
             // 
             this.buttonAlterarUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAlterarUsuario.Location = new System.Drawing.Point(771, 34);
-            this.buttonAlterarUsuario.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonAlterarUsuario.Location = new System.Drawing.Point(578, 28);
+            this.buttonAlterarUsuario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonAlterarUsuario.Name = "buttonAlterarUsuario";
-            this.buttonAlterarUsuario.Size = new System.Drawing.Size(75, 23);
+            this.buttonAlterarUsuario.Size = new System.Drawing.Size(56, 19);
             this.buttonAlterarUsuario.TabIndex = 5;
             this.buttonAlterarUsuario.Text = "Alterar";
             this.buttonAlterarUsuario.UseVisualStyleBackColor = true;
@@ -216,10 +218,10 @@
             // buttonAdicionarUsuario
             // 
             this.buttonAdicionarUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAdicionarUsuario.Location = new System.Drawing.Point(851, 34);
-            this.buttonAdicionarUsuario.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonAdicionarUsuario.Location = new System.Drawing.Point(638, 28);
+            this.buttonAdicionarUsuario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonAdicionarUsuario.Name = "buttonAdicionarUsuario";
-            this.buttonAdicionarUsuario.Size = new System.Drawing.Size(75, 23);
+            this.buttonAdicionarUsuario.Size = new System.Drawing.Size(56, 19);
             this.buttonAdicionarUsuario.TabIndex = 6;
             this.buttonAdicionarUsuario.Text = "Adicionar";
             this.buttonAdicionarUsuario.UseVisualStyleBackColor = true;
@@ -228,10 +230,10 @@
             // buttonExcluirUsuario
             // 
             this.buttonExcluirUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonExcluirUsuario.Location = new System.Drawing.Point(931, 34);
-            this.buttonExcluirUsuario.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonExcluirUsuario.Location = new System.Drawing.Point(698, 28);
+            this.buttonExcluirUsuario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonExcluirUsuario.Name = "buttonExcluirUsuario";
-            this.buttonExcluirUsuario.Size = new System.Drawing.Size(75, 23);
+            this.buttonExcluirUsuario.Size = new System.Drawing.Size(56, 19);
             this.buttonExcluirUsuario.TabIndex = 7;
             this.buttonExcluirUsuario.Text = "Excluir";
             this.buttonExcluirUsuario.UseVisualStyleBackColor = true;
@@ -240,10 +242,10 @@
             // buttonExcluirGrupo
             // 
             this.buttonExcluirGrupo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonExcluirGrupo.Location = new System.Drawing.Point(1237, 34);
-            this.buttonExcluirGrupo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonExcluirGrupo.Location = new System.Drawing.Point(928, 28);
+            this.buttonExcluirGrupo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonExcluirGrupo.Name = "buttonExcluirGrupo";
-            this.buttonExcluirGrupo.Size = new System.Drawing.Size(75, 23);
+            this.buttonExcluirGrupo.Size = new System.Drawing.Size(56, 19);
             this.buttonExcluirGrupo.TabIndex = 9;
             this.buttonExcluirGrupo.Text = "Excluir";
             this.buttonExcluirGrupo.UseVisualStyleBackColor = true;
@@ -251,10 +253,10 @@
             // buttonAdicionarGrupo
             // 
             this.buttonAdicionarGrupo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAdicionarGrupo.Location = new System.Drawing.Point(1156, 34);
-            this.buttonAdicionarGrupo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonAdicionarGrupo.Location = new System.Drawing.Point(867, 28);
+            this.buttonAdicionarGrupo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonAdicionarGrupo.Name = "buttonAdicionarGrupo";
-            this.buttonAdicionarGrupo.Size = new System.Drawing.Size(75, 23);
+            this.buttonAdicionarGrupo.Size = new System.Drawing.Size(56, 19);
             this.buttonAdicionarGrupo.TabIndex = 8;
             this.buttonAdicionarGrupo.Text = "Adicionar";
             this.buttonAdicionarGrupo.UseVisualStyleBackColor = true;
@@ -263,10 +265,9 @@
             // radioButton1PorNome
             // 
             this.radioButton1PorNome.AutoSize = true;
-            this.radioButton1PorNome.Location = new System.Drawing.Point(12, 9);
-            this.radioButton1PorNome.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButton1PorNome.Location = new System.Drawing.Point(9, 7);
             this.radioButton1PorNome.Name = "radioButton1PorNome";
-            this.radioButton1PorNome.Size = new System.Drawing.Size(133, 20);
+            this.radioButton1PorNome.Size = new System.Drawing.Size(107, 17);
             this.radioButton1PorNome.TabIndex = 10;
             this.radioButton1PorNome.TabStop = true;
             this.radioButton1PorNome.Text = "Buscar por Nome";
@@ -275,10 +276,9 @@
             // radioButton2PorID
             // 
             this.radioButton2PorID.AutoSize = true;
-            this.radioButton2PorID.Location = new System.Drawing.Point(284, 9);
-            this.radioButton2PorID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButton2PorID.Location = new System.Drawing.Point(213, 7);
             this.radioButton2PorID.Name = "radioButton2PorID";
-            this.radioButton2PorID.Size = new System.Drawing.Size(109, 20);
+            this.radioButton2PorID.Size = new System.Drawing.Size(90, 17);
             this.radioButton2PorID.TabIndex = 11;
             this.radioButton2PorID.TabStop = true;
             this.radioButton2PorID.Text = "Buscar por ID";
@@ -287,10 +287,9 @@
             // radioButton3Todos
             // 
             this.radioButton3Todos.AutoSize = true;
-            this.radioButton3Todos.Location = new System.Drawing.Point(563, 9);
-            this.radioButton3Todos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButton3Todos.Location = new System.Drawing.Point(422, 7);
             this.radioButton3Todos.Name = "radioButton3Todos";
-            this.radioButton3Todos.Size = new System.Drawing.Size(113, 20);
+            this.radioButton3Todos.Size = new System.Drawing.Size(91, 17);
             this.radioButton3Todos.TabIndex = 12;
             this.radioButton3Todos.TabStop = true;
             this.radioButton3Todos.Text = "Buscar Todos";
@@ -298,9 +297,9 @@
             // 
             // FormBuscarUsuario
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1323, 426);
+            this.ClientSize = new System.Drawing.Size(992, 346);
             this.Controls.Add(this.radioButton3Todos);
             this.Controls.Add(this.radioButton2PorID);
             this.Controls.Add(this.radioButton1PorNome);
@@ -313,7 +312,7 @@
             this.Controls.Add(this.usuarioDataGridView);
             this.Controls.Add(this.buttonbuscar);
             this.Controls.Add(this.textBox1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormBuscarUsuario";

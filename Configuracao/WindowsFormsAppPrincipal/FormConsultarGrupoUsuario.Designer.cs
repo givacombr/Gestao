@@ -56,7 +56,7 @@
             this.dataGridViewTextBoxColumn2});
             this.grupoUsuarioDataGridView.DataSource = this.grupoUsuarioBindingSource;
             this.grupoUsuarioDataGridView.Location = new System.Drawing.Point(9, 69);
-            this.grupoUsuarioDataGridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grupoUsuarioDataGridView.Margin = new System.Windows.Forms.Padding(2);
             this.grupoUsuarioDataGridView.Name = "grupoUsuarioDataGridView";
             this.grupoUsuarioDataGridView.ReadOnly = true;
             this.grupoUsuarioDataGridView.RowHeadersVisible = false;
@@ -77,7 +77,7 @@
             // buttonSelecionar
             // 
             this.buttonSelecionar.Location = new System.Drawing.Point(385, 253);
-            this.buttonSelecionar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonSelecionar.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSelecionar.Name = "buttonSelecionar";
             this.buttonSelecionar.Size = new System.Drawing.Size(67, 19);
             this.buttonSelecionar.TabIndex = 1;
@@ -88,7 +88,7 @@
             // buttonCancelar
             // 
             this.buttonCancelar.Location = new System.Drawing.Point(456, 253);
-            this.buttonCancelar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonCancelar.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(56, 19);
             this.buttonCancelar.TabIndex = 2;
@@ -98,7 +98,7 @@
             // textBoxBuscar
             // 
             this.textBoxBuscar.Location = new System.Drawing.Point(9, 46);
-            this.textBoxBuscar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxBuscar.Name = "textBoxBuscar";
             this.textBoxBuscar.Size = new System.Drawing.Size(433, 20);
             this.textBoxBuscar.TabIndex = 3;
@@ -106,7 +106,7 @@
             // buttonBuscar
             // 
             this.buttonBuscar.Location = new System.Drawing.Point(446, 46);
-            this.buttonBuscar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.buttonBuscar.Name = "buttonBuscar";
             this.buttonBuscar.Size = new System.Drawing.Size(67, 19);
             this.buttonBuscar.TabIndex = 4;
