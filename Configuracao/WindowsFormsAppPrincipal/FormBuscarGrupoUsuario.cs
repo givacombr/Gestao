@@ -48,16 +48,11 @@ namespace WindowsFormsAppPrincipal
                     MessageBox.Show("Inserir o ID");
                 }
             }
-            /*GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
-            if (textBox2.Text == "")
-                grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarTodosGrupos();
-            else
-                grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarPorId(Convert.ToInt32(textBox2.Text));*/
         }
 
         private void buttonAdicionar_Click(object sender, EventArgs e)
         {
-            using (FormConsultarGrupoUsuario frm = new FormConsultarGrupoUsuario())
+            using (FormAdicionarGrupo frm = new FormAdicionarGrupo())
             {
                 frm.ShowDialog();
             }
@@ -66,7 +61,7 @@ namespace WindowsFormsAppPrincipal
         private void buttonAlterarGrupo_Click(object sender, EventArgs e)
         {
             int id = ((GrupoUsuario)grupoUsuarioBindingSource.Current).IdGrupoUsuario;//pegar o id do registro atual
-
+            //TODO corrigir esse formulario
             using (FormConsultarGrupoUsuario frm = new FormConsultarGrupoUsuario(true, id))
             {
                 frm.ShowDialog();

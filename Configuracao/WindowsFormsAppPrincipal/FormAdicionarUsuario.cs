@@ -42,16 +42,6 @@ namespace WindowsFormsAppPrincipal
 
                 MessageBox.Show(ex.Message);
             }
-            /*Usuario usuario = new Usuario();*/
-            //usuario.Nome = nomeTextBox.Text;
-            //usuario.NomeUsuario = nomeUsuarioTextBox.Text;
-            //usuario.CPF = cPFTextBox.Text;
-            //usuario.Email = emailTextBox.Text;
-            //usuario.Senha = senhaTextBox.Text;
-            //usuario.Ativo = ativoCheckBox.Checked;
-
-
-            //usuarioBLL.Inserir(usuario);
         }
 
         private void LimparCampos()

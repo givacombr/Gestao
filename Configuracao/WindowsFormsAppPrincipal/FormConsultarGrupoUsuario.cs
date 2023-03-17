@@ -27,7 +27,6 @@ namespace WindowsFormsAppPrincipal
                 grupoUsuarioBindingSource.DataSource = new GrupoUsuarioBLL().BuscarPorId(_idgrupoUsuario);
             }
         }
-
         private void FormAdicionarGrupo_Load(object sender, EventArgs e)
         {
             GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
@@ -43,7 +42,6 @@ namespace WindowsFormsAppPrincipal
                 MessageBox.Show("Ocorreu um erro ao tenrtar inserir um grupo no banco de dados." + ex.Message);
             }
         }
-
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
             GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
@@ -55,7 +53,6 @@ namespace WindowsFormsAppPrincipal
             {
                 MessageBox.Show(ex.Message);
             }
-
         }
 
         private void buttonSelecionar_Click(object sender, EventArgs e)

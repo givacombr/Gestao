@@ -80,5 +80,10 @@ namespace BLL
             UsuarioDAL usuarioDAL = new UsuarioDAL();
             usuarioDAL.AdicionarGrupo(_idUsuario, _idGrupoUsuario);
         }
+
+        public void RemoverGrupo(int idUsuario, int idGrupoUsuario)
+        {
+            new UsuarioDAL().RemoverGrupo(idUsuario, idGrupoUsuario);
+        }
     }
 }

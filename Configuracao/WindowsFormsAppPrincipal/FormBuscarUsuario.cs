@@ -51,7 +51,6 @@ namespace WindowsFormsAppPrincipal
                 frm.ShowDialog();
             }
         }
-
         private void buttonAdicionarGrupo_Click(object sender, EventArgs e)
         {
             using (FormConsultarGrupoUsuario frm = new FormConsultarGrupoUsuario())
@@ -59,11 +58,13 @@ namespace WindowsFormsAppPrincipal
                 try
                 {
                     frm.ShowDialog();
-                    UsuarioBLL usuarioBLL = new UsuarioBLL();
-                    int idUsuario = ((Usuario)usuarioBindingSource.Current).IDUsuario;
-                    usuarioBLL.AdicionarGrupo(idUsuario, frm.Id);
-                    MessageBox.Show("Grupo adionado com sucesso.");
-
+                    if (frm.Id > 0)
+                    {
+                        UsuarioBLL usuarioBLL = new UsuarioBLL();
+                        int idUsuario = ((Usuario)usuarioBindingSource.Current).IDUsuario;
+                        usuarioBLL.AdicionarGrupo(idUsuario, frm.Id);
+                        MessageBox.Show("Grupo adionado com sucesso.");
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -71,7 +72,6 @@ namespace WindowsFormsAppPrincipal
                 }
             }
         }
-
         private void buttonAlterarUsuario_Click(object sender, EventArgs e)
         {
             int id = ((Usuario)usuarioBindingSource.Current).IDUsuario;//pegar o id do registro atual
@@ -82,7 +82,6 @@ namespace WindowsFormsAppPrincipal
             }
             buttonbuscar_Click(sender, e);
         }
-
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             try
@@ -114,6 +113,13 @@ namespace WindowsFormsAppPrincipal
 
             MessageBox.Show("Registro excluído com sucesso!");
             buttonbuscar_Click(null, null);
+        }
+        private void buttonExcluirGrupo_Click(object sender, EventArgs e)
+        {
+            int idUsuario = ((Usuario)usuarioBindingSource.Current).IDUsuario;
+            int idGrupoUsuario = ((GrupoUsuario)grupoUsuariosBindingSource.Current).IdGrupoUsuario;
+
+            new UsuarioBLL().RemoverGrupo(idUsuario, idGrupoUsuario);
         }
     }
 }

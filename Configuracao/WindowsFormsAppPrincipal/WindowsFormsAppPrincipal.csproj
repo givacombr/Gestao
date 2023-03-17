@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormAdicionarGrupo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAdicionarGrupo.Designer.cs">
+      <DependentUpon>FormAdicionarGrupo.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormConsultarGrupoUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +84,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormAdicionarGrupo.resx">
+      <DependentUpon>FormAdicionarGrupo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormConsultarGrupoUsuario.resx">
       <DependentUpon>FormConsultarGrupoUsuario.cs</DependentUpon>
     </EmbeddedResource>
