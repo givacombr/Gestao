@@ -76,6 +76,12 @@
     <Compile Include="FormBuscarUsuario.Designer.cs">
       <DependentUpon>FormBuscarUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormConsultarPermissaoGrupoUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConsultarPermissaoGrupoUsuario.Designer.cs">
+      <DependentUpon>FormConsultarPermissaoGrupoUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormBuscarUsuario.resx">
       <DependentUpon>FormBuscarUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConsultarPermissaoGrupoUsuario.resx">
+      <DependentUpon>FormConsultarPermissaoGrupoUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>

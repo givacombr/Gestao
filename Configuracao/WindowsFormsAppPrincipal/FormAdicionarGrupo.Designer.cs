@@ -33,13 +33,11 @@
             this.grupoUsuarioBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.nomeGrupoTextBox = new System.Windows.Forms.TextBox();
             this.labelTitulo = new System.Windows.Forms.Label();
+            this.buttonSalvarGrupo = new System.Windows.Forms.Button();
+            this.buttonCancelarGrupo = new System.Windows.Forms.Button();
             nomeGrupoLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grupoUsuarioBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // grupoUsuarioBindingSource
-            // 
-            this.grupoUsuarioBindingSource.DataSource = typeof(Models.GrupoUsuario);
             // 
             // nomeGrupoLabel
             // 
@@ -51,6 +49,10 @@
             nomeGrupoLabel.TabIndex = 1;
             nomeGrupoLabel.Text = "Nome Grupo";
             // 
+            // grupoUsuarioBindingSource
+            // 
+            this.grupoUsuarioBindingSource.DataSource = typeof(Models.GrupoUsuario);
+            // 
             // nomeGrupoTextBox
             // 
             this.nomeGrupoTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.grupoUsuarioBindingSource, "NomeGrupo", true));
@@ -58,6 +60,7 @@
             this.nomeGrupoTextBox.Name = "nomeGrupoTextBox";
             this.nomeGrupoTextBox.Size = new System.Drawing.Size(455, 20);
             this.nomeGrupoTextBox.TabIndex = 2;
+            this.nomeGrupoTextBox.TextChanged += new System.EventHandler(this.nomeGrupoTextBox_TextChanged);
             // 
             // labelTitulo
             // 
@@ -70,17 +73,43 @@
             this.labelTitulo.Text = "Adicionar Grupo";
             this.labelTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // buttonSalvarGrupo
+            // 
+            this.buttonSalvarGrupo.Location = new System.Drawing.Point(311, 126);
+            this.buttonSalvarGrupo.Name = "buttonSalvarGrupo";
+            this.buttonSalvarGrupo.Size = new System.Drawing.Size(75, 23);
+            this.buttonSalvarGrupo.TabIndex = 4;
+            this.buttonSalvarGrupo.Text = "Salvar";
+            this.buttonSalvarGrupo.UseVisualStyleBackColor = true;
+            this.buttonSalvarGrupo.Click += new System.EventHandler(this.buttonSalvarGrupo_Click);
+            // 
+            // buttonCancelarGrupo
+            // 
+            this.buttonCancelarGrupo.Location = new System.Drawing.Point(392, 126);
+            this.buttonCancelarGrupo.Name = "buttonCancelarGrupo";
+            this.buttonCancelarGrupo.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancelarGrupo.TabIndex = 5;
+            this.buttonCancelarGrupo.Text = "Cancelar";
+            this.buttonCancelarGrupo.UseVisualStyleBackColor = true;
+            this.buttonCancelarGrupo.Click += new System.EventHandler(this.buttonCancelarGrupo_Click);
+            // 
             // FormAdicionarGrupo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(479, 167);
+            this.Controls.Add(this.buttonCancelarGrupo);
+            this.Controls.Add(this.buttonSalvarGrupo);
             this.Controls.Add(this.labelTitulo);
             this.Controls.Add(nomeGrupoLabel);
             this.Controls.Add(this.nomeGrupoTextBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormAdicionarGrupo";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Adicionar Grupo";
             ((System.ComponentModel.ISupportInitialize)(this.grupoUsuarioBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -93,5 +122,7 @@
         private System.Windows.Forms.BindingSource grupoUsuarioBindingSource;
         private System.Windows.Forms.TextBox nomeGrupoTextBox;
         private System.Windows.Forms.Label labelTitulo;
+        private System.Windows.Forms.Button buttonSalvarGrupo;
+        private System.Windows.Forms.Button buttonCancelarGrupo;
     }
 }

@@ -33,7 +33,7 @@ namespace WindowsFormsAppPrincipal
             try
             {
                 grupoUsuarioBindingSource.AddNew();
-                grupoUsuarioBLL.Inserir((GrupoUsuario)grupoUsuarioBindingSource.Current);
+                //grupoUsuarioBLL.Inserir((GrupoUsuario)grupoUsuarioBindingSource.Current);
                 MessageBox.Show("Cadastrado com sucesso!");
                 Close();
             }

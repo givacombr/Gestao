@@ -15,6 +15,7 @@ namespace WindowsFormsAppPrincipal
 {
     public partial class FormBuscarGrupoUsuario : Form
     {
+        //public int Id;
         public FormBuscarGrupoUsuario()
         {
             InitializeComponent();
@@ -22,13 +23,13 @@ namespace WindowsFormsAppPrincipal
         private void buttonBuscarGrupoUsuario_Click(object sender, EventArgs e)
         {
             GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
-            if(radioButton3ListarTodosGrupo.Checked )//Listar todos
+            if (radioButton3ListarTodosGrupo.Checked)//Listar todos
             {
                 grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarTodosGrupos();
             }
-            else if(radioButton1NomeGrupo.Checked )
+            else if (radioButton1NomeGrupo.Checked)
             {
-                if(textBox2.Text != "")
+                if (textBox2.Text != "")
                 {
                     grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarGrupoPorNome(textBox2.Text);
                 }
@@ -37,7 +38,7 @@ namespace WindowsFormsAppPrincipal
                     MessageBox.Show("Inserir um nome");
                 }
             }
-            else if(radioButton2IDGrupo.Checked )
+            else if (radioButton2IDGrupo.Checked)
             {
                 if (textBox2.Text != "")
                 {
@@ -50,24 +51,79 @@ namespace WindowsFormsAppPrincipal
             }
         }
 
-        private void buttonAdicionar_Click(object sender, EventArgs e)
+        private void buttonAdicionarGrupo_Click(object sender, EventArgs e)
         {
             using (FormAdicionarGrupo frm = new FormAdicionarGrupo())
             {
-                frm.ShowDialog();
+                try
+                {
+                    frm.ShowDialog();
+                    if (frm.Id > 0)
+                    {
+                        GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
+                        int IdGrupoUsuario = ((GrupoUsuario)grupoUsuarioBindingSource.Current).IdGrupoUsuario;
+                        //grupoUsuarioBLL.BuscarPorId(IdGrupoUsuario, frm.Id);
+                        MessageBox.Show("Grupo adicionado com sucesso.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao vincular um grupo" + ex.Message);
+                }
             }
         }
 
         private void buttonAlterarGrupo_Click(object sender, EventArgs e)
         {
             int id = ((GrupoUsuario)grupoUsuarioBindingSource.Current).IdGrupoUsuario;//pegar o id do registro atual
-            //TODO corrigir esse formulario
-            using (FormConsultarGrupoUsuario frm = new FormConsultarGrupoUsuario(true, id))
+
+            using (FormAdicionarGrupo frm = new FormAdicionarGrupo(true, id))
             {
                 frm.ShowDialog();
             }
             buttonBuscarGrupoUsuario_Click(sender, e);
         }
 
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
+                grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarGrupoPorNome(textBox2.Text);
+
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message != "Informe o nome do grupo.")
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void buttonExcluir_Click(object sender, EventArgs e)
+        {
+            if (grupoUsuarioBindingSource.Count <= 0)
+            {
+                MessageBox.Show("Não existe registro para ser excluído.");
+                return;
+            }
+            if (MessageBox.Show("Deseja realmente excluir este registro?", "Atenção", MessageBoxButtons.YesNo) == DialogResult.No)
+                return;
+
+            int id = ((GrupoUsuario)grupoUsuarioBindingSource.Current).IdGrupoUsuario;
+            //new GrupoUsuarioBLL().Excluir(id);
+
+            MessageBox.Show("Registro excluído com sucesso!");
+            buttonBuscarGrupoUsuario_Click(null, null);
+        }
+
+        private void buttonAddDescricao_Click(object sender, EventArgs e)
+        {
+            using(FormConsultarPermissaoGrupoUsuario frm = new FormConsultarPermissaoGrupoUsuario())
+            {
+                frm.ShowDialog();
+            }
+        }
     }
 }
