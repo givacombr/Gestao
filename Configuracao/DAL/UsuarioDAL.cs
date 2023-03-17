@@ -53,7 +53,7 @@ namespace DAL
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
                 cmd.Connection = cn;
-                cmd.CommandText = "SELECT TOP 100 IDUsuario, Nome, NomeUsuario, CPF, Email, Ativo FROM Usuario";
+                cmd.CommandText = "SELECT IDUsuario, Nome, NomeUsuario, CPF, Email, Ativo FROM Usuario";
                 cmd.CommandType = System.Data.CommandType.Text;
                 cn.Open();
 
@@ -69,7 +69,7 @@ namespace DAL
                         usuario.Email = rd["Email"].ToString();
                         usuario.Ativo = Convert.ToBoolean(rd["Ativo"]);
                         GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
-                        usuario.GrupoUsuarios = grupoUsuarioDAL.BuscarPorId(usuario.IDUsuario);
+                        usuario.GrupoUsuarios = grupoUsuarioDAL.BuscarPorIdUsuario(usuario.IDUsuario);
 
                         usuarios.Add(usuario);
                     }
@@ -113,7 +113,7 @@ namespace DAL
                         usuario.Email = rd["Email"].ToString();
                         usuario.Ativo = Convert.ToBoolean(rd["Ativo"]);
                         GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
-                        usuario.GrupoUsuarios = grupoUsuarioDAL.BuscarPorId(usuario.IDUsuario);
+                        usuario.GrupoUsuarios = grupoUsuarioDAL.BuscarPorIdUsuario(usuario.IDUsuario);
                     }
                 }
                 return usuario;
@@ -156,7 +156,7 @@ namespace DAL
                         usuario.Email = rd["Email"].ToString();
                         usuario.Ativo = Convert.ToBoolean(rd["Ativo"]);
                         GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
-                        usuario.GrupoUsuarios = grupoUsuarioDAL.BuscarPorId(usuario.IDUsuario);
+                        usuario.GrupoUsuarios = grupoUsuarioDAL.BuscarPorIdUsuario(usuario.IDUsuario);
                     }
                 }
                 return usuario;
@@ -248,6 +248,42 @@ namespace DAL
             catch (Exception ex)
             {
                 throw new Exception("Ocorreu um erro ao tentar inserir um grupo no banco: " + ex.Message);
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+
+        public bool ExisteRelacionamento(int idUsuario, int idGrupoUsuario)
+        {
+            SqlConnection cn = new SqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            Usuario usuario = new Usuario();
+
+            try
+            {
+                cn.ConnectionString = Conexao.StringDeConexao;
+                cmd.Connection = cn;
+                cmd.CommandText = @"SELECT 1 AS Retorno FROM  UsuarioGrupoUsuario WHERE Id_Usuario = @Id_Usuario and Id_GrupoUsuario = @Id_GrupoUsuario";
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.Parameters.AddWithValue("@Id_Usuario", idUsuario);
+                cmd.Parameters.AddWithValue("@Id_GrupoUsuario", idGrupoUsuario);
+
+                cn.Open();
+
+                using (SqlDataReader rd = cmd.ExecuteReader())
+                {
+                    while (rd.Read())
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocorreu um erro ao tentar buscar um usuário: " + ex.Message);
             }
             finally
             {

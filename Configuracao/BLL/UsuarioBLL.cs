@@ -73,15 +73,12 @@ namespace BLL
 
         public void AdicionarGrupo(int _idUsuario, int _idGrupoUsuario)
         {
+            if (new UsuarioDAL().ExisteRelacionamento(_idUsuario, _idGrupoUsuario))
+            {
+                throw new Exception("Usuário já vinculado ao grupo.");
+            }
             UsuarioDAL usuarioDAL = new UsuarioDAL();
             usuarioDAL.AdicionarGrupo(_idUsuario, _idGrupoUsuario);
         }
-        //public void Excluir(Usuario _usuario, string _confirmacaoDeSenha)
-        //{
-        //    ValidarDados(_usuario, _confirmacaoDeSenha);
-
-        //    UsuarioDAL usuarioDAL = new UsuarioDAL();
-        //    usuarioDAL.Excluir(_usuario);
-        //}
     }
 }

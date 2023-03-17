@@ -13,7 +13,6 @@ namespace WindowsFormsAppPrincipal
         {
             InitializeComponent();
         }
-
         private void buttonbuscar_Click(object sender, EventArgs e)
         {
             UsuarioBLL usuarioBLL = new UsuarioBLL();
@@ -43,18 +42,6 @@ namespace WindowsFormsAppPrincipal
                     MessageBox.Show("Favor inserir um ID");
                 }
             }
-            /* if (textBox1.Text == "")
-             {
-                 usuarioBindingSource.DataSource = usuarioBLL.BuscarTodos(); 
-             }
-             //else if (textBox1.Text == "")
-             //{
-             //    usuarioBindingSource.DataSource = usuarioBLL.BuscarPorId(textBox1.Text);
-             //}
-             else
-             {
-                 usuarioBindingSource.DataSource = usuarioBLL.BuscarUsuarioPorNome(textBox1.Text);
-             }*/
         }
 
         private void buttonAdicionarUsuario_Click(object sender, EventArgs e)
@@ -63,17 +50,25 @@ namespace WindowsFormsAppPrincipal
             {
                 frm.ShowDialog();
             }
-
         }
 
         private void buttonAdicionarGrupo_Click(object sender, EventArgs e)
         {
             using (FormConsultarGrupoUsuario frm = new FormConsultarGrupoUsuario())
             {
-                frm.ShowDialog();
-                UsuarioBLL usuarioBLL = new UsuarioBLL();
-                int idUsuario = ((Usuario)usuarioBindingSource.Current).IDUsuario;
-                usuarioBLL.AdicionarGrupo(idUsuario, frm.Id);
+                try
+                {
+                    frm.ShowDialog();
+                    UsuarioBLL usuarioBLL = new UsuarioBLL();
+                    int idUsuario = ((Usuario)usuarioBindingSource.Current).IDUsuario;
+                    usuarioBLL.AdicionarGrupo(idUsuario, frm.Id);
+                    MessageBox.Show("Grupo adionado com sucesso.");
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao vincular um grupo" + ex.Message);
+                }
             }
         }
 
@@ -106,7 +101,7 @@ namespace WindowsFormsAppPrincipal
         }
         private void buttonExcluirUsuario_Click(object sender, EventArgs e)
         {
-            if(usuarioBindingSource.Count <= 0)
+            if (usuarioBindingSource.Count <= 0)
             {
                 MessageBox.Show("Não existe registro para ser excluído.");
                 return;

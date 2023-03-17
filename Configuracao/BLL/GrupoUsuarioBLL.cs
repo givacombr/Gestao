@@ -21,10 +21,10 @@ namespace BLL
             GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
             return grupoUsuarioDAL.BuscarPorId(_idGrupoUsuario);
         }
-        public List<GrupoUsuario> BuscarTodosGrupos(string _grupoUsuario)
+        public List<GrupoUsuario> BuscarTodosGrupos()
 		{
 			GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
-			return grupoUsuarioDAL.BuscarTodosGrupos(_grupoUsuario);
+			return grupoUsuarioDAL.BuscarTodosGrupos();
 		}
        public List<GrupoUsuario> BuscarGrupoPorNome(string _nomeGrupo)
         {

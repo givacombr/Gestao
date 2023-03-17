@@ -24,7 +24,7 @@ namespace WindowsFormsAppPrincipal
             GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
             if(radioButton3ListarTodosGrupo.Checked )//Listar todos
             {
-                grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarTodosGrupos(textBox2.Text);
+                grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarTodosGrupos();
             }
             else if(radioButton1NomeGrupo.Checked )
             {

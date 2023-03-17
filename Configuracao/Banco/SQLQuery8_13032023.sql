@@ -25,3 +25,20 @@ WHERE IDGrupoUsuario = @IDGrupoUsuario
 SELECT GrupoUsuario.IDGrupoUsuario, GrupoUsuario.NomeGrupo FROM GrupoUsuario 
 INNER JOIN UsuarioGrupoUsuario ON GrupoUsuario.IDGrupoUsuario = UsuarioGrupoUsuario.Id_GrupoUsuario
 WHERE Id_Usuario = @Id_Usuario*/
+
+SELECT IDGrupoUsuario, NomeGrupo FROM GrupoUsuario
+DECLARE @X int = 4
+
+DECLARE @Id_Usuario int = 1
+DECLARE @Id_GrupoUsuario INT = 1
+select 1 AS Retorno from  UsuarioGrupoUsuario where Id_Usuario = @Id_Usuario and Id_GrupoUsuario = @Id_GrupoUsuario
+
+
+
+As tabelas tem algum relacionamento entre si? Se tiver user um inner join:
+
+select Id_Usuario, Id_GrupoUsuario from Usuario inner join GrupoUsuario on Usuario.IDUsuario =  GrupoUsuario.IDGrupoUsuario
+
+Se não faz assim:
+
+select  Id_Usuario, Id_GrupoUsuario from  Usuario, GrupoUsuario

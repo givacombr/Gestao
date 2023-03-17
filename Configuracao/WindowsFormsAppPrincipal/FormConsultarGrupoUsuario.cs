@@ -28,35 +28,6 @@ namespace WindowsFormsAppPrincipal
             }
         }
 
-        private void buttonAddGrupo_Click(object sender, EventArgs e)
-        {
-            GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
-            try
-            {
-                grupoUsuarioBindingSource.EndEdit();
-                grupoUsuarioBLL.Inserir((GrupoUsuario)grupoUsuarioBindingSource.Current);
-                MessageBox.Show("Cadastrado com sucesso!");
-                LimparCampos();
-                Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ocorreu um erro ao tenrtar inserir um grupo no banco de dados." + ex.Message);
-            }
-            //GrupoUsuario _grupoUsuario = new GrupoUsuario();
-            //_grupoUsuario.NomeGrupo = nomeGrupoTextBox.Text;
-
-            LimparCampos();
-
-            //grupoUsuarioBLL.Inserir(_grupoUsuario);
-            //MessageBox.Show("Cadastrado com sucesso.");
-            //Close();
-        }
-
-        private void LimparCampos()
-        {
-            //nomeGrupoTextBox.Text = string.Empty;
-        }
         private void FormAdicionarGrupo_Load(object sender, EventArgs e)
         {
             GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
@@ -89,20 +60,13 @@ namespace WindowsFormsAppPrincipal
 
         private void buttonSelecionar_Click(object sender, EventArgs e)
         {
-            GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
-            try
+            if (grupoUsuarioBindingSource.Count > 0)
             {
-                grupoUsuarioBindingSource.EndEdit();
-                grupoUsuarioBLL.Inserir((GrupoUsuario)grupoUsuarioBindingSource.Current);
-                MessageBox.Show("Cadastrado com sucesso!");
-               
+                Id = ((GrupoUsuario)grupoUsuarioBindingSource.Current).IdGrupoUsuario;
                 Close();
             }
-            catch (Exception)
-            {
-
-                throw;
-            }
+            else
+                MessageBox.Show("Não existe um grupo de usuário para ser selecionado.");
         }
     }
 }

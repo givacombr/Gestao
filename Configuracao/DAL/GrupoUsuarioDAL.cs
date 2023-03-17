@@ -34,7 +34,7 @@ namespace DAL
                 cn.Close();
             }
         }
-        public List<GrupoUsuario> BuscarPorId(int _idGrupousuario)
+        public List<GrupoUsuario> BuscarPorIdUsuario(int _idGrupousuario)
         {
             List<GrupoUsuario> grupos = new List<GrupoUsuario>();
             GrupoUsuario grupoUsuario;
@@ -44,17 +44,17 @@ namespace DAL
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
                 cmd.Connection = cn;
-                cmd.CommandText = @"SELECT TOP 100 GrupoUsuario.IdGrupoUsuario, GrupoUsuario.NomeGrupo FROM GrupoUsuario 
+                cmd.CommandText = @"SELECT GrupoUsuario.IdGrupoUsuario, GrupoUsuario.NomeGrupo FROM GrupoUsuario 
                                     INNER JOIN UsuarioGrupoUsuario ON GrupoUsuario.IdGrupoUsuario = UsuarioGrupoUsuario.Id_GrupoUsuario 
-                                    WHERE IdGrupoUsuario like @IdGrupoUsuario";
-                cmd.Parameters.AddWithValue("@IdGrupoUsuario", "%" + _idGrupousuario + "%");
+                                    WHERE Id_Usuario = @IdGrupoUsuario";
+                cmd.Parameters.AddWithValue("@IdGrupoUsuario", _idGrupousuario);
                 cmd.CommandType = System.Data.CommandType.Text;
 
                 cn.Open();
 
                 using (SqlDataReader rd = cmd.ExecuteReader())
                 {
-                    if (rd.Read())
+                    while (rd.Read())
                     {
                         grupoUsuario = new GrupoUsuario();
                         grupoUsuario.IdGrupoUsuario = Convert.ToInt32(rd["IdGrupoUsuario"]);
@@ -114,7 +114,7 @@ namespace DAL
                 cn.Close();
             }
         }
-        public List<GrupoUsuario> BuscarTodosGrupos(string _grupoUsuario)
+        public List<GrupoUsuario> BuscarTodosGrupos()
         {
             List<GrupoUsuario> grupo_usuarios = new List<GrupoUsuario>();
             GrupoUsuario grupousuario;
@@ -124,12 +124,9 @@ namespace DAL
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
                 cmd.Connection = cn;
-                cmd.CommandText = @"SELECT GrupoUsuario.IdGrupoUsuario, GrupoUsuario.NomeGrupo FROM GrupoUsuario 
-                                    INNER JOIN UsuarioGrupoUsuario ON GrupoUsuario.IdGrupoUsuario = UsuarioGrupoUsuario.Id_GrupoUsuario
-                                    WHERE IdGrupoUsuario like @IdGrupoUsuario";
+                cmd.CommandText = @"SELECT IDGrupoUsuario, NomeGrupo FROM GrupoUsuario";
                 cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Parameters.AddWithValue("@IdGrupoUsuario", "%" + _grupoUsuario + "%");
-                cmd.Parameters.AddWithValue("@GrupoUsuario", "%" + _grupoUsuario + "%");
+
                 cn.Open();
                 using (SqlDataReader rd = cmd.ExecuteReader())
                 {
@@ -203,6 +200,46 @@ namespace DAL
             {
 
                 throw new Exception("Ocorreu um erro ao tentar excluir o grupo no banco: " + ex.Message);
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+
+        public List<GrupoUsuario> BuscarPorId(int idGrupoUsuario)
+        {
+            List<GrupoUsuario> grupo_usuarios = new List<GrupoUsuario>();
+            GrupoUsuario grupousuario;
+            SqlConnection cn = new SqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            try
+            {
+                cn.ConnectionString = Conexao.StringDeConexao;
+                cmd.Connection = cn;
+                cmd.CommandText = @"SELECT IDGrupoUsuario, NomeGrupo FROM GrupoUsuario WHERE IDGrupoUsuario = @IDGrupoUsuario";
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.Parameters.AddWithValue("@IDGrupoUsuario", idGrupoUsuario);
+                cn.Open();
+                using (SqlDataReader rd = cmd.ExecuteReader())
+                {
+                    while (rd.Read())
+                    {
+                        grupousuario = new GrupoUsuario();
+                        grupousuario.IdGrupoUsuario = Convert.ToInt32(rd["IdGrupoUsuario"]);
+                        grupousuario.NomeGrupo = rd["NomeGrupo"].ToString();
+                        PermissaoDAL permissaoDAL = new PermissaoDAL();
+                        grupousuario.Permissoes = permissaoDAL.BuscarPorIdGrupo(grupousuario.IdGrupoUsuario);
+
+                        grupo_usuarios.Add(grupousuario);
+                    }
+                }
+                return grupo_usuarios;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Ocorreu um erro ao tentar buscar Grupo de Usuarios: " + ex.Message);
             }
             finally
             {
