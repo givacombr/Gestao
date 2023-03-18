@@ -35,11 +35,11 @@ namespace WindowsFormsAppPrincipal
             {
                 grupoUsuarioBindingSource.EndEdit();
 
-                //if (!alterar)
-                //    grupoUsuarioBLL.Inserir((GrupoUsuario)grupoUsuarioBindingSource.Current, nomeGrupoTextBox.Text);
-                //else
-                //    grupoUsuarioBLL.Alterar((GrupoUsuario)grupoUsuarioBindingSource.Current, nomeGrupoTextBox.Text);
-                
+                if (!alterar)
+                    grupoUsuarioBLL.Inserir((GrupoUsuario)grupoUsuarioBindingSource.Current);
+                else
+                    grupoUsuarioBLL.Alterar((GrupoUsuario)grupoUsuarioBindingSource.Current);
+
                 MessageBox.Show("Cadastrado com sucesso!");
                 Close();
             }

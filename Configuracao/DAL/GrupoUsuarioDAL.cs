@@ -169,7 +169,7 @@ namespace DAL
                 cmd.Parameters.AddWithValue("@NomeGrupo", _grupousuario.NomeGrupo);
 
                 cn.Open();
-                cmd.BeginExecuteNonQuery();
+                cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
             {

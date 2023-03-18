@@ -33,6 +33,12 @@ DECLARE @Id_Usuario int = 1
 DECLARE @Id_GrupoUsuario INT = 1
 select 1 AS Retorno from  UsuarioGrupoUsuario where Id_Usuario = @Id_Usuario and Id_GrupoUsuario = @Id_GrupoUsuario
 
+SELECT TOP 1 1 AS Resultado FROM UsuarioGrupoUsuario
+INNER JOIN PermissaoGrupoUsuario 
+ON UsuarioGrupoUsuario.Id_GrupoUsuario = PermissaoGrupoUsuario.IDGrupoUsuario
+WHERE UsuarioGrupoUsuario.Id_Usuario = 1
+AND PermissaoGrupoUsuario.IDDescricao = 1
+
 
 
 As tabelas tem algum relacionamento entre si? Se tiver user um inner join:

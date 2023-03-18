@@ -65,5 +65,10 @@ namespace WindowsFormsAppPrincipal
             else
                 MessageBox.Show("Não existe um grupo de usuário para ser selecionado.");
         }
+
+        private void buttonCancelar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

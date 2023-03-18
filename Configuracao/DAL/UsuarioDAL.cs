@@ -254,7 +254,7 @@ namespace DAL
                 cn.Close();
             }
         }
-        public void RemoverGrupo(int idUsuario, int idGrupoUsuario)
+        public void RemoverGrupoUsuario(int _idUsuario, int _idGrupoUsuario)
         {
             SqlConnection cn = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
@@ -264,10 +264,12 @@ namespace DAL
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
                 cmd.Connection = cn;
-                cmd.CommandText = @"DELETE FROM  UsuarioGrupoUsuario WHERE Id_Usuario = @Id_Usuario and Id_GrupoUsuario = @Id_GrupoUsuario";
+                cmd.CommandText = @"DELETE FROM  UsuarioGrupoUsuario 
+                                    WHERE Id_Usuario = @Id_Usuario 
+                                    AND Id_GrupoUsuario = @Id_GrupoUsuario";
                 cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Parameters.AddWithValue("@Id_Usuario", idUsuario);
-                cmd.Parameters.AddWithValue("@Id_GrupoUsuario", idGrupoUsuario);
+                cmd.Parameters.AddWithValue("@Id_Usuario", _idUsuario);
+                cmd.Parameters.AddWithValue("@Id_GrupoUsuario", _idGrupoUsuario);
 
                 cn.Open();
                 cmd.ExecuteScalar();
@@ -285,7 +287,7 @@ namespace DAL
         {
             SqlConnection cn = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
-            Usuario usuario = new Usuario();
+            //Usuario usuario = new Usuario();
 
             try
             {
@@ -310,6 +312,45 @@ namespace DAL
             catch (Exception ex)
             {
                 throw new Exception("Ocorreu um erro ao tentar buscar um usuário: " + ex.Message);
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+        public bool ValidarPermissao(int Id_Usuario, int IDDescricao)
+        {
+            SqlConnection cn = new SqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            Usuario usuario = new Usuario();
+
+            try
+            {
+                cn.ConnectionString = Conexao.StringDeConexao;
+                cmd.Connection = cn;
+                cmd.CommandText = @"SELECT TOP 1 1 AS Resultado FROM UsuarioGrupoUsuario
+                                    INNER JOIN PermissaoGrupoUsuario 
+                                    ON UsuarioGrupoUsuario.Id_GrupoUsuario = PermissaoGrupoUsuario.IDGrupoUsuario
+                                    WHERE UsuarioGrupoUsuario.Id_Usuario = @Id_Usuario
+                                    AND PermissaoGrupoUsuario.IDDescricao = @IDDescricao";
+                cmd.Parameters.AddWithValue("@Id_Usuario", Id_Usuario);
+                cmd.Parameters.AddWithValue("@IDDescricao", IDDescricao);
+                cmd.CommandType = System.Data.CommandType.Text;
+
+                cn.Open();
+
+                using (SqlDataReader rd = cmd.ExecuteReader())
+                {
+                    while (rd.Read())
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocorreu um erro ao tentar validar permissão do usuário: " + ex.Message);
             }
             finally
             {
