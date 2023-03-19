@@ -46,10 +46,10 @@ namespace DAL
                 cmd.Connection = cn;
                 cmd.CommandText = @"SELECT GrupoUsuario.IdGrupoUsuario, GrupoUsuario.NomeGrupo FROM GrupoUsuario 
                                     INNER JOIN UsuarioGrupoUsuario ON GrupoUsuario.IdGrupoUsuario = UsuarioGrupoUsuario.Id_GrupoUsuario 
-                                    WHERE Id_Usuario = @Id_Usuario";
+                                    WHERE Id_Usuario = @IdGrupoUsuario";
                 cmd.Parameters.AddWithValue("@IdGrupoUsuario", _idGrupoUsuario);
                 cmd.CommandType = System.Data.CommandType.Text;
-
+                //WHERE Id_Usuario = @Id_Usuario"
                 cn.Open();
 
                 using (SqlDataReader rd = cmd.ExecuteReader())
@@ -126,6 +126,7 @@ namespace DAL
                 cmd.Connection = cn;
                 cmd.CommandText = @"SELECT IdGrupoUsuario, NomeGrupo FROM GrupoUsuario";
                 cmd.CommandType = System.Data.CommandType.Text;
+                
 
                 cn.Open();
                 using (SqlDataReader rd = cmd.ExecuteReader())
