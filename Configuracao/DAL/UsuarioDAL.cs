@@ -61,14 +61,14 @@ namespace DAL
                     while (rd.Read())
                     {
                         usuario = new Usuario();
-                        usuario.IDUsuario = Convert.ToInt32(rd["IdUsuario"]);
+                        usuario.IdUsuario = Convert.ToInt32(rd["IdUsuario"]);
                         usuario.Nome = rd["Nome"].ToString();
                         usuario.NomeUsuario = rd["NomeUsuario"].ToString();
                         usuario.CPF = rd["CPF"].ToString();
                         usuario.Email = rd["Email"].ToString();
                         usuario.Ativo = Convert.ToBoolean(rd["Ativo"]);
                         GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
-                        usuario.GrupoUsuarios = grupoUsuarioDAL.BuscarPorIdUsuario(usuario.IDUsuario);
+                        usuario.GrupoUsuarios = grupoUsuarioDAL.BuscarPorIdUsuario(usuario.IdUsuario);
 
                         usuarios.Add(usuario);
                     }
@@ -105,14 +105,14 @@ namespace DAL
                     while (rd.Read())
                     {
                         usuario = new Usuario();
-                        usuario.IDUsuario = Convert.ToInt32(rd["IdUsuario"]);
+                        usuario.IdUsuario = Convert.ToInt32(rd["IdUsuario"]);
                         usuario.Nome = rd["Nome"].ToString();
                         usuario.NomeUsuario = rd["NomeUsuario"].ToString();
                         usuario.CPF = rd["CPF"].ToString();
                         usuario.Email = rd["Email"].ToString();
                         usuario.Ativo = Convert.ToBoolean(rd["Ativo"]);
                         GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
-                        usuario.GrupoUsuarios = grupoUsuarioDAL.BuscarPorIdUsuario(usuario.IDUsuario);
+                        usuario.GrupoUsuarios = grupoUsuarioDAL.BuscarPorIdUsuario(usuario.IdUsuario);
                     }
                 }
                 return usuario;
@@ -148,14 +148,14 @@ namespace DAL
                     while (rd.Read())
                     {
                         usuario = new Usuario();
-                        usuario.IDUsuario = Convert.ToInt32(rd["IdUsuario"]);
+                        usuario.IdUsuario = Convert.ToInt32(rd["IdUsuario"]);
                         usuario.Nome = rd["Nome"].ToString();
                         usuario.NomeUsuario = rd["NomeUsuario"].ToString();
                         usuario.CPF = rd["CPF"].ToString();
                         usuario.Email = rd["Email"].ToString();
                         usuario.Ativo = Convert.ToBoolean(rd["Ativo"]);
                         GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
-                        usuario.GrupoUsuarios = grupoUsuarioDAL.BuscarPorIdUsuario(usuario.IDUsuario);
+                        usuario.GrupoUsuarios = grupoUsuarioDAL.BuscarPorIdUsuario(usuario.IdUsuario);
                     }
                 }
                 return usuario;
@@ -186,7 +186,7 @@ namespace DAL
                 cmd.Parameters.AddWithValue("@Email", _usuario.Email);
                 cmd.Parameters.AddWithValue("@Senha", _usuario.Senha);
                 cmd.Parameters.AddWithValue("@Ativo", _usuario.Ativo);
-                cmd.Parameters.AddWithValue("@IdUsuario", _usuario.IDUsuario);
+                cmd.Parameters.AddWithValue("@IdUsuario", _usuario.IdUsuario);
 
                 cn.Open();
                 cmd.ExecuteNonQuery();

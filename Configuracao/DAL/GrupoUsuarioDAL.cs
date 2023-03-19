@@ -34,7 +34,7 @@ namespace DAL
                 cn.Close();
             }
         }
-        public List<GrupoUsuario> BuscarPorIdUsuario(int _idGrupousuario)
+        public List<GrupoUsuario> BuscarPorIdUsuario(int _idGrupoUsuario)
         {
             List<GrupoUsuario> grupos = new List<GrupoUsuario>();
             GrupoUsuario grupoUsuario;
@@ -47,7 +47,7 @@ namespace DAL
                 cmd.CommandText = @"SELECT GrupoUsuario.IdGrupoUsuario, GrupoUsuario.NomeGrupo FROM GrupoUsuario 
                                     INNER JOIN UsuarioGrupoUsuario ON GrupoUsuario.IdGrupoUsuario = UsuarioGrupoUsuario.Id_GrupoUsuario 
                                     WHERE Id_Usuario = @IdGrupoUsuario";
-                cmd.Parameters.AddWithValue("@IdGrupoUsuario", _idGrupousuario);
+                cmd.Parameters.AddWithValue("@IdGrupoUsuario", _idGrupoUsuario);
                 cmd.CommandType = System.Data.CommandType.Text;
 
                 cn.Open();

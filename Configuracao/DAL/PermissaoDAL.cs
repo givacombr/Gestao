@@ -60,7 +60,7 @@ namespace DAL
                         permissao.Descricao = rd["Descricao"].ToString();
                     }
                 }
-                //cmd.ExecuteScalar();
+                cmd.ExecuteScalar();
             }
             catch (Exception ex)
             {
@@ -165,7 +165,7 @@ namespace DAL
                 cmd.Parameters.AddWithValue("@Descricao", _permissao.Descricao);
 
                 cn.Open();
-                cmd.BeginExecuteNonQuery();
+                cmd.ExecuteNonQuery();
                 //cmd.ExecuteScalar();
             }
             catch (Exception ex)
