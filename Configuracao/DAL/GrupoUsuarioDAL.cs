@@ -124,7 +124,7 @@ namespace DAL
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
                 cmd.Connection = cn;
-                cmd.CommandText = @"SELECT IDGrupoUsuario, NomeGrupo FROM GrupoUsuario";
+                cmd.CommandText = @"SELECT IdGrupoUsuario, NomeGrupo FROM GrupoUsuario";
                 cmd.CommandType = System.Data.CommandType.Text;
 
                 cn.Open();
@@ -217,9 +217,9 @@ namespace DAL
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
                 cmd.Connection = cn;
-                cmd.CommandText = @"SELECT IDGrupoUsuario, NomeGrupo FROM GrupoUsuario WHERE IDGrupoUsuario = @IDGrupoUsuario";
+                cmd.CommandText = @"SELECT IdGrupoUsuario, NomeGrupo FROM GrupoUsuario WHERE IdGrupoUsuario = @IdGrupoUsuario";
                 cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Parameters.AddWithValue("@IDGrupoUsuario", idGrupoUsuario);
+                cmd.Parameters.AddWithValue("@IdGrupoUsuario", idGrupoUsuario);
                 cn.Open();
                 using (SqlDataReader rd = cmd.ExecuteReader())
                 {

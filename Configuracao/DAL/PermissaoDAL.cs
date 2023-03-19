@@ -46,7 +46,7 @@ namespace DAL
                 cmd.Connection = cn;
                 cmd.CommandText = @"SELECT Permissao.IdDescricao, Permissao.Descricao FROM Permissao
                                     INNER JOIN PermissaoGrupoUsuario ON Permissao.IdDescricao = PermissaoGrupoUsuario.IdGrupoUsuario
-                                    WHERE IdGrupoUsuario = @IDGrupoUsuario";
+                                    WHERE IdGrupoUsuario = @IdGrupoUsuario";
                 //cmd.CommandText = @"SELECT TOP 100 IdDescricao, Descricao FROM Permissao WHERE IdDescricao = @IdDescricao";
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.Parameters.AddWithValue("@IdDescricao", _id);
@@ -85,7 +85,7 @@ namespace DAL
                 cmd.Connection = cn;
                 cmd.CommandText = @"SELECT Permissao.IdDescricao, Permissao.Descricao FROM Permissao
                                     INNER JOIN PermissaoGrupoUsuario ON Permissao.IdDescricao = PermissaoGrupoUsuario.IdGrupoUsuario
-                                    WHERE IdGrupoUsuario = @IDGrupoUsuario";
+                                    WHERE IdGrupoUsuario = @IdGrupoUsuario";
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.Parameters.AddWithValue("@IDGrupoUsuario", _idGrupoUsuario);
                 cn.Open();

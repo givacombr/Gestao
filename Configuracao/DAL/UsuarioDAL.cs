@@ -48,12 +48,11 @@ namespace DAL
             SqlConnection cn = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
 
-            //SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);//dessa forma também funciona
             try
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
                 cmd.Connection = cn;
-                cmd.CommandText = "SELECT IDUsuario, Nome, NomeUsuario, CPF, Email, Ativo FROM Usuario";
+                cmd.CommandText = "SELECT IdUsuario, Nome, NomeUsuario, CPF, Email, Ativo FROM Usuario";
                 cmd.CommandType = System.Data.CommandType.Text;
                 cn.Open();
 
@@ -62,7 +61,7 @@ namespace DAL
                     while (rd.Read())
                     {
                         usuario = new Usuario();
-                        usuario.IDUsuario = Convert.ToInt32(rd["IDUsuario"]);
+                        usuario.IDUsuario = Convert.ToInt32(rd["IdUsuario"]);
                         usuario.Nome = rd["Nome"].ToString();
                         usuario.NomeUsuario = rd["NomeUsuario"].ToString();
                         usuario.CPF = rd["CPF"].ToString();
@@ -95,7 +94,7 @@ namespace DAL
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
                 cmd.Connection = cn;
-                cmd.CommandText = @"SELECT IDUsuario, Nome, NomeUsuario, CPF, Email, Ativo FROM Usuario WHERE IdUsuario = @IdUsuario";
+                cmd.CommandText = @"SELECT IdUsuario, Nome, NomeUsuario, CPF, Email, Ativo FROM Usuario WHERE IdUsuario = @IdUsuario";
                 cmd.Parameters.AddWithValue("@IdUsuario", idUsuario);
                 cmd.CommandType = System.Data.CommandType.Text;
 
@@ -106,7 +105,7 @@ namespace DAL
                     while (rd.Read())
                     {
                         usuario = new Usuario();
-                        usuario.IDUsuario = Convert.ToInt32(rd["IDUsuario"]);
+                        usuario.IDUsuario = Convert.ToInt32(rd["IdUsuario"]);
                         usuario.Nome = rd["Nome"].ToString();
                         usuario.NomeUsuario = rd["NomeUsuario"].ToString();
                         usuario.CPF = rd["CPF"].ToString();
@@ -137,7 +136,7 @@ namespace DAL
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
                 cmd.Connection = cn;
-                cmd.CommandText = @"SELECT IDUsuario, Nome, NomeUsuario, CPF, Email, Ativo FROM Usuario WHERE NomeUsuario like @NomeUsuario";/*, IdUsuario = @IdUsuario";*/
+                cmd.CommandText = @"SELECT IdUsuario, Nome, NomeUsuario, CPF, Email, Ativo FROM Usuario WHERE NomeUsuario like @NomeUsuario";/*, IdUsuario = @IdUsuario";*/
                 cmd.Parameters.AddWithValue("@NomeUsuario", "%" + _nomeUsuario + "%");
                 //cmd.Parameters.AddWithValue("@IdUsuario", _nomeUsuario);
                 cmd.CommandType = System.Data.CommandType.Text;
@@ -149,7 +148,7 @@ namespace DAL
                     while (rd.Read())
                     {
                         usuario = new Usuario();
-                        usuario.IDUsuario = Convert.ToInt32(rd["IDUsuario"]);
+                        usuario.IDUsuario = Convert.ToInt32(rd["IdUsuario"]);
                         usuario.Nome = rd["Nome"].ToString();
                         usuario.NomeUsuario = rd["NomeUsuario"].ToString();
                         usuario.CPF = rd["CPF"].ToString();
@@ -211,9 +210,9 @@ namespace DAL
                 cn.ConnectionString = Conexao.StringDeConexao;
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = cn;
-                cmd.CommandText = @"DELETE FROM Usuario WHERE IDUsuario = @IDUsuario";
+                cmd.CommandText = @"DELETE FROM Usuario WHERE IdUsuario = @IdUsuario";
                 cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Parameters.AddWithValue("@IDUsuario", _id);
+                cmd.Parameters.AddWithValue("@IdUsuario", _id);
 
                 cn.Open();
                 cmd.ExecuteScalar();
@@ -318,7 +317,7 @@ namespace DAL
                 cn.Close();
             }
         }
-        public bool ValidarPermissao(int Id_Usuario, int IDDescricao)
+        public bool ValidarPermissao(int Id_Usuario, int IdDescricao)
         {
             SqlConnection cn = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
@@ -330,11 +329,11 @@ namespace DAL
                 cmd.Connection = cn;
                 cmd.CommandText = @"SELECT TOP 1 1 AS Resultado FROM UsuarioGrupoUsuario
                                     INNER JOIN PermissaoGrupoUsuario 
-                                    ON UsuarioGrupoUsuario.Id_GrupoUsuario = PermissaoGrupoUsuario.IDGrupoUsuario
+                                    ON UsuarioGrupoUsuario.Id_GrupoUsuario = PermissaoGrupoUsuario.IdGrupoUsuario
                                     WHERE UsuarioGrupoUsuario.Id_Usuario = @Id_Usuario
-                                    AND PermissaoGrupoUsuario.IDDescricao = @IDDescricao";
+                                    AND PermissaoGrupoUsuario.IdDescricao = @IdDescricao";
                 cmd.Parameters.AddWithValue("@Id_Usuario", Id_Usuario);
-                cmd.Parameters.AddWithValue("@IDDescricao", IDDescricao);
+                cmd.Parameters.AddWithValue("@IdDescricao", IdDescricao);
                 cmd.CommandType = System.Data.CommandType.Text;
 
                 cn.Open();

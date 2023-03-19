@@ -150,6 +150,14 @@ namespace WindowsFormsAppPrincipal
             }
         }
 
+        private void buttonAdicionarUsuario_Click_1(object sender, EventArgs e)
+        {
+            using (FormAdicionarUsuario frm = new FormAdicionarUsuario())
+            {
+                frm.ShowDialog();
+            }
+        }
+
         private void FormBuscarUsuario_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
