@@ -46,7 +46,7 @@ namespace DAL
                 cmd.Connection = cn;
                 cmd.CommandText = @"SELECT GrupoUsuario.IdGrupoUsuario, GrupoUsuario.NomeGrupo FROM GrupoUsuario 
                                     INNER JOIN UsuarioGrupoUsuario ON GrupoUsuario.IdGrupoUsuario = UsuarioGrupoUsuario.Id_GrupoUsuario 
-                                    WHERE Id_Usuario = @IdGrupoUsuario";
+                                    WHERE Id_Usuario = @Id_Usuario";
                 cmd.Parameters.AddWithValue("@IdGrupoUsuario", _idGrupoUsuario);
                 cmd.CommandType = System.Data.CommandType.Text;
 
