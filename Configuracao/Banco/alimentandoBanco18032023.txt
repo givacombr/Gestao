@@ -76,6 +76,17 @@ delete from Permissao where IDDescricao = 1
 
 update Permissao set DESCRICAO = 'Alterar usuário' where IDDescricao = 3;
 
+declare @Id_Usuario int = 2
+
+SELECT GrupoUsuario.IdGrupoUsuario, GrupoUsuario.NomeGrupo FROM GrupoUsuario 
+INNER JOIN UsuarioGrupoUsuario ON GrupoUsuario.IdGrupoUsuario = UsuarioGrupoUsuario.Id_GrupoUsuario 
+WHERE Id_Usuario = @Id_Usuario
+
+SELECT IdUsuario, Nome, NomeUsuario, CPF, Email, Ativo FROM Usuario
+
+declare @IdUsuario int = 1
+SELECT IdUsuario, Nome, NomeUsuario, CPF, Email, Ativo FROM Usuario WHERE IdUsuario = @IdUsuario
+
 insert into Usuario(Nome, NomeUsuario, CPF, Email, Senha, Ativo) values
 ('Gilson da Silva','silvag','023.145.258-00','silvag@globo.com','1472583690',1),
 ('Wellington Ferreira','ferreiraw','320.145.258-00','ferreiraw@globo.com','1472583690',1),

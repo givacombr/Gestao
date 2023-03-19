@@ -54,11 +54,12 @@ namespace DAL
                 cmd.Connection = cn;
                 cmd.CommandText = "SELECT IdUsuario, Nome, NomeUsuario, CPF, Email, Ativo FROM Usuario";
                 cmd.CommandType = System.Data.CommandType.Text;
+                //cmd.Parameters.AddWithValue("@IdUsuario", usuario.IdUsuario);
                 cn.Open();
 
                 using (SqlDataReader rd = cmd.ExecuteReader())
                 {
-                    while (rd.Read())
+                    if (rd.Read())
                     {
                         usuario = new Usuario();
                         usuario.IdUsuario = Convert.ToInt32(rd["IdUsuario"]);
