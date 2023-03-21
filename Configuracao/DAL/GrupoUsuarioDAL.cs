@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Text.RegularExpressions;
 
 namespace DAL
 {
@@ -11,7 +10,6 @@ namespace DAL
         public void Inserir(GrupoUsuario _grupousuario)
         {
             SqlConnection cn = new SqlConnection();
-
             try
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
@@ -26,7 +24,6 @@ namespace DAL
             }
             catch (Exception ex)
             {
-
                 throw new Exception("Ocorreu um erro ao tentar inserir o nome do grupo no banco: " + ex.Message);
             }
             finally
@@ -85,7 +82,8 @@ namespace DAL
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
                 cmd.Connection = cn;
-                cmd.CommandText = "SELECT IdGrupoUsuario, NomeGrupo FROM GrupoUsuario WHERE NomeGrupo like @NomeGrupo order by NomeGrupo";
+                cmd.CommandText = "SELECT IdGrupoUsuario, NomeGrupo FROM GrupoUsuario " +
+                    "               WHERE NomeGrupo like @NomeGrupo order by NomeGrupo";
                 cmd.Parameters.AddWithValue("@NomeGrupo", "%" + _nomeGrupo + "%");
                 cmd.CommandType = System.Data.CommandType.Text;
                 cn.Open();
@@ -106,7 +104,6 @@ namespace DAL
             }
             catch (Exception ex)
             {
-
                 throw new Exception("Ocorreu um erro ao tentar buscar um Nome do Grupo: " + ex.Message);
             }
             finally
@@ -137,7 +134,6 @@ namespace DAL
                         grupousuario.NomeGrupo = rd["NomeGrupo"].ToString();
                         PermissaoDAL permissaoDAL = new PermissaoDAL();
                         grupousuario.Permissoes = permissaoDAL.BuscarPorIdGrupo(grupousuario.IdGrupoUsuario);
-
                         grupo_usuarios.Add(grupousuario);
                     }
                 }
@@ -145,25 +141,23 @@ namespace DAL
             }
             catch (Exception ex)
             {
-
                 throw new Exception("Ocorreu um erro ao tentar buscar Grupo de Usuarios: " + ex.Message);
             }
             finally
             {
                 cn.Close();
             }
-
         }
         public void Alterar(GrupoUsuario _grupousuario)
         {
             SqlConnection cn = new SqlConnection();
-
             try
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = cn;
-                cmd.CommandText = @"UPDATE GrupoUsuario SET NomeGrupo = @NomeGrupo WHERE IdGrupoUsuario = @IdGrupoUsuario";
+                cmd.CommandText = @"UPDATE GrupoUsuario SET NomeGrupo = @NomeGrupo 
+                                    WHERE IdGrupoUsuario = @IdGrupoUsuario";
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.Parameters.AddWithValue("@IdGrupoUsuario", _grupousuario.IdGrupoUsuario);
                 cmd.Parameters.AddWithValue("@NomeGrupo", _grupousuario.NomeGrupo);
@@ -179,7 +173,6 @@ namespace DAL
             {
                 cn.Close();
             }
-
         }
         public void Excluir(int _id)
         {
@@ -198,7 +191,6 @@ namespace DAL
             }
             catch (Exception ex)
             {
-
                 throw new Exception("Ocorreu um erro ao tentar excluir o grupo no banco: " + ex.Message);
             }
             finally
@@ -206,7 +198,6 @@ namespace DAL
                 cn.Close();
             }
         }
-
         public List<GrupoUsuario> BuscarPorId(int idGrupoUsuario)
         {
             List<GrupoUsuario> grupo_usuarios = new List<GrupoUsuario>();
@@ -217,7 +208,8 @@ namespace DAL
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
                 cmd.Connection = cn;
-                cmd.CommandText = @"SELECT IDGrupoUsuario, NomeGrupo FROM GrupoUsuario WHERE IDGrupoUsuario = @IDGrupoUsuario";
+                cmd.CommandText = @"SELECT IDGrupoUsuario, NomeGrupo FROM GrupoUsuario 
+                                    WHERE IDGrupoUsuario = @IDGrupoUsuario";
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.Parameters.AddWithValue("@IDGrupoUsuario", idGrupoUsuario);
                 cn.Open();
@@ -238,7 +230,6 @@ namespace DAL
             }
             catch (Exception ex)
             {
-
                 throw new Exception("Ocorreu um erro ao tentar buscar Grupo de Usuarios: " + ex.Message);
             }
             finally

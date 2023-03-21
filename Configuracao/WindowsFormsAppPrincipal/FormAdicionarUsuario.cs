@@ -19,7 +19,6 @@ namespace WindowsFormsAppPrincipal
                 usuarioBindingSource.DataSource = new UsuarioBLL().BuscarPorId(_idUsuario);
             }
         }
-
         private void buttonAddUsuario_Click(object sender, EventArgs e)
         {
             UsuarioBLL usuarioBLL = new UsuarioBLL();
@@ -35,15 +34,12 @@ namespace WindowsFormsAppPrincipal
                 MessageBox.Show("Cadastrado com sucesso!");
                 LimparCampos();
                 Close();
-
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void LimparCampos()
         {
             nomeTextBox.Text = "";
@@ -53,7 +49,6 @@ namespace WindowsFormsAppPrincipal
             senhaTextBox.Text = string.Empty;
             ativoCheckBox.Checked = true;
         }
-
         private void buttonCancelar_Click(object sender, EventArgs e)
         {
             Close();

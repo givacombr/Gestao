@@ -1,15 +1,7 @@
 ﻿using BLL;
 using Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WindowsFormsAppPrincipal
 {
@@ -50,29 +42,16 @@ namespace WindowsFormsAppPrincipal
                 }
             }
         }
-
         private void buttonAdicionarGrupo_Click(object sender, EventArgs e)
         {
-            using (FormAdicionarGrupo frm = new FormAdicionarGrupo())
-            {
-                try
-                {
-                    frm.ShowDialog();
-                    //if (frm.Id > 0)
-                    //{
-                    //    GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
-                    //    int IdGrupoUsuario = ((GrupoUsuario)grupoUsuarioBindingSource.Current).IdGrupoUsuario;
-                    //    grupoUsuarioBLL.(IdGrupoUsuario, frm.Id);
-                    //    MessageBox.Show("Grupo adicionado com sucesso.");
-                    //}
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erro ao vincular um grupo" + ex.Message);
-                }
-            }
-        }
 
+            int id = ((GrupoUsuario)grupoUsuarioBindingSource.Current).IdGrupoUsuario;
+            using (FormAdicionarGrupo frm = new FormAdicionarGrupo(true, id))
+            {
+                frm.ShowDialog();
+            }
+            buttonBuscarGrupoUsuario_Click(sender, e);
+        }
         private void buttonAlterarGrupo_Click(object sender, EventArgs e)
         {
             int id = ((GrupoUsuario)grupoUsuarioBindingSource.Current).IdGrupoUsuario;//pegar o id do registro atual
@@ -83,14 +62,12 @@ namespace WindowsFormsAppPrincipal
             }
             buttonBuscarGrupoUsuario_Click(sender, e);
         }
-
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
             try
             {
                 GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
                 grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarGrupoPorNome(textBox2.Text);
-
             }
             catch (Exception ex)
             {
@@ -100,7 +77,6 @@ namespace WindowsFormsAppPrincipal
                 }
             }
         }
-
         private void buttonExcluir_Click(object sender, EventArgs e)
         {
             if (grupoUsuarioBindingSource.Count <= 0)
@@ -117,15 +93,30 @@ namespace WindowsFormsAppPrincipal
             MessageBox.Show("Registro excluído com sucesso!");
             buttonBuscarGrupoUsuario_Click(null, null);
         }
-
         private void buttonAddDescricao_Click(object sender, EventArgs e)
         {
-            using(FormConsultarPermissaoGrupoUsuario frm = new FormConsultarPermissaoGrupoUsuario())
+            using (FormConsultarPermissaoGrupoUsuario frm = new FormConsultarPermissaoGrupoUsuario())
             {
-                frm.ShowDialog();
+                try
+                {
+                    frm.ShowDialog();
+                    if (frm.Id == 0)
+                        return;
+                    {
+                        PermissaoBLL permissaoBLL = new PermissaoBLL();
+                        int idPermissao = ((GrupoUsuario)grupoUsuarioBindingSource.Current).IdGrupoUsuario;
+                        permissaoBLL.AdicionarPermissao(idPermissao, frm.Id);
+                        MessageBox.Show("Permissão adicionado com sucesso!");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao vincular uma Permissão" + ex.Message);
+                }
             }
+            MessageBox.Show("Permissão adicionado com sucesso!");
+            
         }
-
         private void buttonExcluirDescricao_Click(object sender, EventArgs e)
         {
 

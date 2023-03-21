@@ -1,7 +1,6 @@
 ﻿using Models;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
 
 namespace DAL
@@ -11,15 +10,13 @@ namespace DAL
         public void Inserir(Usuario _usuario)
         {
             SqlConnection cn = new SqlConnection();//cn é um objeto de conexao
-
             try
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = cn;
                 cmd.CommandText = @"INSERT INTO Usuario(Nome, NomeUsuario, CPF, Email, Senha, Ativo)
-                                      VALUES (@Nome, @NomeUsuario, @CPF, @Email, @Senha, @Ativo)";//com o arroba ele aceita a quebra de linha
-
+                                    VALUES (@Nome, @NomeUsuario, @CPF, @Email, @Senha, @Ativo)";//com o arroba ele aceita a quebra de linha
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.Parameters.AddWithValue("@Nome", _usuario.Nome);
                 cmd.Parameters.AddWithValue("@NomeUsuario", _usuario.NomeUsuario);
@@ -90,12 +87,12 @@ namespace DAL
             SqlConnection cn = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
             Usuario usuario = new Usuario();
-
             try
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
                 cmd.Connection = cn;
-                cmd.CommandText = @"SELECT IDUsuario, Nome, NomeUsuario, CPF, Email, Ativo FROM Usuario WHERE IdUsuario = @IdUsuario";
+                cmd.CommandText = @"SELECT IDUsuario, Nome, NomeUsuario, CPF, Email, Ativo 
+                                    FROM Usuario WHERE IdUsuario = @IdUsuario";
                 cmd.Parameters.AddWithValue("@IdUsuario", idUsuario);
                 cmd.CommandType = System.Data.CommandType.Text;
 
@@ -132,12 +129,12 @@ namespace DAL
             SqlConnection cn = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
             Usuario usuario = new Usuario();
-
             try
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
                 cmd.Connection = cn;
-                cmd.CommandText = @"SELECT IDUsuario, Nome, NomeUsuario, CPF, Email, Ativo FROM Usuario WHERE NomeUsuario like @NomeUsuario order by Nome";/*, IdUsuario = @IdUsuario";*/
+                cmd.CommandText = @"SELECT IDUsuario, Nome, NomeUsuario, CPF, Email, Ativo 
+                                    FROM Usuario WHERE NomeUsuario like @NomeUsuario order by Nome";/*, IdUsuario = @IdUsuario";*/
                 cmd.Parameters.AddWithValue("@NomeUsuario", "%" + _nomeUsuario + "%");
                 //cmd.Parameters.AddWithValue("@IdUsuario", _nomeUsuario);
                 cmd.CommandType = System.Data.CommandType.Text;
@@ -173,7 +170,6 @@ namespace DAL
         public void Alterar(Usuario _usuario)
         {
             SqlConnection cn = new SqlConnection();
-
             try
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
@@ -205,7 +201,6 @@ namespace DAL
         public void Excluir(int _id)
         {
             SqlConnection cn = new SqlConnection();
-
             try
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
@@ -220,7 +215,6 @@ namespace DAL
             }
             catch (Exception ex)
             {
-
                 throw new Exception("Ocorreu um erro ao tentar excluir o usuário no banco de dados: " + ex.Message);
             }
             finally
@@ -236,7 +230,8 @@ namespace DAL
                 cn.ConnectionString = Conexao.StringDeConexao;
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = cn;
-                cmd.CommandText = @"INSERT INTO UsuarioGrupoUsuario(Id_Usuario, Id_GrupoUsuario) VALUES (@Id_Usuario, @Id_GrupoUsuario)";
+                cmd.CommandText = @"INSERT INTO UsuarioGrupoUsuario(Id_Usuario, Id_GrupoUsuario) 
+                                    VALUES (@Id_Usuario, @Id_GrupoUsuario)";
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.Parameters.AddWithValue("@Id_Usuario", idUsuario);
                 cmd.Parameters.AddWithValue("@Id_GrupoUsuario", idGrupoUsuario);
@@ -258,7 +253,6 @@ namespace DAL
             SqlConnection cn = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
             Usuario usuario = new Usuario();
-
             try
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
@@ -287,12 +281,12 @@ namespace DAL
             SqlConnection cn = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
             //Usuario usuario = new Usuario();
-
             try
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
                 cmd.Connection = cn;
-                cmd.CommandText = @"SELECT 1 AS Retorno FROM  UsuarioGrupoUsuario WHERE Id_Usuario = @Id_Usuario and Id_GrupoUsuario = @Id_GrupoUsuario";
+                cmd.CommandText = @"SELECT 1 AS Retorno FROM  UsuarioGrupoUsuario 
+                                    WHERE Id_Usuario = @Id_Usuario and Id_GrupoUsuario = @Id_GrupoUsuario";
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.Parameters.AddWithValue("@Id_Usuario", idUsuario);
                 cmd.Parameters.AddWithValue("@Id_GrupoUsuario", idGrupoUsuario);
@@ -322,7 +316,6 @@ namespace DAL
             SqlConnection cn = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
             Usuario usuario = new Usuario();
-
             try
             {
                 cn.ConnectionString = Conexao.StringDeConexao;

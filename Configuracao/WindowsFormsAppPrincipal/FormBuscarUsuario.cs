@@ -1,8 +1,6 @@
 ﻿using BLL;
 using Models;
 using System;
-using System.Data.SqlClient;
-using System.Security.Cryptography;
 using System.Windows.Forms;
 
 namespace WindowsFormsAppPrincipal
@@ -49,16 +47,7 @@ namespace WindowsFormsAppPrincipal
             {
                 MessageBox.Show("Erro ao vincular um grupo" + ex.Message);
             }
-
         }
-
-        //private void buttonAdicionarUsuario_Click(object sender, EventArgs e)
-        //{
-        //    using (FormAdicionarUsuario frm = new FormAdicionarUsuario())
-        //    {
-        //        frm.ShowDialog();
-        //    }
-        //}
         private void buttonAdicionarGrupo_Click(object sender, EventArgs e)
         {
             using (FormConsultarGrupoUsuario frm = new FormConsultarGrupoUsuario())
@@ -134,9 +123,7 @@ namespace WindowsFormsAppPrincipal
             {
                 MessageBox.Show("Registro excluído com sucesso!");
                 buttonbuscar_Click(null, null);
-
             }
-
         }
         private void buttonExcluirGrupo_Click(object sender, EventArgs e)
         {
@@ -157,13 +144,11 @@ namespace WindowsFormsAppPrincipal
                 MessageBox.Show("Registro excluído com sucesso!" + ex.Message);
             }
         }
-
         private void FormBuscarUsuario_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
                 Close();
         }
-
         private void buttonAdicionarUsuario_Click_1(object sender, EventArgs e)
         {
             try
@@ -171,14 +156,12 @@ namespace WindowsFormsAppPrincipal
                 new UsuarioBLL().ValidarPermissao(2);
                 using (FormAdicionarUsuario frm = new FormAdicionarUsuario())
                 {
-
                     frm.ShowDialog();
                 }
                 buttonbuscar_Click(sender, e);
             }
             catch (System.Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
             }
         }

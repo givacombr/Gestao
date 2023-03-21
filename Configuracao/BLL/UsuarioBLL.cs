@@ -54,7 +54,6 @@ namespace BLL
 
             UsuarioDAL usuarioDAL = new UsuarioDAL();
             return usuarioDAL.BuscarUsuarioPorNome(_nomeUsuario);
-
         }
         public List<Usuario> BuscarTodos()
         {

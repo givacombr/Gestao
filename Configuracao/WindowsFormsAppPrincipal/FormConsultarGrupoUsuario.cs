@@ -1,13 +1,6 @@
 ﻿using BLL;
 using Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormsAppPrincipal
@@ -27,21 +20,21 @@ namespace WindowsFormsAppPrincipal
                 grupoUsuarioBindingSource.DataSource = new GrupoUsuarioBLL().BuscarPorId(_idgrupoUsuario);
             }
         }
-        private void FormAdicionarGrupo_Load(object sender, EventArgs e)
-        {
-            GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
-            try
-            {
-                grupoUsuarioBindingSource.AddNew();
-                //grupoUsuarioBLL.Inserir((GrupoUsuario)grupoUsuarioBindingSource.Current);
-                MessageBox.Show("Cadastrado com sucesso!");
-                Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ocorreu um erro ao tenrtar inserir um grupo no banco de dados." + ex.Message);
-            }
-        }
+        //private void FormAdicionarGrupo_Load(object sender, EventArgs e)
+        //{
+        //    GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
+        //    try
+        //    {
+        //        grupoUsuarioBindingSource.AddNew();
+        //        //grupoUsuarioBLL.Inserir((GrupoUsuario)grupoUsuarioBindingSource.Current);
+        //        MessageBox.Show("Cadastrado com sucesso!");
+        //        Close();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Ocorreu um erro ao tenrtar inserir um grupo no banco de dados." + ex.Message);
+        //    }
+        //}
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
             GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
@@ -54,7 +47,6 @@ namespace WindowsFormsAppPrincipal
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void buttonSelecionar_Click(object sender, EventArgs e)
         {
             if (grupoUsuarioBindingSource.Count > 0)
@@ -65,7 +57,6 @@ namespace WindowsFormsAppPrincipal
             else
                 MessageBox.Show("Não existe um grupo de usuário para ser selecionado.");
         }
-
         private void buttonCancelar_Click(object sender, EventArgs e)
         {
             Close();

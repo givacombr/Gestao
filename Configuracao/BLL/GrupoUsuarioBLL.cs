@@ -38,10 +38,10 @@ namespace BLL
             GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
             grupoUsuarioDAL.Alterar(_grupoUsuario);
         }
-        public void Excluir(int _id)
+        public void Excluir(int _idgrupoUsuario)
         {
             GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
-            grupoUsuarioDAL.Excluir(_id);
+            grupoUsuarioDAL.Excluir(_idgrupoUsuario);
         }
     }
 }

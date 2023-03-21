@@ -20,7 +20,6 @@ namespace WindowsFormsAppPrincipal
                 grupoUsuarioBindingSource.DataSource = new GrupoUsuarioBLL().BuscarPorId(_idGrupoUsuario);
             }
         }
-
         private void buttonSalvarGrupo_Click(object sender, EventArgs e)
         {
             GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
@@ -38,16 +37,13 @@ namespace WindowsFormsAppPrincipal
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void buttonCancelarGrupo_Click(object sender, EventArgs e)
         {
             Close();
         }
-
         private void nomeGrupoTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -62,6 +58,11 @@ namespace WindowsFormsAppPrincipal
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+        private void FormAdicionarGrupo_Load(object sender, EventArgs e)
+        {
+            if (!alterar)
+                grupoUsuarioBindingSource.AddNew();
         }
     }
 }

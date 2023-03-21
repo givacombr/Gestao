@@ -20,7 +20,12 @@ namespace BLL
             PermissaoDAL permissaoDAL = new PermissaoDAL();
             return permissaoDAL.BuscarPorId(_id);
         }
-		public List<Permissao> BuscarTodasPermissoes()
+        public List<Permissao> BuscarPermissaoPorNome(string _nomePermissao)
+        {
+            PermissaoDAL permissaoDAL = new PermissaoDAL();
+            return permissaoDAL.BuscarPermissaoPorNome(_nomePermissao);
+        }
+        public List<Permissao> BuscarTodasPermissoes()
         {
             PermissaoDAL permissaoDAL = new PermissaoDAL();
             return permissaoDAL.BuscarTodasPermissoes();
@@ -37,6 +42,22 @@ namespace BLL
         {
             PermissaoDAL permissaoDAL = new PermissaoDAL();
             permissaoDAL.Excluir(_permissao);
+        }
+        public void AdicionarPermissao(int _idPermissao, int _id)
+        {
+            //ValidarDescricao();
+            //if (new PermissaoDAL().ExistirRelacionamento(_idPermissao, _id))
+            //{
+            //    throw new Exception("Permissão já vinculada a Descrição.");
+            //}
+            //PermissaoDAL permissaoDAL = new PermissaoDAL();
+            //permissaoDAL.AdicionarPermissao(_idPermissao, _id);
+        }
+
+        public void ValidarDescricao(int _idPermissao)
+        {
+            //if (!new PermissaoDAL().ValidarDescricao(Constantes.IdPermissaoLogado, _idPermissao))
+            //    throw new Exception("Você não tem permissão para executar esta operação!");
         }
     }
 }

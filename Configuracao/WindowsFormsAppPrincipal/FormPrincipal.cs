@@ -8,9 +8,8 @@ namespace WindowsFormsAppPrincipal
         public FormPrincipal()
         {
             InitializeComponent();
-            Constantes.IdUsuarioLogado = 21;
+            Constantes.IdUsuarioLogado = 20;
         }
-
         private void usuarioToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
             using (FormBuscarUsuario frm = new FormBuscarUsuario())
@@ -25,7 +24,6 @@ namespace WindowsFormsAppPrincipal
                 frm.ShowDialog();
             }
         }
-
         private void permissõesToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
             using (FormConsultarPermissaoGrupoUsuario frm = new FormConsultarPermissaoGrupoUsuario())

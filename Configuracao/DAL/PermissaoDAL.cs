@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Text.RegularExpressions;
 
 namespace DAL
 {
@@ -11,7 +10,6 @@ namespace DAL
         public void Inserir(Permissao _permissao)
         {
             SqlConnection cn = new SqlConnection();
-
             try
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
@@ -26,7 +24,6 @@ namespace DAL
             }
             catch (Exception ex)
             {
-
                 throw new Exception("Ocorreu um erro ao tentar inserir uma descrição no banco: " + ex.Message);
             }
             finally
@@ -39,7 +36,6 @@ namespace DAL
             Permissao permissao = new Permissao();
             SqlConnection cn = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
-
             try
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
@@ -96,6 +92,8 @@ namespace DAL
                         permissao= new Permissao();
                         permissao.IdDescricao = Convert.ToInt32(rd["IdDescricao"]);
                         permissao.Descricao = rd["Descricao"].ToString();
+                        GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
+                        permissao.GrupoUsuarios = grupoUsuarioDAL.BuscarPorIdUsuario(permissao.IdDescricao);
                         permissaos.Add(permissao);
                     }
                 }
@@ -103,7 +101,6 @@ namespace DAL
             }
             catch (Exception ex)
             {
-
                 throw new Exception("Ocorreu um erro ao tentar buscar Grupo de Usuarios: " + ex.Message); ;
             }
             finally
@@ -148,12 +145,10 @@ namespace DAL
             {
                 cn.Close();
             }
-
         }
         public void Alterar(Permissao _permissao)
         {
             SqlConnection cn = new SqlConnection();
-
             try
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
@@ -170,7 +165,6 @@ namespace DAL
             }
             catch (Exception ex)
             {
-
                 throw new Exception("Ocorreu um erro ao tentar atualizar uma descrição no banco: " + ex.Message);
             }
             finally
@@ -181,7 +175,6 @@ namespace DAL
         public void Excluir(Permissao _permissao)
         {
             SqlConnection cn = new SqlConnection();
-
             try
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
@@ -196,7 +189,6 @@ namespace DAL
             }
             catch (Exception ex)
             {
-
                 throw new Exception("Ocorreu um erro ao tentar excluir uma descrição no banco: " + ex.Message);
             }
             finally
@@ -204,5 +196,83 @@ namespace DAL
                 cn.Close();
             }
         }
+
+        public List<Permissao> BuscarPermissaoPorNome(string _nomePermissao)
+        {
+            List<Permissao> permissoes = new List<Permissao>();
+            Permissao permissao;
+            SqlConnection cn = new SqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            try
+            {
+                cn.ConnectionString = Conexao.StringDeConexao;
+                cmd.Connection = cn;
+                cmd.CommandText = @"SELECT IdDescricao, Descricao FROM Permissao order by Descricao";
+                cmd.CommandType = System.Data.CommandType.Text;
+                cn.Open();
+                using (SqlDataReader rd = cmd.ExecuteReader())
+                {
+                    while (rd.Read())
+                    {
+                        permissao = new Permissao();
+                        permissao.IdDescricao = Convert.ToInt32(rd["IdDescricao"]);
+                        permissao.Descricao = rd["Descricao"].ToString();
+                        GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
+                        permissao.GrupoUsuarios = grupoUsuarioDAL.BuscarPorIdUsuario(permissao.IdDescricao);
+
+                        permissoes.Add(permissao);
+                    }
+                }
+                return permissoes;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Ocorreu um erro ao tentar buscar Permissões: " + ex.Message);
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+
+        //public bool ValidarDescricao(int idPermissaoLogado, int idPermissao)
+        //{
+        //    SqlConnection cn = new SqlConnection();
+        //    SqlCommand cmd = new SqlCommand();
+        //    Permissao permissao = new Permissao();
+        //    try
+        //    {
+        //        cn.ConnectionString = Conexao.StringDeConexao;
+        //        cmd.Connection = cn;
+        //        cmd.CommandText = @"SELECT Permissao.IdDescricao, Permissao.Descricao FROM Permissao
+        //                            INNER JOIN PermissaoGrupoUsuario ON Permissao.IdDescricao = PermissaoGrupoUsuario.IdGrupoUsuario
+        //                            WHERE IdGrupoUsuario = @IDGrupoUsuario";
+        //        cmd.CommandType = System.Data.CommandType.Text;
+        //        //cmd.Parameters.AddWithValue("@IDGrupoUsuario", _idGrupoUsuario);
+        //        cn.Open();
+        //        using (SqlDataReader rd = cmd.ExecuteReader())
+        //        {
+        //            if (rd.Read())
+        //            {
+        //                permissao = new Permissao();
+        //                permissao.IdDescricao = Convert.ToInt32(rd["IdDescricao"]);
+        //                permissao.Descricao = rd["Descricao"].ToString();
+        //                GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
+        //                permissao.GrupoUsuarios = grupoUsuarioDAL.BuscarPorIdUsuario(permissao.IdDescricao);
+        //                //permissaos.Add(permissao);
+        //            }
+        //        }
+        //        //return permissaos;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception("Ocorreu um erro ao tentar buscar Grupo de Usuarios: " + ex.Message); ;
+        //    }
+        //    finally
+        //    {
+        //        cn.Close();
+        //    }
+        //}
     }
 }
