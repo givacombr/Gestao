@@ -70,7 +70,7 @@ namespace WindowsFormsAppPrincipal
                         return;
                     {
                         UsuarioBLL usuarioBLL = new UsuarioBLL();
-                        int idUsuario = ((Usuario)usuarioBindingSource.Current).IDUsuario;
+                        int idUsuario = ((Usuario)usuarioBindingSource.Current).IdUsuario;
                         usuarioBLL.AdicionarGrupo(idUsuario, frm.Id);
                         MessageBox.Show("Grupo adionado com sucesso.");
                     }
@@ -90,7 +90,7 @@ namespace WindowsFormsAppPrincipal
                 MessageBox.Show("Não existe registro para ser alterado.");
                 return;
             }
-            int id = ((Usuario)usuarioBindingSource.Current).IDUsuario;//pegar o id do registro atual
+            int id = ((Usuario)usuarioBindingSource.Current).IdUsuario;//pegar o id do registro atual
 
             using (FormAdicionarUsuario frm = new FormAdicionarUsuario(true, id))
             {
@@ -126,7 +126,7 @@ namespace WindowsFormsAppPrincipal
                 if (MessageBox.Show("Deseja realmente excluir este registro?", "Atenção", MessageBoxButtons.YesNo) == DialogResult.No)
                     return;
 
-                int id = ((Usuario)usuarioBindingSource.Current).IDUsuario;
+                int id = ((Usuario)usuarioBindingSource.Current).IdUsuario;
                 new UsuarioBLL().Excluir(id);
 
             }
@@ -147,7 +147,7 @@ namespace WindowsFormsAppPrincipal
                     MessageBox.Show("Não existe grupo de usuário para ser excluído.");
                     return;
                 }
-                int idUsuario = ((Usuario)usuarioBindingSource.Current).IDUsuario;
+                int idUsuario = ((Usuario)usuarioBindingSource.Current).IdUsuario;
                 int idGrupoUsuario = ((GrupoUsuario)grupoUsuariosBindingSource.Current).IdGrupoUsuario;
                 new UsuarioBLL().RemoverGrupoUsuario(idUsuario, idGrupoUsuario);
                 grupoUsuariosBindingSource.RemoveCurrent();//atualiza a remoção da memória
@@ -155,6 +155,14 @@ namespace WindowsFormsAppPrincipal
             catch (Exception ex)
             {
                 MessageBox.Show("Registro excluído com sucesso!" + ex.Message);
+            }
+        }
+
+        private void buttonAdicionarUsuario_Click_1(object sender, EventArgs e)
+        {
+            using (FormAdicionarUsuario frm = new FormAdicionarUsuario())
+            {
+                frm.ShowDialog();
             }
         }
 
