@@ -16,5 +16,10 @@ namespace WindowsFormsAppPrincipal
         {
             InitializeComponent();
         }
+
+        private void buttonBuscarPermissao_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

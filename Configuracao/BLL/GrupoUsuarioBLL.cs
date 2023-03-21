@@ -2,7 +2,6 @@
 using Models;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 
 namespace BLL
 {
@@ -39,10 +38,10 @@ namespace BLL
             GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
             grupoUsuarioDAL.Alterar(_grupoUsuario);
         }
-        public void Excluir(GrupoUsuario _grupoUsuario)
+        public void Excluir(int _id)
         {
             GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
-            grupoUsuarioDAL.Excluir(_grupoUsuario);
+            grupoUsuarioDAL.Excluir(_id);
         }
     }
 }

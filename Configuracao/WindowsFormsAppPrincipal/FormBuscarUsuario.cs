@@ -15,42 +15,50 @@ namespace WindowsFormsAppPrincipal
         }
         private void buttonbuscar_Click(object sender, EventArgs e)
         {
-            UsuarioBLL usuarioBLL = new UsuarioBLL();
-            if (radioButton3Todos.Checked)
+            try
             {
-                usuarioBindingSource.DataSource = usuarioBLL.BuscarTodos();
+                UsuarioBLL usuarioBLL = new UsuarioBLL();
+                if (radioButton3Todos.Checked)
+                {
+                    usuarioBindingSource.DataSource = usuarioBLL.BuscarTodos();
+                }
+                else if (radioButton1PorNome.Checked)
+                {
+                    if (textBox1.Text != "")
+                    {
+                        usuarioBindingSource.DataSource = usuarioBLL.BuscarUsuarioPorNome(textBox1.Text);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Favor inserir um nome");
+                    }
+                }
+                else if (radioButton2PorID.Checked)
+                {
+                    if (textBox1.Text != "")
+                    {
+                        usuarioBindingSource.DataSource = usuarioBLL.BuscarPorId(Convert.ToInt32(textBox1.Text));
+                    }
+                    else
+                    {
+                        MessageBox.Show("Favor inserir um ID");
+                    }
+                }
             }
-            else if (radioButton1PorNome.Checked)
+            catch (Exception ex)
             {
-                if (textBox1.Text != "")
-                {
-                    usuarioBindingSource.DataSource = usuarioBLL.BuscarUsuarioPorNome(textBox1.Text);
-                }
-                else
-                {
-                    MessageBox.Show("Favor inserir um nome");
-                }
+                MessageBox.Show("Erro ao vincular um grupo" + ex.Message);
             }
-            else if (radioButton2PorID.Checked)
-            {
-                if (textBox1.Text != "")
-                {
-                    usuarioBindingSource.DataSource = usuarioBLL.BuscarPorId(Convert.ToInt32(textBox1.Text));
-                }
-                else
-                {
-                    MessageBox.Show("Favor inserir um ID");
-                }
-            }
+
         }
 
-        private void buttonAdicionarUsuario_Click(object sender, EventArgs e)
-        {
-            using (FormAdicionarUsuario frm = new FormAdicionarUsuario())
-            {
-                frm.ShowDialog();
-            }
-        }
+        //private void buttonAdicionarUsuario_Click(object sender, EventArgs e)
+        //{
+        //    using (FormAdicionarUsuario frm = new FormAdicionarUsuario())
+        //    {
+        //        frm.ShowDialog();
+        //    }
+        //}
         private void buttonAdicionarGrupo_Click(object sender, EventArgs e)
         {
             using (FormConsultarGrupoUsuario frm = new FormConsultarGrupoUsuario())
@@ -154,6 +162,25 @@ namespace WindowsFormsAppPrincipal
         {
             if (e.KeyCode == Keys.Escape)
                 Close();
+        }
+
+        private void buttonAdicionarUsuario_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                new UsuarioBLL().ValidarPermissao(2);
+                using (FormAdicionarUsuario frm = new FormAdicionarUsuario())
+                {
+
+                    frm.ShowDialog();
+                }
+                buttonbuscar_Click(sender, e);
+            }
+            catch (System.Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

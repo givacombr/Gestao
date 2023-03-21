@@ -9,7 +9,7 @@ namespace BLL
     {
         public void Inserir(Usuario _usuario, string _confirmacaoDeSenha)
         {
-            ValidarPermissao(4);
+            ValidarPermissao(1);
 
             ValidarDados(_usuario, _confirmacaoDeSenha);
 
@@ -23,9 +23,9 @@ namespace BLL
             usuarioDAL.Inserir(_usuario);
         }
 
-        public void ValidarPermissao(int IDDescricao)
+        public void ValidarPermissao(int _idDescricao)
         {
-            if (!new UsuarioDAL().ValidarPermissao(Constantes.IdUsuarioLogado, IDDescricao))
+            if (!new UsuarioDAL().ValidarPermissao(Constantes.IdUsuarioLogado, _idDescricao))
                 throw new Exception("Você não tem permissão para executar esta operação");
         }
 
@@ -48,6 +48,7 @@ namespace BLL
         }
         public Usuario BuscarUsuarioPorNome(string _nomeUsuario)
         {
+            ValidarPermissao(4);
             if (String.IsNullOrEmpty(_nomeUsuario))
                 throw new Exception("Informe o nome do usuário.");
 
@@ -57,16 +58,19 @@ namespace BLL
         }
         public List<Usuario> BuscarTodos()
         {
+            ValidarPermissao(4);
             UsuarioDAL usuarioDAL = new UsuarioDAL();
             return usuarioDAL.BuscarTodos();
         }
         public Usuario BuscarPorId(int _idUsuario)
         {
+            ValidarPermissao(4);
             UsuarioDAL usuarioDAL = new UsuarioDAL();
             return usuarioDAL.BuscarPorId(_idUsuario);
         }
         public void Alterar(Usuario _alterarUsuario, string _confirmacaoDeSenha)
         {
+            ValidarPermissao(2);
             ValidarDados(_alterarUsuario, _confirmacaoDeSenha);
 
             UsuarioDAL usuarioDAL = new UsuarioDAL();
@@ -74,7 +78,7 @@ namespace BLL
         }
         public void Excluir(int _id)
         {
-            //ValidarDados(_usuario);
+            ValidarPermissao(3);
 
             UsuarioDAL usuarioDAL = new UsuarioDAL();
             usuarioDAL.Excluir(_id);
@@ -82,6 +86,7 @@ namespace BLL
 
         public void AdicionarGrupo(int _idUsuario, int _idGrupoUsuario)
         {
+            ValidarPermissao(10);
             if (new UsuarioDAL().ExisteRelacionamento(_idUsuario, _idGrupoUsuario))
             {
                 throw new Exception("Usuário já vinculado ao grupo.");
@@ -92,6 +97,7 @@ namespace BLL
 
         public void RemoverGrupoUsuario(int _idUsuario, int _idGrupoUsuario)
         {
+            ValidarPermissao(7);
             new UsuarioDAL().RemoverGrupoUsuario(_idUsuario, _idGrupoUsuario);
         }
     }

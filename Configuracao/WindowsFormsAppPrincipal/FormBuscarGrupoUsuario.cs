@@ -58,13 +58,13 @@ namespace WindowsFormsAppPrincipal
                 try
                 {
                     frm.ShowDialog();
-                    if (frm.Id > 0)
-                    {
-                        GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
-                        int IdGrupoUsuario = ((GrupoUsuario)grupoUsuarioBindingSource.Current).IdGrupoUsuario;
-                        //grupoUsuarioBLL.BuscarPorId(IdGrupoUsuario, frm.Id);
-                        MessageBox.Show("Grupo adicionado com sucesso.");
-                    }
+                    //if (frm.Id > 0)
+                    //{
+                    //    GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
+                    //    int IdGrupoUsuario = ((GrupoUsuario)grupoUsuarioBindingSource.Current).IdGrupoUsuario;
+                    //    grupoUsuarioBLL.(IdGrupoUsuario, frm.Id);
+                    //    MessageBox.Show("Grupo adicionado com sucesso.");
+                    //}
                 }
                 catch (Exception ex)
                 {
@@ -112,7 +112,7 @@ namespace WindowsFormsAppPrincipal
                 return;
 
             int id = ((GrupoUsuario)grupoUsuarioBindingSource.Current).IdGrupoUsuario;
-            //new GrupoUsuarioBLL().Excluir(id);
+            new GrupoUsuarioBLL().Excluir(id);
 
             MessageBox.Show("Registro excluído com sucesso!");
             buttonBuscarGrupoUsuario_Click(null, null);
@@ -124,6 +124,11 @@ namespace WindowsFormsAppPrincipal
             {
                 frm.ShowDialog();
             }
+        }
+
+        private void buttonExcluirDescricao_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

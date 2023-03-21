@@ -1,0 +1,178 @@
+/*
+USE master
+GO
+
+DROP DATABASE Gestao
+GO
+
+CREATE DATABASE Gestao
+GO
+
+USE Gestao
+GO
+
+CREATE TABLE Usuario(
+IdUsuario INT PRIMARY KEY IDENTITY (1,1) NOT NULL,
+Nome VARCHAR (100) NOT NULL,
+NomeUsuario VARCHAR (100) NOT NULL,
+CPF VARCHAR (15) NOT NULL,
+Email VARCHAR (100) NOT NULL,
+Senha VARCHAR (50) NOT NULL,
+Ativo Bit NOT NULL
+)
+GO
+CREATE TABLE Permissao(
+IdDescricao INT PRIMARY KEY NOT NULL,
+Descricao VARCHAR (100) NOT NULL
+)
+GO
+CREATE TABLE GrupoUsuario(
+IdGrupoUsuario INT PRIMARY KEY IDENTITY (1,1) NOT NULL,
+NomeGrupo VARCHAR (100) NOT NULL,
+)
+GO
+CREATE TABLE UsuarioGrupoUsuario(
+Id_Usuario INT NOT NULL,
+Id_GrupoUsuario INT NOT NULL,
+)
+GO
+CREATE TABLE PermissaoGrupoUsuario(
+Id_Descricao INT NOT NULL,
+Id_GrupoUsuario INT NOT NULL,
+)
+GO
+*/
+
+/*
+DECLARE @Id_Usuario int = 1
+
+SELECT GrupoUsuario.IDGrupoUsuario, GrupoUsuario.NomeGrupo FROM GrupoUsuario
+INNER JOIN UsuarioGrupoUsuario ON GrupoUsuario.IDGrupoUsuario = UsuarioGrupoUsuario.Id_GrupoUsuario
+WHERE Id_Usuario = @Id_Usuario
+*/
+
+/*
+SELECT IDGrupoUsuario, NomeGrupo FROM GrupoUsuario
+DECLARE @x int =4
+*/
+
+/*
+DECLARE @Id_Usuario int = 1
+DECLARE @Id_GrupoUsuario int = 1
+SELECT 1 AS Retorno FROM UsuarioGrupoUsuario WHERE Id_Usuario = @Id_Usuario 
+AND Id_GrupoUsuario = @Id_GrupoUsuario
+*/
+
+/*
+SELECT TOP 1 1 AS Resultado FROM UsuarioGrupoUsuario
+INNER JOIN PermissaoGrupoUsuario
+ON UsuarioGrupoUsuario.Id_GrupoUsuario = PermissaoGrupoUsuario.IDGrupoUsuario
+WHERE UsuarioGrupoUsuario.Id_Usuario = 1
+AND PermissaoGrupoUsuario.IDDescricao = 1
+*/
+
+delete from PermissaoGrupoUsuario where IDDescricao = 3
+delete from Permissao where IDDescricao = 1
+
+update Permissao set DESCRICAO = 'Alterar usuário' where IDDescricao = 3;
+
+declare @Id_Usuario int = 2
+
+SELECT GrupoUsuario.IdGrupoUsuario, GrupoUsuario.NomeGrupo FROM GrupoUsuario 
+INNER JOIN UsuarioGrupoUsuario ON GrupoUsuario.IdGrupoUsuario = UsuarioGrupoUsuario.Id_GrupoUsuario 
+WHERE Id_Usuario = @Id_Usuario
+
+SELECT IdUsuario, Nome, NomeUsuario, CPF, Email, Ativo FROM Usuario
+
+declare @IdUsuario int = 1
+SELECT IdUsuario, Nome, NomeUsuario, CPF, Email, Ativo FROM Usuario WHERE IdUsuario = @IdUsuario
+
+insert into Usuario(Nome, NomeUsuario, CPF, Email, Senha, Ativo) values
+('Gilson da Silva','silvag','023.145.258-00','silvag@globo.com','1472583690',1),
+('Wellington Ferreira','ferreiraw','320.145.258-00','ferreiraw@globo.com','1472583690',1),
+('Francilene Moreira','moreiraf','320.145.258-03','moreiraf@globo.com','1472583690',1),
+('Marta Alcântara','alcantaram','625.145.335-00','alcantaram@globo.com','1472583690',1),
+('Givanildo da Silveira','silveirag','625.145.258-68','silveirag@terra.com.br','1472583690',1),
+('Paulo Vieira','vieirap','625.145.258-68','vieirap@terra.com.br','1472583690',1),
+('José Cleuton','cleutonj','625.145.258-68','cleutonj@uol.com.br','1472583690',1),
+('Usuario de Teste','testando','625.145.258-68','teste@uol.com.br','1472583690',1)
+
+insert into GrupoUsuario(NomeGrupo) values 
+('Auxiliar'),
+('Assistente'),
+('Analista'),
+('Supervisor'),
+('Gerente'),
+('Presidente'),
+('Diretor Executivo'),
+('Teste')
+
+insert into Permissao(IdDescricao, Descricao) values 
+(5,'Cadastrar usuário'),
+(6,'Alterar usuário'),
+(7,'Excluir usuário'),
+(8,'Visualizar usuário'),
+(9,'Cadastrar grupo de usuário'),
+(10,'Alterar grupo de usuário'),
+(11,'Excluir grupo de usuário'),
+(12,'Visualizar grupo de usuário'),
+(13,'Adicionar permissão a um grupo de usuário'),
+(14,'Adicionar grupo de usuário a um usuário')
+
+=================================
+select * from Usuario
+select * from GrupoUsuario
+select * from Permissao
+select * from PermissaoGrupoUsuario
+select * from UsuarioGrupoUsuario
+
+delete from PermissaoGrupoUsuario
+delete from Permissao
+========================================
+
+insert into Usuario(Nome, NomeUsuario, CPF, Email, Senha, Ativo) values
+('Gilson da Silva','silvag','023.145.258-00','silvag@globo.com','1472583690',1),
+('Wellington Ferreira','ferreiraw','320.145.258-00','ferreiraw@globo.com','1472583690',1),
+('Francilene Moreira','moreiraf','320.145.258-03','moreiraf@globo.com','1472583690',1),
+('Marta Alcântara','alcantaram','625.145.335-00','alcantaram@globo.com','1472583690',1),
+('Givanildo da Silveira','silveirag','625.145.258-68','silveirag@terra.com.br','1472583690',1),
+('Paulo Vieira','vieirap','625.145.258-68','vieirap@terra.com.br','1472583690',1),
+('José Cleuton','cleutonj','625.145.258-68','cleutonj@uol.com.br','1472583690',1),
+('Usuario de Teste','testando','625.145.258-68','teste@uol.com.br','1472583690',1)
+
+insert into GrupoUsuario(NomeGrupo) values 
+('Auxiliar'),
+('Assistente'),
+('Analista'),
+('Supervisor'),
+('Gerente'),
+('Presidente'),
+('Diretor Executivo'),
+('Teste')
+
+insert into Permissao(IdDescricao, Descricao) values 
+(1,'Cadastrar usuário'),
+(2,'Alterar usuário'),
+(3,'Excluir usuário'),
+(4,'Visualizar usuário'),
+(5,'Cadastrar grupo de usuário'),
+(6,'Alterar grupo de usuário'),
+(7,'Excluir grupo de usuário'),
+(8,'Visualizar grupo de usuário'),
+(9,'Adicionar permissão a um grupo de usuário'),
+(10,'Adicionar grupo de usuário a um usuário')
+
+
+
+insert into PermissaoGrupoUsuario(Id_Descricao, Id_GrupoUsuario) values (2,7)
+insert into PermissaoGrupoUsuario(Id_Descricao, Id_GrupoUsuario) values (3,7)
+insert into PermissaoGrupoUsuario(Id_Descricao, Id_GrupoUsuario) values (4,7)
+insert into PermissaoGrupoUsuario(Id_Descricao, Id_GrupoUsuario) values (6,7)
+insert into PermissaoGrupoUsuario(Id_Descricao, Id_GrupoUsuario) values (7,7)
+insert into PermissaoGrupoUsuario(Id_Descricao, Id_GrupoUsuario) values (8,7)
+insert into PermissaoGrupoUsuario(Id_Descricao, Id_GrupoUsuario) values (9,7)
+insert into PermissaoGrupoUsuario(Id_Descricao, Id_GrupoUsuario) values (10,7)
+
+insert into UsuarioGrupoUsuario(Id_Usuario, Id_GrupoUsuario) values (2,7)
+
+encr.pw/Hzh9t(endereço do site do professor)

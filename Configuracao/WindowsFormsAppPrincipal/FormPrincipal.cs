@@ -8,7 +8,7 @@ namespace WindowsFormsAppPrincipal
         public FormPrincipal()
         {
             InitializeComponent();
-            Constantes.IdUsuarioLogado = 11;
+            Constantes.IdUsuarioLogado = 21;
         }
 
         private void usuarioToolStripMenuItem_Click(object sender, System.EventArgs e)

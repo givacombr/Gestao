@@ -219,12 +219,13 @@
             this.buttonExcluirDescricao.TabIndex = 7;
             this.buttonExcluirDescricao.Text = "Excluir";
             this.buttonExcluirDescricao.UseVisualStyleBackColor = true;
+            this.buttonExcluirDescricao.Click += new System.EventHandler(this.buttonExcluirDescricao_Click);
             // 
             // radioButton1NomeGrupo
             // 
             this.radioButton1NomeGrupo.AutoSize = true;
             this.radioButton1NomeGrupo.Location = new System.Drawing.Point(15, 14);
-            this.radioButton1NomeGrupo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButton1NomeGrupo.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton1NomeGrupo.Name = "radioButton1NomeGrupo";
             this.radioButton1NomeGrupo.Size = new System.Drawing.Size(169, 20);
             this.radioButton1NomeGrupo.TabIndex = 8;
@@ -236,7 +237,7 @@
             // 
             this.radioButton2IDGrupo.AutoSize = true;
             this.radioButton2IDGrupo.Location = new System.Drawing.Point(204, 15);
-            this.radioButton2IDGrupo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButton2IDGrupo.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton2IDGrupo.Name = "radioButton2IDGrupo";
             this.radioButton2IDGrupo.Size = new System.Drawing.Size(145, 20);
             this.radioButton2IDGrupo.TabIndex = 9;
@@ -248,7 +249,7 @@
             // 
             this.radioButton3ListarTodosGrupo.AutoSize = true;
             this.radioButton3ListarTodosGrupo.Location = new System.Drawing.Point(417, 14);
-            this.radioButton3ListarTodosGrupo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButton3ListarTodosGrupo.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton3ListarTodosGrupo.Name = "radioButton3ListarTodosGrupo";
             this.radioButton3ListarTodosGrupo.Size = new System.Drawing.Size(178, 20);
             this.radioButton3ListarTodosGrupo.TabIndex = 10;

@@ -85,7 +85,7 @@ namespace DAL
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
                 cmd.Connection = cn;
-                cmd.CommandText = "SELECT IdGrupoUsuario, NomeGrupo FROM GrupoUsuario WHERE NomeGrupo like @NomeGrupo";
+                cmd.CommandText = "SELECT IdGrupoUsuario, NomeGrupo FROM GrupoUsuario WHERE NomeGrupo like @NomeGrupo order by NomeGrupo";
                 cmd.Parameters.AddWithValue("@NomeGrupo", "%" + _nomeGrupo + "%");
                 cmd.CommandType = System.Data.CommandType.Text;
                 cn.Open();
@@ -124,7 +124,7 @@ namespace DAL
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
                 cmd.Connection = cn;
-                cmd.CommandText = @"SELECT IDGrupoUsuario, NomeGrupo FROM GrupoUsuario";
+                cmd.CommandText = @"SELECT IDGrupoUsuario, NomeGrupo FROM GrupoUsuario order by NomeGrupo";
                 cmd.CommandType = System.Data.CommandType.Text;
 
                 cn.Open();
@@ -181,7 +181,7 @@ namespace DAL
             }
 
         }
-        public void Excluir(GrupoUsuario _grupoUsuario)
+        public void Excluir(int _id)
         {
             SqlConnection cn = new SqlConnection();
             try
@@ -191,7 +191,7 @@ namespace DAL
                 cmd.Connection = cn;
                 cmd.CommandText = @"DELETE FROM GrupoUsuario WHERE IdGrupoUsuario = @IdGrupoUsuario";
                 cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Parameters.AddWithValue("@IdGrupoUsuario", _grupoUsuario.IdGrupoUsuario);
+                cmd.Parameters.AddWithValue("@IdGrupoUsuario", _id);
 
                 cn.Open();
                 cmd.ExecuteNonQuery();

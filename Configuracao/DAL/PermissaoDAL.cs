@@ -121,7 +121,7 @@ namespace DAL
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
                 cmd.Connection = cn;
-                cmd.CommandText = @"SELECT IdDescricao, Descricao FROM Permissao";
+                cmd.CommandText = @"SELECT IdDescricao, Descricao FROM Permissao order by Descricao";
                 cmd.CommandType = System.Data.CommandType.Text;
                 cn.Open();
                 using (SqlDataReader rd = cmd.ExecuteReader())
