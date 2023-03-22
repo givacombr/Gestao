@@ -41,6 +41,7 @@ namespace BLL
         }
         public void Excluir(int _idgrupoUsuario)
         {
+            //ValidarPermissao(3);
             GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
             grupoUsuarioDAL.Excluir(_idgrupoUsuario);
         }

@@ -98,19 +98,25 @@ namespace WindowsFormsAppPrincipal
         }
         private void buttonExcluir_Click(object sender, EventArgs e)
         {
-            if (grupoUsuarioBindingSource.Count <= 0)
+            try
             {
-                MessageBox.Show("Não existe registro para ser excluído.");
-                return;
+                if (grupoUsuarioBindingSource.Count <= 0)
+                {
+                    MessageBox.Show("Não existe registro para ser excluído.");
+                    return;
+                }
+                if (MessageBox.Show("Deseja realmente excluir este registro?", "Atenção", MessageBoxButtons.YesNo) == DialogResult.No)
+                    return;
+
+                int id = ((GrupoUsuario)grupoUsuarioBindingSource.Current).IdGrupoUsuario;
+                new GrupoUsuarioBLL().Excluir(id);
             }
-            if (MessageBox.Show("Deseja realmente excluir este registro?", "Atenção", MessageBoxButtons.YesNo) == DialogResult.No)
-                return;
+            catch (Exception)
+            {
+                MessageBox.Show("Registro excluído com sucesso!");
+                buttonBuscarGrupoUsuario_Click(null, null);
+            }
 
-            int id = ((GrupoUsuario)grupoUsuarioBindingSource.Current).IdGrupoUsuario;
-            new GrupoUsuarioBLL().Excluir(id);
-
-            MessageBox.Show("Registro excluído com sucesso!");
-            buttonBuscarGrupoUsuario_Click(null, null);
         }
         private void buttonAddDescricao_Click(object sender, EventArgs e)
         {

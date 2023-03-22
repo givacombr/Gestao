@@ -81,7 +81,7 @@ namespace DAL
                 cmd.Connection = cn;
                 cmd.CommandText = @"SELECT Permissao.IdDescricao, Permissao.Descricao FROM GrupoUsuario
                                     INNER JOIN PermissaoGrupoUsuario ON GrupoUsuario.IDGrupoUsuario = PermissaoGrupoUsuario.IdGrupoUsuario
-									inner join Permissao on PermissaoGrupoUsuario.IDDescricao = Permissao.IDDescricao
+									inner join Permissao on PermissaoGrupoUsuario.Id_Descricao = Permissao.IDDescricao
                                     WHERE GrupoUsuario.IDGrupoUsuario = @IDGrupoUsuario";
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.Parameters.AddWithValue("@IDGrupoUsuario", _idGrupoUsuario);
@@ -279,9 +279,9 @@ namespace DAL
                 cn.ConnectionString = Conexao.StringDeConexao;
                 cmd.Connection = cn;
                 cmd.CommandText = @"SELECT 1 AS Retorno FROM  PermissaoGrupoUsuario 
-                                    WHERE IDDescricao = @IDDescricao and IDGrupoUsuario = @IDGrupoUsuario";
+                                    WHERE Id_Descricao = @Id_Descricao and IDGrupoUsuario = @IDGrupoUsuario";
                 cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Parameters.AddWithValue("@IDDescricao", idPermissao);
+                cmd.Parameters.AddWithValue("@Id_Descricao", idPermissao);
                 cmd.Parameters.AddWithValue("@IDGrupoUsuario", id);
 
                 cn.Open();
@@ -313,11 +313,11 @@ namespace DAL
                 cn.ConnectionString = Conexao.StringDeConexao;
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = cn;
-                cmd.CommandText = @"INSERT INTO PermissaoGrupoUsuario(IDDescricao, IDGrupoUsuario) 
-                                    VALUES (@IDDescricao, @IDGrupoUsuario)";
+                cmd.CommandText = @"INSERT INTO PermissaoGrupoUsuario(Id_Descricao, Id_GrupoUsuario) 
+                                    VALUES (@Id_Descricao, @Id_GrupoUsuario)";
                 cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Parameters.AddWithValue("@IDDescricao", idPermissao);
-                cmd.Parameters.AddWithValue("@IDGrupoUsuario", id);
+                cmd.Parameters.AddWithValue("@Id_Descricao", idPermissao);
+                cmd.Parameters.AddWithValue("@Id_GrupoUsuario", id);
 
                 cn.Open();
                 cmd.ExecuteScalar();
@@ -341,10 +341,10 @@ namespace DAL
                 cn.ConnectionString = Conexao.StringDeConexao;
                 cmd.Connection = cn;
                 cmd.CommandText = @"DELETE From PermissaoGrupoUsuario WHERE IDGrupoUsuario = @IDGrupoUsuario
-                                            AND IDDescricao = @IDDescricao";
+                                            AND Id_Descricao = @Id_Descricao";
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.Parameters.AddWithValue("@IDGrupoUsuario", idgrupoUsuario);
-                cmd.Parameters.AddWithValue("@IDDescricao", idDescricao);
+                cmd.Parameters.AddWithValue("@Id_Descricao", idDescricao);
 
                 cn.Open();
                 cmd.ExecuteScalar();

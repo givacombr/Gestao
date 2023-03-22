@@ -325,9 +325,9 @@ namespace DAL
                                     INNER JOIN PermissaoGrupoUsuario 
                                         ON UsuarioGrupoUsuario.Id_GrupoUsuario = PermissaoGrupoUsuario.IDGrupoUsuario
                                     WHERE UsuarioGrupoUsuario.Id_Usuario = @Id_Usuario
-                                        AND PermissaoGrupoUsuario.IDDescricao = @IDDescricao";
+                                        AND PermissaoGrupoUsuario.Id_Descricao = @Id_Descricao";
                 cmd.Parameters.AddWithValue("@Id_Usuario", _idUsuario);
-                cmd.Parameters.AddWithValue("@IDDescricao", _idDescricao);
+                cmd.Parameters.AddWithValue("@Id_Descricao", _idDescricao);
                 cmd.CommandType = System.Data.CommandType.Text;
 
                 cn.Open();
