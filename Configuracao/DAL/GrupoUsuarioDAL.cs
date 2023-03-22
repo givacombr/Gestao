@@ -182,9 +182,10 @@ namespace DAL
                 cn.ConnectionString = Conexao.StringDeConexao;
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = cn;
-                cmd.CommandText = @"DELETE FROM GrupoUsuario WHERE IdGrupoUsuario = @IdGrupoUsuario";
+                cmd.CommandText = @"DELETE FROM PermissaoGrupoUsuario WHERE IDGrupoUsuario = @Id_GrupoUsuario
+                                    DELETE FROM Permissao WHERE IDDescricao = @IDDescricao";
                 cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Parameters.AddWithValue("@IdGrupoUsuario", _id);
+                cmd.Parameters.AddWithValue("@Id_GrupoUsuario", _id);
 
                 cn.Open();
                 cmd.ExecuteNonQuery();

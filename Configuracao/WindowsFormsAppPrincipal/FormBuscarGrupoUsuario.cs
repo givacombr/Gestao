@@ -7,7 +7,7 @@ namespace WindowsFormsAppPrincipal
 {
     public partial class FormBuscarGrupoUsuario : Form
     {
-        public int Id;
+        //public int Id;
         public FormBuscarGrupoUsuario()
         {
             InitializeComponent();
@@ -140,8 +140,8 @@ namespace WindowsFormsAppPrincipal
         {
             try
             {
-                if(permissoesBindingSource.Count == 0 || permissoesBindingSource.Count == 0)
-                //if (grupoUsuarioBindingSource.Count == 0 || permissoesBindingSource.Count == 0)
+                //if (permissoesBindingSource.Count == 0 || permissoesBindingSource.Count == 0)
+                if (grupoUsuarioBindingSource.Count == 0 || permissoesBindingSource.Count == 0)
                 {
                     MessageBox.Show("Não existe descrição do grupo para ser excluído.");
                     return;
@@ -153,13 +153,14 @@ namespace WindowsFormsAppPrincipal
                 int IDDescricao = ((Permissao)permissoesBindingSource.Current).IdDescricao;
                 new GrupoUsuarioBLL().RemoverDescricaoGrupo(IDGrupoUsuario, IDDescricao);
                 permissoesBindingSource.RemoveCurrent();
-                 
-            }
-            catch (Exception)
-            {
 
-                throw;
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao vincular uma Permissão" + ex.Message);
+            }
+            MessageBox.Show("Permissão adicionado com sucesso!");
+            buttonBuscarGrupoUsuario_Click(null, null);
         }
     }
 }

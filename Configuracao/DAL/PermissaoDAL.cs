@@ -307,7 +307,56 @@ namespace DAL
 
         public void AdicionarPermissao(int idPermissao, int id)
         {
-            throw new NotImplementedException();
+            SqlConnection cn = new SqlConnection();
+            try
+            {
+                cn.ConnectionString = Conexao.StringDeConexao;
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = cn;
+                cmd.CommandText = @"INSERT INTO PermissaoGrupoUsuario(IDDescricao, IDGrupoUsuario) 
+                                    VALUES (@IDDescricao, @IDGrupoUsuario)";
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.Parameters.AddWithValue("@IDDescricao", idPermissao);
+                cmd.Parameters.AddWithValue("@IDGrupoUsuario", id);
+
+                cn.Open();
+                cmd.ExecuteScalar();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocorreu um erro ao tentar inserir uma permissão no banco: " + ex.Message);
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+
+        public void RemoverDescricaoGrupo(int idgrupoUsuario, int idDescricao)
+        {
+            SqlConnection cn = new SqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            try
+            {
+                cn.ConnectionString = Conexao.StringDeConexao;
+                cmd.Connection = cn;
+                cmd.CommandText = @"DELETE From PermissaoGrupoUsuario WHERE IDGrupoUsuario = @IDGrupoUsuario
+                                            AND IDDescricao = @IDDescricao";
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.Parameters.AddWithValue("@IDGrupoUsuario", idgrupoUsuario);
+                cmd.Parameters.AddWithValue("@IDDescricao", idDescricao);
+
+                cn.Open();
+                cmd.ExecuteScalar();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocorreu um erro ao tentar excluir um grupo: " + ex.Message);
+            }
+            finally
+            {
+                cn.Close();
+            }
         }
 
         /*public void AdicionarDescricaoGrupo(int idgrupoUsuario, int idDescricao)

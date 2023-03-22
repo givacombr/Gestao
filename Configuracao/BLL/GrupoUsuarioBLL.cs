@@ -63,7 +63,7 @@ namespace BLL
 
         public void RemoverDescricaoGrupo(int _idgrupoUsuario, int _idDescricao)
         {
-            // new PermissaoDAL().RemoverDescricaoGrupo(_idgrupoUsuario, _idDescricao);
+            new PermissaoDAL().RemoverDescricaoGrupo(_idgrupoUsuario, _idDescricao);
         }
     }
 }
