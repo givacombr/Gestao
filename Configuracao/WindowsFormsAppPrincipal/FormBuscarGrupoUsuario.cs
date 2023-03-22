@@ -14,32 +14,39 @@ namespace WindowsFormsAppPrincipal
         }
         private void buttonBuscarGrupoUsuario_Click(object sender, EventArgs e)
         {
-            GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
-            if (radioButton3ListarTodosGrupo.Checked)//Listar todos
+            try
             {
-                grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarTodosGrupos();
+                GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
+                if (radioButton3ListarTodosGrupo.Checked)//Listar todos
+                {
+                    grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarTodosGrupos();
+                }
+                else if (radioButton1NomeGrupo.Checked)
+                {
+                    if (textBox2.Text != "")
+                    {
+                        grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarGrupoPorNome(textBox2.Text);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Inserir um nome");
+                    }
+                }
+                else if (radioButton2IDGrupo.Checked)
+                {
+                    if (textBox2.Text != "")
+                    {
+                        grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarPorId(Convert.ToInt32(textBox2.Text));
+                    }
+                    else
+                    {
+                        MessageBox.Show("Inserir o ID");
+                    }
+                }
             }
-            else if (radioButton1NomeGrupo.Checked)
+            catch (Exception ex)
             {
-                if (textBox2.Text != "")
-                {
-                    grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarGrupoPorNome(textBox2.Text);
-                }
-                else
-                {
-                    MessageBox.Show("Inserir um nome");
-                }
-            }
-            else if (radioButton2IDGrupo.Checked)
-            {
-                if (textBox2.Text != "")
-                {
-                    grupoUsuarioBindingSource.DataSource = grupoUsuarioBLL.BuscarPorId(Convert.ToInt32(textBox2.Text));
-                }
-                else
-                {
-                    MessageBox.Show("Inserir o ID");
-                }
+                MessageBox.Show("Erro ao vincular um grupo" + ex.Message);
             }
         }
         private void buttonAdicionarGrupo_Click(object sender, EventArgs e)
@@ -127,19 +134,25 @@ namespace WindowsFormsAppPrincipal
                 }
             }
             MessageBox.Show("Permissão adicionado com sucesso!");
-
+            buttonBuscarGrupoUsuario_Click(null, null);
         }
         private void buttonExcluirDescricao_Click(object sender, EventArgs e)
         {
             try
             {
-                if (grupoUsuarioBindingSource.Count == 0 || permissoesBindingSource.Count == 0)
+                if(permissoesBindingSource.Count == 0 || permissoesBindingSource.Count == 0)
+                //if (grupoUsuarioBindingSource.Count == 0 || permissoesBindingSource.Count == 0)
                 {
                     MessageBox.Show("Não existe descrição do grupo para ser excluído.");
                     return;
                 }
+                if (MessageBox.Show("Deseja realmente excluir esse registro?", "Atenção", MessageBoxButtons.YesNo) == DialogResult.No)
+                    return;
+
                 int IDGrupoUsuario = ((GrupoUsuario)grupoUsuarioBindingSource.Current).IdGrupoUsuario;
                 int IDDescricao = ((Permissao)permissoesBindingSource.Current).IdDescricao;
+                new GrupoUsuarioBLL().RemoverDescricaoGrupo(IDGrupoUsuario, IDDescricao);
+                permissoesBindingSource.RemoveCurrent();
                  
             }
             catch (Exception)
