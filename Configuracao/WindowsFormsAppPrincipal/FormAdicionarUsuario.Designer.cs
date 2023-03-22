@@ -203,7 +203,7 @@
             // confirmacaoTextBox
             // 
             this.confirmacaoTextBox.Location = new System.Drawing.Point(356, 113);
-            this.confirmacaoTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.confirmacaoTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.confirmacaoTextBox.Name = "confirmacaoTextBox";
             this.confirmacaoTextBox.PasswordChar = '*';
             this.confirmacaoTextBox.Size = new System.Drawing.Size(123, 20);
@@ -223,6 +223,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(574, 206);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.confirmacaoTextBox);

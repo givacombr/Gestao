@@ -43,10 +43,9 @@
             // 
             nomeGrupoLabel.AutoSize = true;
             nomeGrupoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            nomeGrupoLabel.Location = new System.Drawing.Point(16, 74);
-            nomeGrupoLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            nomeGrupoLabel.Location = new System.Drawing.Point(12, 60);
             nomeGrupoLabel.Name = "nomeGrupoLabel";
-            nomeGrupoLabel.Size = new System.Drawing.Size(100, 20);
+            nomeGrupoLabel.Size = new System.Drawing.Size(84, 16);
             nomeGrupoLabel.TabIndex = 1;
             nomeGrupoLabel.Text = "Nome Grupo";
             // 
@@ -57,10 +56,9 @@
             // nomeGrupoTextBox
             // 
             this.nomeGrupoTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.grupoUsuarioBindingSource, "NomeGrupo", true));
-            this.nomeGrupoTextBox.Location = new System.Drawing.Point(16, 94);
-            this.nomeGrupoTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.nomeGrupoTextBox.Location = new System.Drawing.Point(12, 76);
             this.nomeGrupoTextBox.Name = "nomeGrupoTextBox";
-            this.nomeGrupoTextBox.Size = new System.Drawing.Size(605, 22);
+            this.nomeGrupoTextBox.Size = new System.Drawing.Size(455, 20);
             this.nomeGrupoTextBox.TabIndex = 2;
             this.nomeGrupoTextBox.TextChanged += new System.EventHandler(this.nomeGrupoTextBox_TextChanged);
             // 
@@ -69,19 +67,17 @@
             this.labelTitulo.Dock = System.Windows.Forms.DockStyle.Top;
             this.labelTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTitulo.Location = new System.Drawing.Point(0, 0);
-            this.labelTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTitulo.Name = "labelTitulo";
-            this.labelTitulo.Size = new System.Drawing.Size(639, 46);
+            this.labelTitulo.Size = new System.Drawing.Size(479, 37);
             this.labelTitulo.TabIndex = 3;
             this.labelTitulo.Text = "Adicionar Grupo";
             this.labelTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // buttonSalvarGrupo
             // 
-            this.buttonSalvarGrupo.Location = new System.Drawing.Point(415, 155);
-            this.buttonSalvarGrupo.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonSalvarGrupo.Location = new System.Drawing.Point(311, 126);
             this.buttonSalvarGrupo.Name = "buttonSalvarGrupo";
-            this.buttonSalvarGrupo.Size = new System.Drawing.Size(100, 28);
+            this.buttonSalvarGrupo.Size = new System.Drawing.Size(75, 23);
             this.buttonSalvarGrupo.TabIndex = 4;
             this.buttonSalvarGrupo.Text = "Salvar";
             this.buttonSalvarGrupo.UseVisualStyleBackColor = true;
@@ -89,10 +85,9 @@
             // 
             // buttonCancelarGrupo
             // 
-            this.buttonCancelarGrupo.Location = new System.Drawing.Point(523, 155);
-            this.buttonCancelarGrupo.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonCancelarGrupo.Location = new System.Drawing.Point(392, 126);
             this.buttonCancelarGrupo.Name = "buttonCancelarGrupo";
-            this.buttonCancelarGrupo.Size = new System.Drawing.Size(100, 28);
+            this.buttonCancelarGrupo.Size = new System.Drawing.Size(75, 23);
             this.buttonCancelarGrupo.TabIndex = 5;
             this.buttonCancelarGrupo.Text = "Cancelar";
             this.buttonCancelarGrupo.UseVisualStyleBackColor = true;
@@ -100,16 +95,16 @@
             // 
             // FormAdicionarGrupo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(639, 206);
+            this.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.ClientSize = new System.Drawing.Size(479, 167);
             this.Controls.Add(this.buttonCancelarGrupo);
             this.Controls.Add(this.buttonSalvarGrupo);
             this.Controls.Add(this.labelTitulo);
             this.Controls.Add(nomeGrupoLabel);
             this.Controls.Add(this.nomeGrupoTextBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormAdicionarGrupo";
