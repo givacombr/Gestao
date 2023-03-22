@@ -310,7 +310,7 @@ namespace DAL
             throw new NotImplementedException();
         }
 
-        public void AdicionarDescricaoGrupo(int idgrupoUsuario, int idDescricao)
+        /*public void AdicionarDescricaoGrupo(int idgrupoUsuario, int idDescricao)
         {
             SqlConnection cn = new SqlConnection();
             try
@@ -335,7 +335,7 @@ namespace DAL
             {
                 cn.Close();
             }
-        }
+        }*/
 
         //public bool ValidarDescricao(int idPermissaoLogado, int idPermissao)
         //{

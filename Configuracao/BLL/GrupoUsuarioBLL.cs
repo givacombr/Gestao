@@ -44,22 +44,22 @@ namespace BLL
             GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
             grupoUsuarioDAL.Excluir(_idgrupoUsuario);
         }
-        public void AdicionarDescricaoGrupo(int _idgrupoUsuario, int _idDescricao)
+        /*public void AdicionarDescricaoGrupo(int _idgrupoUsuario, int _idDescricao)
         {
-            ValidarPermissao(10);
-            if (new PermissaoDAL().ExisteRelacionamento(_idgrupoUsuario, _idDescricao))
+                //ValidarPermissao(10);
+            if (new PermissaoDAL().ExistirRelacionamento(_idgrupoUsuario, _idDescricao))
             {
                 throw new Exception("Descrição já vinculado ao grupo.");
             }
             PermissaoDAL permissaoDAL = new PermissaoDAL();
             permissaoDAL.AdicionarDescricaoGrupo(_idgrupoUsuario, _idDescricao);
-        }
+        }*/
 
-        private void ValidarPermissao(int _idDescricao)
-        {
-            if (!new PermissaoDAL().ValidarPermissao(Constantes.IdPermissaoLogado, _idDescricao))
-                throw new Exception("Você não tem permissão para executar esta operação.");
-        }
+        //private void ValidarPermissao(int _idDescricao)
+        //{
+        //    if (!new PermissaoDAL().ValidarPermissao(Constantes.IdPermissaoLogado, _idDescricao))
+        //        throw new Exception("Você não tem permissão para executar esta operação.");
+        //}
 
         public void RemoverDescricaoGrupo(int _idgrupoUsuario, int _idDescricao)
         {
