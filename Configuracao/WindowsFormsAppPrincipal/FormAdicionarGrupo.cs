@@ -28,7 +28,8 @@ namespace WindowsFormsAppPrincipal
                 grupoUsuarioBindingSource.EndEdit();
 
                 if (!alterar)
-                    grupoUsuarioBLL.Inserir((GrupoUsuario)grupoUsuarioBindingSource.Current);
+                    grupoUsuarioBLL.
+                        Inserir((GrupoUsuario)grupoUsuarioBindingSource.Current);
                 else
                     grupoUsuarioBLL.Alterar((GrupoUsuario)grupoUsuarioBindingSource.Current);
 
@@ -64,5 +65,7 @@ namespace WindowsFormsAppPrincipal
             if (!alterar)
                 grupoUsuarioBindingSource.AddNew();
         }
+
+
     }
 }

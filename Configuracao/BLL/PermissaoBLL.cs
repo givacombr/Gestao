@@ -45,19 +45,19 @@ namespace BLL
         }
         public void AdicionarPermissao(int _idPermissao, int _id)
         {
-            //ValidarDescricao();
-            //if (new PermissaoDAL().ExistirRelacionamento(_idPermissao, _id))
-            //{
-            //    throw new Exception("Permissão já vinculada a Descrição.");
-            //}
-            //PermissaoDAL permissaoDAL = new PermissaoDAL();
-            //permissaoDAL.AdicionarPermissao(_idPermissao, _id);
+            ValidarDescricao(9);
+            if (new PermissaoDAL().ExistirRelacionamento(_idPermissao, _id))
+            {
+                throw new Exception("Permissão já vinculada a Descrição.");
+            }
+            PermissaoDAL permissaoDAL = new PermissaoDAL();
+            permissaoDAL.AdicionarPermissao(_idPermissao, _id);
         }
 
         public void ValidarDescricao(int _idPermissao)
         {
-            //if (!new PermissaoDAL().ValidarDescricao(Constantes.IdPermissaoLogado, _idPermissao))
-            //    throw new Exception("Você não tem permissão para executar esta operação!");
+            if (!new PermissaoDAL().ValidarDescricao(Constantes.IdPermissaoLogado, _idPermissao))
+                throw new Exception("Você não tem permissão para executar esta operação!");
         }
     }
 }

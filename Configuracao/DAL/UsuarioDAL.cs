@@ -206,7 +206,8 @@ namespace DAL
                 cn.ConnectionString = Conexao.StringDeConexao;
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = cn;
-                cmd.CommandText = @"DELETE FROM Usuario WHERE IDUsuario = @IDUsuario";
+                cmd.CommandText = @"DELETE FROM UsuarioGrupoUsuario WHERE Id_Usuario = @IDUsuario
+                                    DELETE FROM Usuario WHERE IDUsuario = @IDUsuario";
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.Parameters.AddWithValue("@IDUsuario", _id);
 

@@ -43,5 +43,19 @@ namespace BLL
             GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
             grupoUsuarioDAL.Excluir(_idgrupoUsuario);
         }
+        public void AdicionarDescricaoGrupo(int _idgrupoUsuario, int _idDescricao)
+        {
+            
+            if (new PermissaoDAL().ExisteRelacionamento(_idgrupoUsuario, _idDescricao))
+            {
+                throw new Exception("Descrição já vinculado ao grupo.");
+            }
+            PermissaoDAL permissaoDAL = new PermissaoDAL();
+           // permissaoDAL.AdicionarDescricaoGrupo(_idgrupoUsuario, _idDescricao);
+        }
+        public void RemoverDescricaoGrupo(int _idgrupoUsuario, int _idDescricao)
+        {
+           // new PermissaoDAL().RemoverDescricaoGrupo(_idgrupoUsuario, _idDescricao);
+        }
     }
 }

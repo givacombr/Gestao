@@ -54,6 +54,7 @@ namespace DAL
                         permissao = new Permissao();
                         permissao.IdDescricao = Convert.ToInt32(rd["IdDescricao"]);
                         permissao.Descricao = rd["Descricao"].ToString();
+
                     }
                 }
                 //cmd.ExecuteScalar();
@@ -79,15 +80,16 @@ namespace DAL
             {
                 cn.ConnectionString = Conexao.StringDeConexao;
                 cmd.Connection = cn;
-                cmd.CommandText = @"SELECT Permissao.IdDescricao, Permissao.Descricao FROM Permissao
-                                    INNER JOIN PermissaoGrupoUsuario ON Permissao.IdDescricao = PermissaoGrupoUsuario.IdGrupoUsuario
-                                    WHERE IdGrupoUsuario = @IDGrupoUsuario";
+                cmd.CommandText = @"SELECT Permissao.IdDescricao, Permissao.Descricao FROM GrupoUsuario
+                                    INNER JOIN PermissaoGrupoUsuario ON GrupoUsuario.IDGrupoUsuario = PermissaoGrupoUsuario.IdGrupoUsuario
+									inner join Permissao on PermissaoGrupoUsuario.IDDescricao = Permissao.IDDescricao
+                                    WHERE GrupoUsuario.IDGrupoUsuario = @IDGrupoUsuario";
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.Parameters.AddWithValue("@IDGrupoUsuario", _idGrupoUsuario);
                 cn.Open();
                 using (SqlDataReader rd = cmd.ExecuteReader())
                 {
-                    if (rd.Read())
+                    while (rd.Read())
                     {
                         permissao= new Permissao();
                         permissao.IdDescricao = Convert.ToInt32(rd["IdDescricao"]);
@@ -236,43 +238,86 @@ namespace DAL
             }
         }
 
-        //public bool ValidarDescricao(int idPermissaoLogado, int idPermissao)
-        //{
-        //    SqlConnection cn = new SqlConnection();
-        //    SqlCommand cmd = new SqlCommand();
-        //    Permissao permissao = new Permissao();
-        //    try
-        //    {
-        //        cn.ConnectionString = Conexao.StringDeConexao;
-        //        cmd.Connection = cn;
-        //        cmd.CommandText = @"SELECT Permissao.IdDescricao, Permissao.Descricao FROM Permissao
-        //                            INNER JOIN PermissaoGrupoUsuario ON Permissao.IdDescricao = PermissaoGrupoUsuario.IdGrupoUsuario
-        //                            WHERE IdGrupoUsuario = @IDGrupoUsuario";
-        //        cmd.CommandType = System.Data.CommandType.Text;
-        //        //cmd.Parameters.AddWithValue("@IDGrupoUsuario", _idGrupoUsuario);
-        //        cn.Open();
-        //        using (SqlDataReader rd = cmd.ExecuteReader())
-        //        {
-        //            if (rd.Read())
-        //            {
-        //                permissao = new Permissao();
-        //                permissao.IdDescricao = Convert.ToInt32(rd["IdDescricao"]);
-        //                permissao.Descricao = rd["Descricao"].ToString();
-        //                GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
-        //                permissao.GrupoUsuarios = grupoUsuarioDAL.BuscarPorIdUsuario(permissao.IdDescricao);
-        //                //permissaos.Add(permissao);
-        //            }
-        //        }
-        //        //return permissaos;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception("Ocorreu um erro ao tentar buscar Grupo de Usuarios: " + ex.Message); ;
-        //    }
-        //    finally
-        //    {
-        //        cn.Close();
-        //    }
-        //}
+        public bool ExisteRelacionamento(int idgrupoUsuario, int idDescricao)
+        {
+            SqlConnection cn = new SqlConnection();
+            SqlCommand cmd = new SqlCommand();
+
+            try
+            {
+                cn.ConnectionString = Conexao.StringDeConexao;
+                cmd.Connection = cn;
+                //cmd.CommandText = @"SELECT 1 AS Retorno FROM  UsuarioGrupoUsuario 
+                //                    WHERE Id_Usuario = @Id_Usuario and Id_GrupoUsuario = @Id_GrupoUsuario";
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.Parameters.AddWithValue("@IDGrupoUsuario", idgrupoUsuario);
+                cmd.Parameters.AddWithValue("@Id_Descricao", idDescricao);
+
+                cn.Open();
+
+                using (SqlDataReader rd = cmd.ExecuteReader())
+                {
+                    while (rd.Read())
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public bool ExistirRelacionamento(int idPermissao, int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AdicionarPermissao(int idPermissao, int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool ValidarDescricao(int idPermissaoLogado, int idPermissao)
+        {
+            SqlConnection cn = new SqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            Permissao permissao = new Permissao();
+            try
+            {
+                cn.ConnectionString = Conexao.StringDeConexao;
+                cmd.Connection = cn;
+                cmd.CommandText = @"SELECT Permissao.IdDescricao, Permissao.Descricao FROM Permissao
+                                    INNER JOIN PermissaoGrupoUsuario ON Permissao.IdDescricao = PermissaoGrupoUsuario.IdGrupoUsuario
+                                    WHERE IdGrupoUsuario = @IDGrupoUsuario";
+                cmd.CommandType = System.Data.CommandType.Text;
+                //cmd.Parameters.AddWithValue("@IDGrupoUsuario", _idGrupoUsuario);
+                cn.Open();
+                using (SqlDataReader rd = cmd.ExecuteReader())
+                {
+                    if (rd.Read())
+                    {
+                        permissao = new Permissao();
+                        permissao.IdDescricao = Convert.ToInt32(rd["IdDescricao"]);
+                        permissao.Descricao = rd["Descricao"].ToString();
+                        GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
+                        permissao.GrupoUsuarios = grupoUsuarioDAL.BuscarPorIdUsuario(permissao.IdDescricao);
+                        //permissaos.Add(permissao);
+                    }
+                }
+                //return permissaos;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocorreu um erro ao tentar buscar Grupo de Usuarios: " + ex.Message); ;
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
     }
 }

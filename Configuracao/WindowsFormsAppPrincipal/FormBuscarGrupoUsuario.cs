@@ -44,16 +44,28 @@ namespace WindowsFormsAppPrincipal
         }
         private void buttonAdicionarGrupo_Click(object sender, EventArgs e)
         {
-
-            int id = ((GrupoUsuario)grupoUsuarioBindingSource.Current).IdGrupoUsuario;
-            using (FormAdicionarGrupo frm = new FormAdicionarGrupo(true, id))
+            try
             {
-                frm.ShowDialog();
+                //int id = ((GrupoUsuario)grupoUsuarioBindingSource.Current).IdGrupoUsuario;
+                //new PermissaoBLL().ValidarDescricao(2);
+                using (FormAdicionarGrupo frm = new FormAdicionarGrupo())
+                {
+                    frm.ShowDialog();
+                }
+                buttonBuscarGrupoUsuario_Click(sender, e);
             }
-            buttonBuscarGrupoUsuario_Click(sender, e);
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void buttonAlterarGrupo_Click(object sender, EventArgs e)
         {
+            if (grupoUsuarioBindingSource.Count <= 0)
+            {
+                MessageBox.Show("Não existe registro para ser alterado.");
+                return;
+            }
             int id = ((GrupoUsuario)grupoUsuarioBindingSource.Current).IdGrupoUsuario;//pegar o id do registro atual
 
             using (FormAdicionarGrupo frm = new FormAdicionarGrupo(true, id))
@@ -115,11 +127,26 @@ namespace WindowsFormsAppPrincipal
                 }
             }
             MessageBox.Show("Permissão adicionado com sucesso!");
-            
+
         }
         private void buttonExcluirDescricao_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (grupoUsuarioBindingSource.Count == 0 || permissoesBindingSource.Count == 0)
+                {
+                    MessageBox.Show("Não existe descrição do grupo para ser excluído.");
+                    return;
+                }
+                int IDGrupoUsuario = ((GrupoUsuario)grupoUsuarioBindingSource.Current).IdGrupoUsuario;
+                int IDDescricao = ((Permissao)permissoesBindingSource.Current).IdDescricao;
+                 
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }
         }
     }
 }
