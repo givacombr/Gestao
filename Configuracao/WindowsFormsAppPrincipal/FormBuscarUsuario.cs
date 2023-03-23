@@ -74,18 +74,25 @@ namespace WindowsFormsAppPrincipal
         }
         private void buttonAlterarUsuario_Click(object sender, EventArgs e)
         {
-            if (usuarioBindingSource.Count <= 0)
+            try
             {
-                MessageBox.Show("Não existe registro para ser alterado.");
-                return;
-            }
-            int id = ((Usuario)usuarioBindingSource.Current).IDUsuario;//pegar o id do registro atual
+                if (usuarioBindingSource.Count <= 0)
+                {
+                    MessageBox.Show("Não existe registro para ser alterado.");
+                    return;
+                }
+                int id = ((Usuario)usuarioBindingSource.Current).IDUsuario;//pegar o id do registro atual
 
-            using (FormAdicionarUsuario frm = new FormAdicionarUsuario(true, id))
-            {
-                frm.ShowDialog();
+                using (FormAdicionarUsuario frm = new FormAdicionarUsuario(true, id))
+                {
+                    frm.ShowDialog();
+                }
+                buttonbuscar_Click(sender, e);
             }
-            buttonbuscar_Click(sender, e);
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void textBox1_TextChanged(object sender, EventArgs e)
         {

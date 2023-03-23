@@ -13,11 +13,6 @@ namespace WindowsFormsAppPrincipal
         {
             InitializeComponent();
             alterar = _alterar;
-
-            if (alterar)
-            {
-                permissaoBindingSource.DataSource = new PermissaoBLL().BuscarPorId(_id);
-            }
         }
 
         private void buttonBuscarPermissao_Click(object sender, EventArgs e)
@@ -32,18 +27,23 @@ namespace WindowsFormsAppPrincipal
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void buttonSelecionarPermissao_Click(object sender, EventArgs e)
         {
-            if (permissaoBindingSource.Count > 0)
+            try
             {
-                Id = ((Permissao)permissaoBindingSource.Current).IdDescricao;
-                Close();
+                if (permissaoBindingSource.Count > 0)
+                {
+                    Id = ((Permissao)permissaoBindingSource.Current).IdDescricao;
+                    Close();
+                }
+                else
+                    MessageBox.Show("Não existe uma permissão de grupo para ser selecionada!");
             }
-            else
-                MessageBox.Show("Não existe uma permissão de grupo para ser selecionada!");
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
-
         private void buttonCancelarPermissao_Click(object sender, EventArgs e)
         {
             Close();

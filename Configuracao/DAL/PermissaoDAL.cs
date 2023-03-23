@@ -31,44 +31,6 @@ namespace DAL
                 cn.Close();
             }
         }
-        public Permissao BuscarPorId(int _id)
-        {
-            Permissao permissao = new Permissao();
-            SqlConnection cn = new SqlConnection();
-            SqlCommand cmd = new SqlCommand();
-            try
-            {
-                cn.ConnectionString = Conexao.StringDeConexao;
-                cmd.Connection = cn;
-                cmd.CommandText = @"SELECT Permissao.IdDescricao, Permissao.Descricao FROM Permissao
-                                    INNER JOIN PermissaoGrupoUsuario ON Permissao.IdDescricao = PermissaoGrupoUsuario.IdGrupoUsuario
-                                    WHERE IdGrupoUsuario = @IDGrupoUsuario";
-                //cmd.CommandText = @"SELECT TOP 100 IdDescricao, Descricao FROM Permissao WHERE IdDescricao = @IdDescricao";
-                cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Parameters.AddWithValue("@IdDescricao", _id);
-                cn.Open();
-                using (SqlDataReader rd = cmd.ExecuteReader())
-                {
-                    while (rd.Read())
-                    {
-                        permissao = new Permissao();
-                        permissao.IdDescricao = Convert.ToInt32(rd["IdDescricao"]);
-                        permissao.Descricao = rd["Descricao"].ToString();
-                    }
-                }
-                //cmd.ExecuteScalar();
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception("Ocorreu um erro ao tentar buscar uma permissão no banco: " + ex.Message);
-            }
-            finally
-            {
-                cn.Close();
-            }
-            return permissao;
-        }
         public List<Permissao> BuscarPorIdGrupo(int _idGrupoUsuario)
         {
             List<Permissao> permissaos = new List<Permissao>();
@@ -197,7 +159,6 @@ namespace DAL
                 cn.Close();
             }
         }
-
         public List<Permissao> BuscarPermissaoPorNome(string _nomePermissao)
         {
             List<Permissao> permissoes = new List<Permissao>();
@@ -236,40 +197,6 @@ namespace DAL
                 cn.Close();
             }
         }
-
-        //public bool ExisteRelacionamento(int idgrupoUsuario, int idDescricao)
-        //{
-        //    SqlConnection cn = new SqlConnection();
-        //    SqlCommand cmd = new SqlCommand();
-
-        //    try
-        //    {
-        //        cn.ConnectionString = Conexao.StringDeConexao;
-        //        cmd.Connection = cn;
-        //        cmd.CommandText = @"SELECT 1 AS Retorno FROM  UsuarioGrupoUsuario 
-        //                            WHERE Id_Usuario = @Id_Usuario and Id_GrupoUsuario = @Id_GrupoUsuario";
-        //        cmd.CommandType = System.Data.CommandType.Text;
-        //        cmd.Parameters.AddWithValue("@IDGrupoUsuario", idgrupoUsuario);
-        //        cmd.Parameters.AddWithValue("@Id_Descricao", idDescricao);
-
-        //        cn.Open();
-
-        //        using (SqlDataReader rd = cmd.ExecuteReader())
-        //        {
-        //            while (rd.Read())
-        //            {
-        //                return true;
-        //            }
-        //        }
-        //        return false;
-        //    }
-        //    catch (Exception)
-        //    {
-
-        //        throw;
-        //    }
-        //}
-
         public bool ExistirRelacionamento(int idPermissao, int id)
         {
             SqlConnection cn = new SqlConnection();
@@ -304,7 +231,6 @@ namespace DAL
                 cn.Close();
             }
         }
-
         public void AdicionarPermissao(int idPermissao, int id)
         {
             SqlConnection cn = new SqlConnection();
@@ -313,7 +239,7 @@ namespace DAL
                 cn.ConnectionString = Conexao.StringDeConexao;
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = cn;
-                cmd.CommandText = @"INSERT INTO PermissaoGrupoUsuario(Id_Descricao, Id_GrupoUsuario) 
+                cmd.CommandText = @"INSERT INTO PermissaoGrupoUsuario(Id_Descricao, IdGrupoUsuario) 
                                     VALUES (@Id_Descricao, @Id_GrupoUsuario)";
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.Parameters.AddWithValue("@Id_Descricao", idPermissao);
@@ -331,7 +257,6 @@ namespace DAL
                 cn.Close();
             }
         }
-
         public void RemoverDescricaoGrupo(int idgrupoUsuario, int idDescricao)
         {
             SqlConnection cn = new SqlConnection();
@@ -358,71 +283,5 @@ namespace DAL
                 cn.Close();
             }
         }
-
-        /*public void AdicionarDescricaoGrupo(int idgrupoUsuario, int idDescricao)
-        {
-            SqlConnection cn = new SqlConnection();
-            try
-            {
-                cn.ConnectionString = Conexao.StringDeConexao;
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = cn;
-                cmd.CommandText = @"INSERT INTO PermissaoGrupoUsuario(IDDescricao, IDDescricao) 
-                                    VALUES (@IDDescricao, @IDDescricao)";
-                cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Parameters.AddWithValue("@IDDescricao", idgrupoUsuario);
-                cmd.Parameters.AddWithValue("@IDDescricao", idDescricao);
-
-                cn.Open();
-                cmd.ExecuteScalar();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Ocorreu um erro ao tentar inserir uma permissão no banco: " + ex.Message);
-            }
-            finally
-            {
-                cn.Close();
-            }
-        }*/
-
-        //public bool ValidarDescricao(int idPermissaoLogado, int idPermissao)
-        //{
-        //    SqlConnection cn = new SqlConnection();
-        //    SqlCommand cmd = new SqlCommand();
-        //    Permissao permissao = new Permissao();
-        //    try
-        //    {
-        //        cn.ConnectionString = Conexao.StringDeConexao;
-        //        cmd.Connection = cn;
-        //        cmd.CommandText = @"SELECT Permissao.IdDescricao, Permissao.Descricao FROM Permissao
-        //                            INNER JOIN PermissaoGrupoUsuario ON Permissao.IdDescricao = PermissaoGrupoUsuario.IdGrupoUsuario
-        //                            WHERE IdGrupoUsuario = @IDGrupoUsuario";
-        //        cmd.CommandType = System.Data.CommandType.Text;
-        //        //cmd.Parameters.AddWithValue("@IDGrupoUsuario", _idGrupoUsuario);
-        //        cn.Open();
-        //        using (SqlDataReader rd = cmd.ExecuteReader())
-        //        {
-        //            if (rd.Read())
-        //            {
-        //                permissao = new Permissao();
-        //                permissao.IdDescricao = Convert.ToInt32(rd["IdDescricao"]);
-        //                permissao.Descricao = rd["Descricao"].ToString();
-        //                GrupoUsuarioDAL grupoUsuarioDAL = new GrupoUsuarioDAL();
-        //                permissao.GrupoUsuarios = grupoUsuarioDAL.BuscarPorIdUsuario(permissao.IdDescricao);
-        //                //permissaos.Add(permissao);
-        //            }
-        //        }
-        //        //return permissaos;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception("Ocorreu um erro ao tentar buscar Grupo de Usuarios: " + ex.Message); ;
-        //    }
-        //    finally
-        //    {
-        //        cn.Close();
-        //    }
-        //}
     }
 }

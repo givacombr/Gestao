@@ -7,7 +7,6 @@ namespace WindowsFormsAppPrincipal
 {
     public partial class FormBuscarGrupoUsuario : Form
     {
-        //public int Id;
         public FormBuscarGrupoUsuario()
         {
             InitializeComponent();
@@ -53,8 +52,6 @@ namespace WindowsFormsAppPrincipal
         {
             try
             {
-                //int id = ((GrupoUsuario)grupoUsuarioBindingSource.Current).IdGrupoUsuario;
-                //new PermissaoBLL().ValidarDescricao(2);
                 using (FormAdicionarGrupo frm = new FormAdicionarGrupo())
                 {
                     frm.ShowDialog();
@@ -68,18 +65,25 @@ namespace WindowsFormsAppPrincipal
         }
         private void buttonAlterarGrupo_Click(object sender, EventArgs e)
         {
-            if (grupoUsuarioBindingSource.Count <= 0)
+            try
             {
-                MessageBox.Show("Não existe registro para ser alterado.");
-                return;
-            }
-            int id = ((GrupoUsuario)grupoUsuarioBindingSource.Current).IdGrupoUsuario;//pegar o id do registro atual
+                if (grupoUsuarioBindingSource.Count <= 0)
+                {
+                    MessageBox.Show("Não existe registro para ser alterado.");
+                    return;
+                }
+                int id = ((GrupoUsuario)grupoUsuarioBindingSource.Current).IdGrupoUsuario;//pegar o id do registro atual
 
-            using (FormAdicionarGrupo frm = new FormAdicionarGrupo(true, id))
-            {
-                frm.ShowDialog();
+                using (FormAdicionarGrupo frm = new FormAdicionarGrupo(true, id))
+                {
+                    frm.ShowDialog();
+                }
+                buttonBuscarGrupoUsuario_Click(sender, e);
             }
-            buttonBuscarGrupoUsuario_Click(sender, e);
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
@@ -110,13 +114,13 @@ namespace WindowsFormsAppPrincipal
 
                 int id = ((GrupoUsuario)grupoUsuarioBindingSource.Current).IdGrupoUsuario;
                 new GrupoUsuarioBLL().Excluir(id);
+                grupoUsuarioBindingSource.RemoveCurrent();
             }
             catch (Exception)
             {
                 MessageBox.Show("Registro excluído com sucesso!");
                 buttonBuscarGrupoUsuario_Click(null, null);
             }
-
         }
         private void buttonAddDescricao_Click(object sender, EventArgs e)
         {
@@ -129,8 +133,8 @@ namespace WindowsFormsAppPrincipal
                         return;
                     {
                         PermissaoBLL permissaoBLL = new PermissaoBLL();
-                        int idPermissao = ((GrupoUsuario)grupoUsuarioBindingSource.Current).IdGrupoUsuario;
-                        permissaoBLL.AdicionarPermissao(idPermissao, frm.Id);
+                        int idGrupoUsuario = ((GrupoUsuario)grupoUsuarioBindingSource.Current).IdGrupoUsuario;
+                        permissaoBLL.AdicionarPermissao(frm.Id, idGrupoUsuario);
                         MessageBox.Show("Permissão adicionado com sucesso!");
                     }
                 }
@@ -146,7 +150,6 @@ namespace WindowsFormsAppPrincipal
         {
             try
             {
-                //if (permissoesBindingSource.Count == 0 || permissoesBindingSource.Count == 0)
                 if (grupoUsuarioBindingSource.Count == 0 || permissoesBindingSource.Count == 0)
                 {
                     MessageBox.Show("Não existe descrição do grupo para ser excluído.");

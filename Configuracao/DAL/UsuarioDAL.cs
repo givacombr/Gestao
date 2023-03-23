@@ -134,9 +134,8 @@ namespace DAL
                 cn.ConnectionString = Conexao.StringDeConexao;
                 cmd.Connection = cn;
                 cmd.CommandText = @"SELECT IDUsuario, Nome, NomeUsuario, CPF, Email, Ativo 
-                                    FROM Usuario WHERE NomeUsuario like @NomeUsuario order by Nome";/*, IdUsuario = @IdUsuario";*/
+                                    FROM Usuario WHERE NomeUsuario like @NomeUsuario order by Nome";
                 cmd.Parameters.AddWithValue("@NomeUsuario", "%" + _nomeUsuario + "%");
-                //cmd.Parameters.AddWithValue("@IdUsuario", _nomeUsuario);
                 cmd.CommandType = System.Data.CommandType.Text;
 
                 cn.Open();
@@ -187,7 +186,6 @@ namespace DAL
 
                 cn.Open();
                 cmd.ExecuteNonQuery();
-                //cmd.ExecuteScalar();
             }
             catch (Exception ex)
             {
@@ -281,7 +279,6 @@ namespace DAL
         {
             SqlConnection cn = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
-            //Usuario usuario = new Usuario();
             try
             {
                 cn.ConnectionString = Conexao.StringDeConexao;

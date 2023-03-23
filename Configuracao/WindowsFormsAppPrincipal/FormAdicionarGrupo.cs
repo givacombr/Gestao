@@ -50,7 +50,6 @@ namespace WindowsFormsAppPrincipal
             try
             {
                 GrupoUsuarioBLL grupoUsuarioBLL = new GrupoUsuarioBLL();
-                //grupoUsuarioBindingSource = grupoUsuarioBLL.BuscarGrupoPorNome(nomeGrupoTextBox.Text);
             }
             catch (Exception ex)
             {
