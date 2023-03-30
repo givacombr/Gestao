@@ -7,6 +7,14 @@ namespace BLL
 {
     public class UsuarioBLL
     {
+        public void AutenticarUsuario(string _nomeUsuario, string _senha)
+        {
+            Usuario usuario = new UsuarioDAL().BuscarUsuarioPorNome(_nomeUsuario);
+            if (usuario.Senha == _senha && usuario.Ativo)
+                Constantes.IdUsuarioLogado = usuario.IDUsuario;
+            else
+                throw new Exception("Usuário ou senha incorreta");
+        }
         public void Inserir(Usuario _usuario, string _confirmacaoDeSenha)
         {
             ValidarPermissao(1);
