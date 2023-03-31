@@ -115,7 +115,6 @@
             this.buttonCadastrar.TabIndex = 7;
             this.buttonCadastrar.Text = "CADASTRE - SE";
             this.buttonCadastrar.UseVisualStyleBackColor = false;
-            this.buttonCadastrar.Click += new System.EventHandler(this.buttonCadastrar_Click);
             // 
             // FormLogin
             // 
