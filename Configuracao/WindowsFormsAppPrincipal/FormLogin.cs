@@ -34,7 +34,16 @@ namespace WindowsFormsAppPrincipal
 
         private void buttonCancelar_Click(object sender, EventArgs e)
         {
-            Close();
+            Application.Exit();
+            //Close();
+        }
+
+        private void buttonCadastrar_Click(object sender, EventArgs e)
+        {
+            using (FormAdicionarUsuario frm = new FormAdicionarUsuario())
+            {
+                frm.ShowDialog();
+            }
         }
     }
 }
