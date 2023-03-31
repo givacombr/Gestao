@@ -38,12 +38,12 @@ namespace WindowsFormsAppPrincipal
                 }
                 else
                     MessageBox.Show("Não existe uma permissão de grupo para ser selecionada!");
-            }
+        }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-        }
+}
         private void buttonCancelarPermissao_Click(object sender, EventArgs e)
         {
             Close();

@@ -267,32 +267,6 @@ namespace DAL
                 }
             }
         }
-        //public void Excluir(int _id)
-        //{
-        //    SqlConnection cn = new SqlConnection();
-        //    try
-        //    {
-        //        cn.ConnectionString = Conexao.StringDeConexao;
-        //        SqlCommand cmd = new SqlCommand();
-        //        cmd.Connection = cn;
-        //        cmd.CommandText = @"DELETE FROM PermissaoGrupoUsuario WHERE IDGrupoUsuario = @IDGrupoUsuario
-        //                            DELETE FROM UsuarioGrupoUsuario WHERE Id_GrupoUsuario = @IDGrupoUsuario
-        //                            DELETE FROM GrupoUsuario WHERE IDGrupoUsuario = @IDGrupoUsuario";
-        //        cmd.CommandType = System.Data.CommandType.Text;
-        //        cmd.Parameters.AddWithValue("@IDGrupoUsuario", _id);
-
-        //        cn.Open();
-        //        cmd.ExecuteScalar();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception("Ocorreu um erro ao tentar excluir o grupo no banco: " + ex.Message);
-        //    }
-        //    finally
-        //    {
-        //        cn.Close();
-        //    }
-        //}
         public List<GrupoUsuario> BuscarPorId(int idGrupoUsuario)
         {
             List<GrupoUsuario> grupo_usuarios = new List<GrupoUsuario>();

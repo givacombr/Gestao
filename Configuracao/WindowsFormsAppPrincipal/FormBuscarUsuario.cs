@@ -61,7 +61,7 @@ namespace WindowsFormsAppPrincipal
                         UsuarioBLL usuarioBLL = new UsuarioBLL();
                         int idUsuario = ((Usuario)usuarioBindingSource.Current).IDUsuario;
                         usuarioBLL.AdicionarGrupo(idUsuario, frm.Id);
-                        MessageBox.Show("Grupo adionado com sucesso.");
+                        //MessageBox.Show("Grupo adionado com sucesso.");
                     }
                 }
                 catch (Exception ex)

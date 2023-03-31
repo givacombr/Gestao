@@ -135,7 +135,7 @@ namespace WindowsFormsAppPrincipal
                         PermissaoBLL permissaoBLL = new PermissaoBLL();
                         int idGrupoUsuario = ((GrupoUsuario)grupoUsuarioBindingSource.Current).IdGrupoUsuario;
                         permissaoBLL.AdicionarPermissao(frm.Id, idGrupoUsuario);
-                        MessageBox.Show("Permissão adicionado com sucesso!");
+                        //MessageBox.Show("Permissão adicionado com sucesso!");
                     }
                 }
                 catch (Exception ex)
