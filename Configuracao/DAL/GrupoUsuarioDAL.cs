@@ -174,32 +174,125 @@ namespace DAL
                 cn.Close();
             }
         }
-        public void Excluir(int _id)
+        public void Excluir(int _id, SqlTransaction _transaction = null)
         {
-            SqlConnection cn = new SqlConnection();
-            try
+            SqlTransaction transaction = _transaction;
+            using (SqlConnection cn = new SqlConnection(Conexao.StringDeConexao))
             {
-                cn.ConnectionString = Conexao.StringDeConexao;
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = cn;
-                cmd.CommandText = @"DELETE FROM PermissaoGrupoUsuario WHERE IDGrupoUsuario = @IDGrupoUsuario
-                                    DELETE FROM UsuarioGrupoUsuario WHERE Id_GrupoUsuario = @IDGrupoUsuario
-                                    DELETE FROM GrupoUsuario WHERE IDGrupoUsuario = @IDGrupoUsuario";
-                cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Parameters.AddWithValue("@IDGrupoUsuario", _id);
+                using (SqlCommand cmd = new SqlCommand("DELETE FROM GrupoUsuario WHERE IDGrupoUsuario = @IDGrupoUsuario", cn))
+                {
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.Parameters.AddWithValue("@IDGrupoUsuario", _id);
+                    try
+                    {
+                        if (_transaction == null)
+                        {
+                            cn.Open();
+                            transaction = cn.BeginTransaction();
+                        }
+                        cmd.Transaction = transaction;
+                        cmd.Connection = transaction.Connection;
 
-                cn.Open();
-                cmd.ExecuteScalar();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Ocorreu um erro ao tentar excluir o grupo no banco: " + ex.Message);
-            }
-            finally
-            {
-                cn.Close();
+                        RemoverTodasPermissoes(_id, transaction);
+                        RemoverTodosUsuario(_id, transaction);
+                        cmd.ExecuteNonQuery();
+
+                        if (_transaction == null)
+                            transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw new Exception("Ocorreu um erro ao tentar excluir um Grupo de Usuarios do banco de dados: " + ex.Message);
+                    }
+                }
             }
         }
+        private void RemoverTodosUsuario(int _id, SqlTransaction _transaction = null)
+        {
+            SqlTransaction transaction = _transaction;
+            using (SqlConnection cn = new SqlConnection(Conexao.StringDeConexao))
+            {
+                using (SqlCommand cmd = new SqlCommand("DELETE FROM UsuarioGrupoUsuario WHERE Id_GrupoUsuario = @IDGrupoUsuario", cn))
+                {
+                    cmd.Parameters.AddWithValue("@IDGrupoUsuario", _id);
+                    if (_transaction == null)
+                    {
+                        cn.Open();
+                        transaction = cn.BeginTransaction();
+                    }
+                    cmd.Transaction = transaction;
+                    cmd.Connection = transaction.Connection;
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                        if (_transaction == null)
+                            transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw new Exception("Ocorreu um erro ao tentar excluir um Grupo de Usuarios do banco de dados: " + ex.Message);
+                    }
+                }
+            }
+        }
+        private void RemoverTodasPermissoes(int _id, SqlTransaction _transaction = null)
+        {
+            SqlTransaction transaction = _transaction;
+            using (SqlConnection cn = new SqlConnection(Conexao.StringDeConexao))
+            {
+                using (SqlCommand cmd = new SqlCommand("DELETE FROM PermissaoGrupoUsuario WHERE IDGrupoUsuario = @IDGrupoUsuario", cn))
+                {
+                    cmd.Parameters.AddWithValue("@IDGrupoUsuario", _id);
+                    if (_transaction == null)
+                    {
+                        cn.Open();
+                        transaction = cn.BeginTransaction();
+                    }
+                    cmd.Transaction = transaction;
+                    cmd.Connection = transaction.Connection;
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+
+                        if (_transaction == null)
+                            transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw new Exception("Ocorreu um erro ao tentar excluir um Grupo de Usuarios do banco de dados: " + ex.Message);
+                    }
+                }
+            }
+        }
+        //public void Excluir(int _id)
+        //{
+        //    SqlConnection cn = new SqlConnection();
+        //    try
+        //    {
+        //        cn.ConnectionString = Conexao.StringDeConexao;
+        //        SqlCommand cmd = new SqlCommand();
+        //        cmd.Connection = cn;
+        //        cmd.CommandText = @"DELETE FROM PermissaoGrupoUsuario WHERE IDGrupoUsuario = @IDGrupoUsuario
+        //                            DELETE FROM UsuarioGrupoUsuario WHERE Id_GrupoUsuario = @IDGrupoUsuario
+        //                            DELETE FROM GrupoUsuario WHERE IDGrupoUsuario = @IDGrupoUsuario";
+        //        cmd.CommandType = System.Data.CommandType.Text;
+        //        cmd.Parameters.AddWithValue("@IDGrupoUsuario", _id);
+
+        //        cn.Open();
+        //        cmd.ExecuteScalar();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception("Ocorreu um erro ao tentar excluir o grupo no banco: " + ex.Message);
+        //    }
+        //    finally
+        //    {
+        //        cn.Close();
+        //    }
+        //}
         public List<GrupoUsuario> BuscarPorId(int idGrupoUsuario)
         {
             List<GrupoUsuario> grupo_usuarios = new List<GrupoUsuario>();
