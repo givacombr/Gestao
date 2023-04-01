@@ -43,35 +43,39 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(170, 12);
+            this.label1.Location = new System.Drawing.Point(227, 15);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 13);
+            this.label1.Size = new System.Drawing.Size(54, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Usuário";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(170, 58);
+            this.label2.Location = new System.Drawing.Point(227, 71);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 13);
+            this.label2.Size = new System.Drawing.Size(46, 16);
             this.label2.TabIndex = 2;
             this.label2.Text = "Senha";
             // 
             // textBoxSenha
             // 
             this.textBoxSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxSenha.Location = new System.Drawing.Point(170, 78);
+            this.textBoxSenha.Location = new System.Drawing.Point(227, 96);
+            this.textBoxSenha.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxSenha.Name = "textBoxSenha";
-            this.textBoxSenha.PasswordChar = '*';
-            this.textBoxSenha.Size = new System.Drawing.Size(155, 23);
+            this.textBoxSenha.Size = new System.Drawing.Size(205, 26);
             this.textBoxSenha.TabIndex = 3;
+            this.textBoxSenha.UseSystemPasswordChar = true;
             // 
             // buttonEntrar
             // 
-            this.buttonEntrar.Location = new System.Drawing.Point(169, 109);
+            this.buttonEntrar.Location = new System.Drawing.Point(225, 134);
+            this.buttonEntrar.Margin = new System.Windows.Forms.Padding(4);
             this.buttonEntrar.Name = "buttonEntrar";
-            this.buttonEntrar.Size = new System.Drawing.Size(75, 23);
+            this.buttonEntrar.Size = new System.Drawing.Size(100, 28);
             this.buttonEntrar.TabIndex = 4;
             this.buttonEntrar.Text = "Entrar";
             this.buttonEntrar.UseVisualStyleBackColor = false;
@@ -79,9 +83,10 @@
             // 
             // buttonCancelar
             // 
-            this.buttonCancelar.Location = new System.Drawing.Point(250, 109);
+            this.buttonCancelar.Location = new System.Drawing.Point(333, 134);
+            this.buttonCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCancelar.Name = "buttonCancelar";
-            this.buttonCancelar.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancelar.Size = new System.Drawing.Size(100, 28);
             this.buttonCancelar.TabIndex = 5;
             this.buttonCancelar.Text = "Cancelar";
             this.buttonCancelar.UseVisualStyleBackColor = false;
@@ -91,37 +96,41 @@
             // 
             this.textBoxUsuario.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
             this.textBoxUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxUsuario.Location = new System.Drawing.Point(170, 32);
+            this.textBoxUsuario.Location = new System.Drawing.Point(227, 39);
+            this.textBoxUsuario.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxUsuario.MaxLength = 100;
             this.textBoxUsuario.Name = "textBoxUsuario";
-            this.textBoxUsuario.Size = new System.Drawing.Size(155, 23);
+            this.textBoxUsuario.Size = new System.Drawing.Size(205, 26);
             this.textBoxUsuario.TabIndex = 1;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(16, 15);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(152, 152);
+            this.pictureBox1.Size = new System.Drawing.Size(203, 187);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             // 
             // buttonCadastrar
             // 
-            this.buttonCadastrar.Location = new System.Drawing.Point(169, 141);
+            this.buttonCadastrar.Location = new System.Drawing.Point(225, 174);
+            this.buttonCadastrar.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCadastrar.Name = "buttonCadastrar";
-            this.buttonCadastrar.Size = new System.Drawing.Size(156, 23);
+            this.buttonCadastrar.Size = new System.Drawing.Size(208, 28);
             this.buttonCadastrar.TabIndex = 7;
             this.buttonCadastrar.Text = "CADASTRE - SE";
             this.buttonCadastrar.UseVisualStyleBackColor = false;
             // 
             // FormLogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(341, 176);
+            this.ClientSize = new System.Drawing.Size(455, 217);
+            this.ControlBox = false;
             this.Controls.Add(this.buttonCadastrar);
             this.Controls.Add(this.textBoxUsuario);
             this.Controls.Add(this.pictureBox1);
@@ -130,6 +139,7 @@
             this.Controls.Add(this.textBoxSenha);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormLogin";
