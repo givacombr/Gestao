@@ -1,0 +1,71 @@
+using BLL;
+using System;
+using System.Data.SqlClient;
+using System.Windows.Forms;
+
+namespace WindowsFormsAppPrincipal
+{
+    public partial class FormLogin : Form
+    {
+        //Thread th1;
+        public bool Logou;
+        public int Id;
+
+        public FormLogin()
+        {
+            InitializeComponent();
+            Logou = false;
+        }
+
+        private void buttonEntrar_Click(object sender, EventArgs e)
+        {
+            //this.Close();
+            //th1 = new Thread(abrirJanela);
+            //th1.SetApartmentState(ApartmentState.STA);
+            //th1.Start();
+            new UsuarioBLL().AutenticarUsuario(textBoxUsuario.Text, textBoxSenha.Text);
+            Logou = true;
+            Close();
+        }
+
+        private void abrirJanela(object obj)
+        {
+            Application.Run(new FormPrincipal());
+        }
+
+        private void buttonCancelar_Click(object sender, EventArgs e)
+        {
+            textBoxUsuario.Text = "";
+            textBoxSenha.Text = "";
+            textBoxUsuario.Focus();
+            //Application.Exit();
+            //Close();
+        }
+
+        private void FormLogin_Load(object sender, EventArgs e)
+        {
+
+        }
+        private void textBoxUsuario_TextChanged(object sender, EventArgs e)
+        {
+            textBoxSenha.Focus();
+        }
+
+        private void textBoxSenha_TextChanged(object sender, EventArgs e)
+        {
+            buttonEntrar_Click(null, null);
+        }
+
+        private void checkBoxMostraSenha_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxMostraSenha.Checked)
+            {
+                textBoxSenha.PasswordChar = '\0';
+            }
+            else
+            {
+                textBoxSenha.PasswordChar = '*';
+            }
+        }
+    }
+}

@@ -7,14 +7,14 @@ namespace DAL
 {
     public class UsuarioDAL
     {
-        public void AutenticarUsuario(string _nomeUsuario, string _senha)
-        {
-            Usuario usuario = new UsuarioDAL().BuscarUsuarioPorNome(_nomeUsuario);
-            if (usuario.Senha == _senha && usuario.Ativo)
-                Constantes.IdUsuarioLogado = usuario.IDUsuario;
-            else
-                throw new Exception("Usuário ou senha incorreta");
-        }
+        //public void AutenticarUsuario(string _nomeUsuario, string _senha)
+        //{
+        //    Usuario usuario = new UsuarioDAL().BuscarUsuarioPorNome(_nomeUsuario);
+        //    if (usuario.Senha == _senha && usuario.Ativo)
+        //        Constantes.IdUsuarioLogado = usuario.IDUsuario;
+        //    else
+        //        throw new Exception("Usuário ou senha incorreta");
+        //}
         public void Inserir(Usuario _usuario)
         {
             SqlConnection cn = new SqlConnection();//cn é um objeto de conexao
