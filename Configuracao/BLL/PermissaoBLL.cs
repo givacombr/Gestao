@@ -14,7 +14,7 @@ namespace BLL
         }
         public void AdicionarPermissao(int _idPermissao, int _id)
         {
-            new UsuarioBLL().ValidarPermissao(9);
+            //new UsuarioBLL().ValidarPermissao(9);
             if (new PermissaoDAL().ExistirRelacionamento(_idPermissao, _id))
             {
                 throw new Exception("Permissão já vinculada a Descrição.");

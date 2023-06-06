@@ -10,14 +10,16 @@ namespace BLL
         //public void AutenticarUsuario(string _nomeUsuario, string _senha)
         //{
         //    Usuario usuario = new UsuarioDAL().BuscarUsuarioPorNome(_nomeUsuario);
-        //    if (usuario.Senha == _senha && usuario.Ativo)
+        //    if (_senha == usuario.Senha && usuario.Ativo)
+        //    //if (usuario.Senha == _senha && usuario.Ativo)
         //        Constantes.IdUsuarioLogado = usuario.IDUsuario;
+        //    //Constantes.IdUsuarioLogado = usuario.IDUsuario;
         //    else
         //        throw new Exception("Usuário ou senha incorreta");
         //}
         public void Inserir(Usuario _usuario, string _confirmacaoDeSenha)
         {
-            ValidarPermissao(1);
+            //ValidarPermissao(1);
 
             ValidarDados(_usuario, _confirmacaoDeSenha);
 
@@ -54,7 +56,7 @@ namespace BLL
         }
         public Usuario BuscarUsuarioPorNome(string _nomeUsuario)
         {
-            ValidarPermissao(4);
+            //ValidarPermissao(4);
             if (String.IsNullOrEmpty(_nomeUsuario))
                 throw new Exception("Informe o nome do usuário.");
 
@@ -63,19 +65,19 @@ namespace BLL
         }
         public List<Usuario> BuscarTodos()
         {
-            ValidarPermissao(4);
+            //ValidarPermissao(4);
             UsuarioDAL usuarioDAL = new UsuarioDAL();
             return usuarioDAL.BuscarTodos();
         }
         public Usuario BuscarPorId(int _idUsuario)
         {
-            ValidarPermissao(4);
+            //ValidarPermissao(4);
             UsuarioDAL usuarioDAL = new UsuarioDAL();
             return usuarioDAL.BuscarPorId(_idUsuario);
         }
         public void Alterar(Usuario _alterarUsuario, string _confirmacaoDeSenha)
         {
-            ValidarPermissao(2);
+            //ValidarPermissao(2);
             ValidarDados(_alterarUsuario, _confirmacaoDeSenha);
 
             UsuarioDAL usuarioDAL = new UsuarioDAL();
@@ -83,14 +85,14 @@ namespace BLL
         }
         public void Excluir(int _id)
         {
-            ValidarPermissao(3);
+            //ValidarPermissao(3);
 
             UsuarioDAL usuarioDAL = new UsuarioDAL();
             usuarioDAL.Excluir(_id);
         }
         public void AdicionarGrupo(int _idUsuario, int _idGrupoUsuario)
         {
-            ValidarPermissao(10);
+            //ValidarPermissao(10);
             if (new UsuarioDAL().ExisteRelacionamento(_idUsuario, _idGrupoUsuario))
             {
                 throw new Exception("Usuário já vinculado ao grupo.");
@@ -100,7 +102,7 @@ namespace BLL
         }
         public void RemoverGrupoUsuario(int _idUsuario, int _idGrupoUsuario)
         {
-            ValidarPermissao(7);
+            //ValidarPermissao(7);
             new UsuarioDAL().RemoverGrupoUsuario(_idUsuario, _idGrupoUsuario);
         }
     }

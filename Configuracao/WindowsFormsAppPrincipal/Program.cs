@@ -13,8 +13,8 @@ namespace WindowsFormsAppPrincipal
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormPrincipal());
-            //Application.Run(new FormLogin());
+            //Application.Run(new FormPrincipal());
+            Application.Run(new FormLogin());
         }
     }
 }

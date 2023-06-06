@@ -5,10 +5,11 @@ namespace WindowsFormsAppPrincipal
 {
     public partial class FormPrincipal : Form
     {
+        public int Id;
         public FormPrincipal()
         {
             InitializeComponent();
-            Constantes.IdUsuarioLogado = 20;
+            Constantes.IdUsuarioLogado = Id;
         }
         private void usuarioToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
