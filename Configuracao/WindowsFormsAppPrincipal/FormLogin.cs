@@ -20,8 +20,8 @@ namespace WindowsFormsAppPrincipal
         private void buttonEntrar_Click(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection();
-            con.ConnectionString = @"User ID=SA;Initial Catalog=Gestao;Data Source=.\SQLEXPRESS;Password=admin123";
-            //con.ConnectionString = @"User ID=SA;Initial Catalog=Gestao;Data Source=.\SQLEXPRESS2019;Password=Senailab02";
+            //con.ConnectionString = @"User ID=SA;Initial Catalog=Gestao;Data Source=.\SQLEXPRESS;Password=admin123";
+            con.ConnectionString = @"User ID=SA;Initial Catalog=Gestao;Data Source=.\SQLEXPRESS2019;Password=Senailab02";
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = con;
             con.Open();
