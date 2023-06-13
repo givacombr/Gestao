@@ -42,10 +42,50 @@ namespace WindowsFormsAppPrincipal
                 }
                 //int id = ((Cliente)clienteBindingSource.Current).Id; resumindo o código, como estar abaixo.
                 new ClienteBLL().Excluir(((Cliente)clienteBindingSource.Current).Id);
+                clienteBindingSource.RemoveCurrent();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void buttonInserir_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (FormCadastroCliente frm = new FormCadastroCliente())
+                {
+                    frm.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void buttonAlterar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (clienteBindingSource.Count == 0)
+                {
+                    MessageBox.Show("Não existe cliente para ser alterado.");
+                    return;
+                }
+                int id = ((Cliente)clienteBindingSource.Current).Id;
+
+                using (FormCadastroCliente frm = new FormCadastroCliente(id))
+                {
+                    frm.ShowDialog();
+                }
+                buttonBuscar_Click(null, null);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
             }
         }
     }

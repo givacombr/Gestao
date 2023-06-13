@@ -57,20 +57,8 @@
             nomeLabel.Location = new System.Drawing.Point(2, 82);
             nomeLabel.Name = "nomeLabel";
             nomeLabel.Size = new System.Drawing.Size(44, 16);
-            nomeLabel.TabIndex = 1;
+            nomeLabel.TabIndex = 0;
             nomeLabel.Text = "Nome";
-            // 
-            // nomeTextBox
-            // 
-            this.nomeTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.clienteBindingSource, "Nome", true));
-            this.nomeTextBox.Location = new System.Drawing.Point(5, 101);
-            this.nomeTextBox.Name = "nomeTextBox";
-            this.nomeTextBox.Size = new System.Drawing.Size(445, 22);
-            this.nomeTextBox.TabIndex = 2;
-            // 
-            // clienteBindingSource
-            // 
-            this.clienteBindingSource.DataSource = typeof(Models.Cliente);
             // 
             // cPFLabel
             // 
@@ -78,16 +66,8 @@
             cPFLabel.Location = new System.Drawing.Point(453, 82);
             cPFLabel.Name = "cPFLabel";
             cPFLabel.Size = new System.Drawing.Size(33, 16);
-            cPFLabel.TabIndex = 3;
+            cPFLabel.TabIndex = 2;
             cPFLabel.Text = "CPF";
-            // 
-            // cPFTextBox
-            // 
-            this.cPFTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.clienteBindingSource, "CPF", true));
-            this.cPFTextBox.Location = new System.Drawing.Point(456, 101);
-            this.cPFTextBox.Name = "cPFTextBox";
-            this.cPFTextBox.Size = new System.Drawing.Size(100, 22);
-            this.cPFTextBox.TabIndex = 4;
             // 
             // rGLabel
             // 
@@ -95,16 +75,8 @@
             rGLabel.Location = new System.Drawing.Point(568, 82);
             rGLabel.Name = "rGLabel";
             rGLabel.Size = new System.Drawing.Size(27, 16);
-            rGLabel.TabIndex = 5;
+            rGLabel.TabIndex = 4;
             rGLabel.Text = "RG";
-            // 
-            // rGTextBox
-            // 
-            this.rGTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.clienteBindingSource, "RG", true));
-            this.rGTextBox.Location = new System.Drawing.Point(562, 101);
-            this.rGTextBox.Name = "rGTextBox";
-            this.rGTextBox.Size = new System.Drawing.Size(100, 22);
-            this.rGTextBox.TabIndex = 6;
             // 
             // emailLabel
             // 
@@ -112,16 +84,8 @@
             emailLabel.Location = new System.Drawing.Point(111, 140);
             emailLabel.Name = "emailLabel";
             emailLabel.Size = new System.Drawing.Size(45, 16);
-            emailLabel.TabIndex = 7;
+            emailLabel.TabIndex = 8;
             emailLabel.Text = "E-mail";
-            // 
-            // emailTextBox
-            // 
-            this.emailTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.clienteBindingSource, "Email", true));
-            this.emailTextBox.Location = new System.Drawing.Point(111, 159);
-            this.emailTextBox.Name = "emailTextBox";
-            this.emailTextBox.Size = new System.Drawing.Size(339, 22);
-            this.emailTextBox.TabIndex = 8;
             // 
             // foneLabel
             // 
@@ -129,8 +93,44 @@
             foneLabel.Location = new System.Drawing.Point(2, 140);
             foneLabel.Name = "foneLabel";
             foneLabel.Size = new System.Drawing.Size(38, 16);
-            foneLabel.TabIndex = 9;
+            foneLabel.TabIndex = 6;
             foneLabel.Text = "Fone";
+            // 
+            // nomeTextBox
+            // 
+            this.nomeTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.clienteBindingSource, "Nome", true));
+            this.nomeTextBox.Location = new System.Drawing.Point(5, 101);
+            this.nomeTextBox.Name = "nomeTextBox";
+            this.nomeTextBox.Size = new System.Drawing.Size(445, 22);
+            this.nomeTextBox.TabIndex = 1;
+            // 
+            // clienteBindingSource
+            // 
+            this.clienteBindingSource.DataSource = typeof(Models.Cliente);
+            // 
+            // cPFTextBox
+            // 
+            this.cPFTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.clienteBindingSource, "CPF", true));
+            this.cPFTextBox.Location = new System.Drawing.Point(456, 101);
+            this.cPFTextBox.Name = "cPFTextBox";
+            this.cPFTextBox.Size = new System.Drawing.Size(100, 22);
+            this.cPFTextBox.TabIndex = 3;
+            // 
+            // rGTextBox
+            // 
+            this.rGTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.clienteBindingSource, "RG", true));
+            this.rGTextBox.Location = new System.Drawing.Point(562, 101);
+            this.rGTextBox.Name = "rGTextBox";
+            this.rGTextBox.Size = new System.Drawing.Size(100, 22);
+            this.rGTextBox.TabIndex = 5;
+            // 
+            // emailTextBox
+            // 
+            this.emailTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.clienteBindingSource, "Email", true));
+            this.emailTextBox.Location = new System.Drawing.Point(111, 159);
+            this.emailTextBox.Name = "emailTextBox";
+            this.emailTextBox.Size = new System.Drawing.Size(339, 22);
+            this.emailTextBox.TabIndex = 9;
             // 
             // foneTextBox
             // 
@@ -138,7 +138,7 @@
             this.foneTextBox.Location = new System.Drawing.Point(5, 159);
             this.foneTextBox.Name = "foneTextBox";
             this.foneTextBox.Size = new System.Drawing.Size(100, 22);
-            this.foneTextBox.TabIndex = 10;
+            this.foneTextBox.TabIndex = 7;
             // 
             // labelCadastro
             // 
@@ -147,7 +147,7 @@
             this.labelCadastro.Location = new System.Drawing.Point(0, 0);
             this.labelCadastro.Name = "labelCadastro";
             this.labelCadastro.Size = new System.Drawing.Size(675, 47);
-            this.labelCadastro.TabIndex = 11;
+            this.labelCadastro.TabIndex = 12;
             this.labelCadastro.Text = "Cadastro de Cliente";
             this.labelCadastro.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -156,7 +156,7 @@
             this.buttonSalvar.Location = new System.Drawing.Point(509, 335);
             this.buttonSalvar.Name = "buttonSalvar";
             this.buttonSalvar.Size = new System.Drawing.Size(75, 23);
-            this.buttonSalvar.TabIndex = 12;
+            this.buttonSalvar.TabIndex = 10;
             this.buttonSalvar.Text = "&Salvar";
             this.buttonSalvar.UseVisualStyleBackColor = true;
             this.buttonSalvar.Click += new System.EventHandler(this.buttonSalvar_Click);
@@ -167,7 +167,7 @@
             this.buttonCancelar.Location = new System.Drawing.Point(590, 335);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(75, 23);
-            this.buttonCancelar.TabIndex = 13;
+            this.buttonCancelar.TabIndex = 11;
             this.buttonCancelar.Text = "&Cancelar";
             this.buttonCancelar.UseVisualStyleBackColor = true;
             // 
@@ -191,6 +191,7 @@
             this.Controls.Add(this.nomeTextBox);
             this.Name = "FormCadastroCliente";
             this.Text = "FormCadastroCliente";
+            this.Load += new System.EventHandler(this.FormCadastroCliente_Load);
             ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

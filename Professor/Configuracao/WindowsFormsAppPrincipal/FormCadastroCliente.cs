@@ -14,9 +14,11 @@ namespace WindowsFormsAppPrincipal
 {
     public partial class FormCadastroCliente : Form
     {
-        public FormCadastroCliente()
+        int id;
+        public FormCadastroCliente(int _id = 0)
         {
             InitializeComponent();
+            id = _id;
         }
 
         private void buttonSalvar_Click(object sender, EventArgs e)
@@ -24,9 +26,32 @@ namespace WindowsFormsAppPrincipal
             try
             {
                 //Cliente cliente = (Cliente)clienteBindingSource.Current; //código resumido abaixo.
-                new ClienteBLL().Inserir((Cliente)clienteBindingSource.Current);
+                //new ClienteBLL().Inserir((Cliente)clienteBindingSource.Current);
+
+                clienteBindingSource.EndEdit();
+
+                if (id == 0)
+                    new ClienteBLL().Inserir((Cliente)clienteBindingSource.Current);
+                else
+                    new ClienteBLL().Alterar((Cliente)clienteBindingSource.Current);
+
                 MessageBox.Show("Registro salvo com sucesso!");
                 this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void FormCadastroCliente_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                if (id == 0)
+                    clienteBindingSource.AddNew();
+                else
+                    clienteBindingSource.DataSource = new ClienteBLL().BuscarPorId(id);
             }
             catch (Exception ex)
             {

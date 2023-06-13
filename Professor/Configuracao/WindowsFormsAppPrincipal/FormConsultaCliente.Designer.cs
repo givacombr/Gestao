@@ -52,6 +52,9 @@
             // 
             // clienteDataGridView
             // 
+            this.clienteDataGridView.AllowUserToAddRows = false;
+            this.clienteDataGridView.AllowUserToDeleteRows = false;
+            this.clienteDataGridView.AllowUserToOrderColumns = true;
             this.clienteDataGridView.AutoGenerateColumns = false;
             this.clienteDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.clienteDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -64,6 +67,7 @@
             this.clienteDataGridView.DataSource = this.clienteBindingSource;
             this.clienteDataGridView.Location = new System.Drawing.Point(0, 109);
             this.clienteDataGridView.Name = "clienteDataGridView";
+            this.clienteDataGridView.ReadOnly = true;
             this.clienteDataGridView.RowHeadersWidth = 51;
             this.clienteDataGridView.RowTemplate.Height = 24;
             this.clienteDataGridView.Size = new System.Drawing.Size(817, 286);
@@ -186,6 +190,7 @@
             this.buttonAlterar.TabIndex = 5;
             this.buttonAlterar.Text = "&Alterar";
             this.buttonAlterar.UseVisualStyleBackColor = true;
+            this.buttonAlterar.Click += new System.EventHandler(this.buttonAlterar_Click);
             // 
             // buttonInserir
             // 
@@ -195,6 +200,7 @@
             this.buttonInserir.TabIndex = 5;
             this.buttonInserir.Text = "&Inserir";
             this.buttonInserir.UseVisualStyleBackColor = true;
+            this.buttonInserir.Click += new System.EventHandler(this.buttonInserir_Click);
             // 
             // buttonExcluir
             // 

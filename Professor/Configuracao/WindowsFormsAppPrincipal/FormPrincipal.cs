@@ -58,5 +58,13 @@ namespace WindowsFormsAppPrincipal
             if (e.KeyCode == Keys.Escape)
                 Close();
         }
+
+        private void clienteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (FormConsultaCliente frm = new FormConsultaCliente())
+            {
+                frm.ShowDialog();
+            }
+        }
     }
 }
