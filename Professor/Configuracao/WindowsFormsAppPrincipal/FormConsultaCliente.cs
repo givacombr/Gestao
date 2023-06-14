@@ -23,7 +23,23 @@ namespace WindowsFormsAppPrincipal
         {
             try
             {
-                clienteBindingSource.DataSource = new ClienteBLL().BuscarPorNome(textBoxBuscar.Text);
+                switch (comboBoxBuscarPor.SelectedIndex)
+                {
+                    case 0:
+                        clienteBindingSource.DataSource = new ClienteBLL().BuscarPorId(Convert.ToInt32(textBoxBuscar.Text));
+                        break;
+                    case 1:
+                        clienteBindingSource.DataSource = new ClienteBLL().BuscarPorNome(textBoxBuscar.Text);
+                        break;
+                    case 2:
+                        clienteBindingSource.DataSource = new ClienteBLL().BuscarPorCPF(textBoxBuscar.Text);
+                        break;
+                    case 3:
+                        clienteBindingSource.DataSource = new ClienteBLL().BuscarTodos();
+                        break;
+                    default:
+                        break;
+                }
             }
             catch (Exception ex)
             {
@@ -40,6 +56,8 @@ namespace WindowsFormsAppPrincipal
                     MessageBox.Show("Não existe registro para ser excluído");
                     return;
                 }
+                if (MessageBox.Show("Deseja realmente excluir este registro?", "Atenção", MessageBoxButtons.YesNo) == DialogResult.No)
+                    return;
                 //int id = ((Cliente)clienteBindingSource.Current).Id; resumindo o código, como estar abaixo.
                 new ClienteBLL().Excluir(((Cliente)clienteBindingSource.Current).Id);
                 clienteBindingSource.RemoveCurrent();
@@ -87,6 +105,11 @@ namespace WindowsFormsAppPrincipal
                 MessageBox.Show(ex.Message);
                 throw;
             }
+        }
+
+        private void FormConsultaCliente_Load(object sender, EventArgs e)
+        {
+            comboBoxBuscarPor.SelectedIndex = 3;
         }
     }
 }
