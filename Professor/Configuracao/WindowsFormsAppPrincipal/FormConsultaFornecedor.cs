@@ -94,6 +94,7 @@ namespace WindowsFormsAppPrincipal
                     return;
                 }
                 int id = ((Fornecedor)fornecedorBindingSource.Current).Id;
+
                 using (FormCadastroFornecedor frm = new FormCadastroFornecedor(id))
                 {
                     frm.ShowDialog();
