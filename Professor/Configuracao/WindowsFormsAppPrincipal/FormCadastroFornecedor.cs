@@ -39,5 +39,20 @@ namespace WindowsFormsAppPrincipal
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void FormCadastroFornecedor_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                if (id == 0)
+                    fornecedorBindingSource.AddNew();
+                else
+                    fornecedorBindingSource.DataSource = new FornecedorBLL().BuscarPorId(id);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

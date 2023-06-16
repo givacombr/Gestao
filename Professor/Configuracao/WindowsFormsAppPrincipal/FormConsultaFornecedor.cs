@@ -73,13 +73,43 @@ namespace WindowsFormsAppPrincipal
         {
             try
             {
-                
+                using (FormCadastroFornecedor frm = new FormCadastroFornecedor())
+                {
+                    frm.ShowDialog();
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
+        private void buttonAlterar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (fornecedorBindingSource.Count == 0)
+                {
+                    MessageBox.Show("Não existe fornecedor para ser alterado.");
+                    return;
+                }
+                int id = ((Fornecedor)fornecedorBindingSource.Current).Id;
+                using (FormCadastroFornecedor frm = new FormCadastroFornecedor(id))
+                {
+                    frm.ShowDialog();
+                }
+                buttonBuscar_Click(null, null);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
                 throw;
             }
+        }
+
+        private void FormConsultaFornecedor_Load(object sender, EventArgs e)
+        {
+            comboBoxBuscarPor.SelectedIndex = 3;
         }
     }
 }

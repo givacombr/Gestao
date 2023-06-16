@@ -168,6 +168,7 @@
             this.buttonAlterar.TabIndex = 7;
             this.buttonAlterar.Text = "&Alterar";
             this.buttonAlterar.UseVisualStyleBackColor = true;
+            this.buttonAlterar.Click += new System.EventHandler(this.buttonAlterar_Click);
             // 
             // buttonInserir
             // 
@@ -226,6 +227,7 @@
             this.Controls.Add(this.fornecedorDataGridView);
             this.Name = "FormConsultaFornecedor";
             this.Text = "FormConsultaFornecedor";
+            this.Load += new System.EventHandler(this.FormConsultaFornecedor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.fornecedorDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fornecedorBindingSource)).EndInit();
             this.ResumeLayout(false);
