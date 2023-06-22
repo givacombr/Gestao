@@ -249,6 +249,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.clienteDataGridView);
             this.Name = "FormConsultaCliente";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormConsultaCliente";
             this.Load += new System.EventHandler(this.FormConsultaCliente_Load);
             ((System.ComponentModel.ISupportInitialize)(this.clienteDataGridView)).EndInit();
