@@ -158,9 +158,10 @@ namespace DAL
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = cn;
-                cmd.CommandText = @"SELECT Id, Nome, Fone, Email, Site FROM Fornecedor WHERE Site = @Site";
+                cmd.CommandText = @"SELECT Id, Nome, Fone, Email, Site FROM Fornecedor WHERE Site LIKE @Site";
                 cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Parameters.AddWithValue("@Site", _site);
+                cmd.Parameters.AddWithValue("@Site", "%" + _site + "%");
+
 
                 cn.Open();
                 using (SqlDataReader rd = cmd.ExecuteReader())
